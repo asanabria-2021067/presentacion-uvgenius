@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8" /><title>Presentador · UVGenius</title></head>
+<body>
+<div id="p">
+  <header><div id="clock">00:00</div><div id="plan"></div><div id="pos"></div><button id="rst">Reiniciar reloj</button></header>
+  <main>
+    <section class="cur"><div class="lbl">Ahora</div><h1 id="title"></h1><div id="who"></div><div id="steps"></div><p id="notes"></p></section>
+    <aside><div class="lbl">Sigue</div><h2 id="nxt"></h2><div id="nxtwho"></div>
+      <div class="lbl" style="margin-top:30px">Tiempo de esta diapositiva</div><div id="slideclock">0:00</div><div id="target"></div>
+      <div class="btns"><button id="b-prev">←</button><button id="b-next">→</button></div></aside>
+  </main>
+  <ol id="list"></ol>
+</div>
+<script type="module" src="/src/presenter.js"></script>
+</body></html>
