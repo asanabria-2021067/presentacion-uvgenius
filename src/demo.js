@@ -1,14 +1,11 @@
 import gsap from 'gsap'
 import { TEAM } from './slides.js'
+import { Avatar, track, PEOPLE } from './avatar3d.js'
 
 // Guion del recorrido: en qué segundo del video habla cada quien.
 // Se reemplaza por los tiempos reales cuando lleguen los audios del equipo.
 const CUES_URL = '/media/demo-cues.json'
 
-const src = (id, pose, talk) => `/avatars/sprites/${id}_${pose}${talk ? '_talk' : ''}.png`
-
-// precarga de todos los cuadros para que no parpadee
-for (const p of TEAM) for (const pose of ['stand', 'wave', 'point']) for (const t of [0, 1]) new Image().src = src(p.id, pose, t)
 
 export class Demo {
   constructor(root) {
@@ -23,8 +20,11 @@ export class Demo {
     this.cursor = this.q('#dm-cursor')
     this.ripples = root.querySelectorAll('.dm-ripple')
     this.team = [...root.querySelectorAll('.dm-a')]
+    this.teamAv = Object.fromEntries(this.team.map((f) => { const a = new Avatar(f.querySelector('canvas'), PEOPLE[f.dataset.id]); a.pose = 'wave'; track(a); return [f.dataset.id, a] }))
     this.guide = this.q('#dm-guide')
-    this.guideImg = this.q('#dm-guide img')
+    const gc = this.q('#dm-guide canvas')
+    this.guideAv = Object.fromEntries(TEAM.map((p) => [p.id, new Avatar(gc, PEOPLE[p.id])]))
+    this.untrackGuide = null
     this.sub = this.q('.dm-sub')
     this.cues = []
     this.subs = true
@@ -53,21 +53,16 @@ export class Demo {
     return Math.sqrt(s / this.buf.length)
   }
 
-  setPose(img, id, pose, talk) { const u = src(id, pose, talk); if (img._u !== u) { img.src = u; img._u = u } }
-
   raf(now) {
     if (!this.running) return
     const lv = this.level()
     // sin audio (video de prueba) la boca se mueve sola mientras haya diálogo
     const talk = lv > 0.02 || (this.fakeTalk && Math.sin(now / 70) > 0)
     if (this.phase === 'intro') {
-      for (const [i, a] of this.team.entries()) {
-        const id = a.dataset.id
-        const waving = Math.floor(now / 380 + i) % 2 === 0
-        this.setPose(a.querySelector('img'), id, waving ? 'wave' : 'stand', id === this.speaker && talk)
-      }
+      for (const [id, a] of Object.entries(this.teamAv)) a.talk = id === this.speaker && talk ? 1 : 0
     } else if (this.phase === 'video' && this.cur) {
-      this.setPose(this.guideImg, this.cur.who, this.cur.pose || 'stand', talk && !!this.cur.text)
+      const a = this.guideAv[this.cur.who]
+      if (a) { a.pose = this.cur.pose === 'point' ? 'point' : 'idle'; a.talk = talk && !!this.cur.text ? 1 : 0 }
     }
     requestAnimationFrame(this.raf)
   }
@@ -88,10 +83,11 @@ export class Demo {
     gsap.set(this.still, { opacity: 1 })
     gsap.set([this.cursor, ...this.ripples], { opacity: 0 })
     gsap.set(this.cursor, { left: 1760, top: 1000, scale: 1 })
-    gsap.set(this.team, { opacity: 0, y: 200 })
+    gsap.set(this.team, { opacity: 0, y: 260 })
     gsap.set(this.guide, { opacity: 0, x: 0 })
     gsap.set(['.dm-title', '.dm-kick'].map((s) => this.q(s)), { opacity: 1, x: 0 })
     this.phase = null; this.cur = null; this.fakeTalk = false
+    this.untrackGuide?.(); this.untrackGuide = null
   }
 
   step(n) {
@@ -112,7 +108,7 @@ export class Demo {
     this.audioInit(); this.ctx?.resume()
     this.running = true; requestAnimationFrame(this.raf)
     const z = this.zoomTarget()
-    const cx = 1310, cy = 470
+    const cx = 1310, cy = 500
     const tl = (this.tl = gsap.timeline())
     tl.to(this.cursor, { opacity: 1, duration: .2 })
       .to(this.cursor, { left: cx, top: cy, duration: 1.0, ease: 'power2.inOut' }, '<')
@@ -126,7 +122,7 @@ export class Demo {
       .set(this.full, { visibility: 'visible', opacity: 1 })
       .set(this.lap, { opacity: 0 })
       .add(() => { this.phase = 'intro'; this.speaker = 'angel' })
-      .to(this.team, { opacity: 1, y: 0, duration: .7, stagger: .12, ease: 'back.out(1.7)' }, '+=.15')
+      .to(this.team, { opacity: 1, y: 0, duration: .8, stagger: .1, ease: 'back.out(1.5)' }, '+=.15')
       .add(() => { this.intro.currentTime = 0; this.intro.play().catch(() => {}) }, '-=.3')
     this.intro.onended = () => { if (this.phase === 'intro') this.playVideo() }
   }
@@ -137,6 +133,7 @@ export class Demo {
     this.audioInit(); this.ctx?.resume()
     if (!this.running) { this.running = true; requestAnimationFrame(this.raf) }
     gsap.set(this.full, { visibility: 'visible', opacity: 1 }); gsap.set(this.lap, { opacity: 0 })
+    gsap.set([this.cursor, ...this.ripples, this.q('.dm-title'), this.q('.dm-kick')], { opacity: 0 })
     const tl = (this.tl = gsap.timeline())
     tl.to(this.team, { opacity: 0, y: 220, duration: .5, stagger: .06, ease: 'power2.in' })
       .add(() => { this.phase = 'video'; this.video.currentTime = 0; this.video.play().catch(() => {}) })
@@ -157,6 +154,7 @@ export class Demo {
     this.sub.querySelector('b').textContent = TEAM.find((p) => p.id === c.who)?.name ?? ''
     this.sub.querySelector('span').textContent = c.text || ''
     this.sub.style.display = c.text ? '' : 'none'
+    if (prevWho !== c.who) { this.untrackGuide?.(); this.untrackGuide = track(this.guideAv[c.who]) }
     if (prevWho !== c.who) gsap.fromTo(this.guide, { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: .5, ease: 'back.out(1.5)' })
     else gsap.to(this.guide, { opacity: 1, x: 0, duration: .3 })
   }

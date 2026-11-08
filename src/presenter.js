@@ -1,4 +1,4 @@
-import '@fontsource/rubik/800.css'
+import '@fontsource/manrope/800.css'
 import '@fontsource/manrope/500.css'
 import '@fontsource/manrope/700.css'
 import './presenter.css'
@@ -25,11 +25,11 @@ chan.onmessage = ({ data }) => {
   if (data.index !== st.index) slideAt = Date.now()
   st = data
   const s = SLIDES[st.index], n = SLIDES[st.index + 1]
-  $('title').textContent = `${String(st.index + 1).padStart(2, '0')} · ${s.sec} · ${s.id}`
+  $('title').textContent = `${String(st.index + 1).padStart(2, '0')} · ${s.act} · ${s.id}`
   $('who').textContent = `Habla: ${s.who}`
   $('steps').textContent = s.steps ? `Paso ${st.step} de ${s.steps}` : ''
   $('notes').textContent = s.notes
-  $('nxt').textContent = n ? `${n.sec} · ${n.id}` : 'Fin'
+  $('nxt').textContent = n ? `${n.act} · ${n.id}` : 'Fin'
   $('nxtwho').textContent = n ? `Habla: ${n.who}` : ''
   $('target').textContent = `Meta: ${mmss(s.t)} · debería empezar en ${mmss(cum[st.index])}`
   for (const li of document.querySelectorAll('#list li')) li.classList.toggle('on', +li.dataset.i === st.index)
