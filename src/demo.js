@@ -30,7 +30,18 @@ export class Demo {
     this.cues = []
     this.subs = true
     fetch(CUES_URL).then((r) => (r.ok ? r.json() : [])).then((c) => (this.cues = c)).catch(() => {})
-    addEventListener('keydown', (e) => { if (e.key === 's' || e.key === 'S') { this.subs = !this.subs; this.sub.classList.toggle('off', !this.subs) } })
+    addEventListener('keydown', (e) => {
+      if (e.key === 's' || e.key === 'S') { this.subs = !this.subs; this.sub.classList.toggle('off', !this.subs) }
+      if (!this.root.classList.contains('on')) return
+      // V: muestra u oculta la barra del video para regresar a un punto exacto
+      if (e.key === 'v' || e.key === 'V') { if (this.phase !== 'video' && this.phase !== 'outro') this.playVideo(); this.video.controls = !this.video.controls; this.root.classList.toggle('dm-ctrl', this.video.controls) }
+      // 1 a 5: salta al inicio de la parte de cada uno (Samuel, Derek, Saúl, Vernel, Angel)
+      const k = '12345'.indexOf(e.key)
+      if (k >= 0 && this.cues.length) {
+        const who = ['samuel', 'derek', 'saul', 'vernel', 'angel'][k], c = this.cues.find((x) => x.who === who)
+        if (c) { if (this.phase !== 'video') this.playVideo(); setTimeout(() => { this.video.currentTime = Math.max(0, c.t - 0.3); this.video.play().catch(() => {}) }, this.phase === 'video' ? 0 : 900) }
+      }
+    })
     this.video.addEventListener('timeupdate', () => this.onTime())
     this.video.addEventListener('ended', () => this.playOutro())
     this.raf = this.raf.bind(this)
@@ -81,7 +92,7 @@ export class Demo {
     for (const m of [this.intro, this.video, this.outro]) { m.pause(); m.currentTime = 0 }
     gsap.set(this.lap, { x: 0, y: 0, scale: 1, opacity: 1, transformOrigin: '0 0' })
     gsap.set(this.full, { opacity: 0, visibility: 'hidden' })
-    gsap.set(this.video, { opacity: 0 })
+    gsap.set(this.video, { opacity: 0 }); this.video.controls = false; this.root.classList.remove('dm-ctrl')
     gsap.set(this.still, { opacity: 1 })
     gsap.set([this.cursor, ...this.ripples], { opacity: 0 })
     gsap.set(this.cursor, { left: 1760, top: 1000, scale: 1 })
@@ -162,6 +173,7 @@ export class Demo {
     const speaking = c && c.text && (!c.until || t <= c.until + 0.3)
     this.sub.style.opacity = speaking && this.subs ? 1 : 0
     if (c === this.cur) return
+    if (this.phase === 'outro' && c && !c.hide) { this.phase = 'video'; gsap.to(this.team, { opacity: 0, y: 220, duration: .4 }); this.outro.pause() }
     const prevWho = this.cur?.who
     this.cur = c
     this.fakeTalk = !!c?.text && !c?.audio

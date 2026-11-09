@@ -127,11 +127,53 @@
  },
  {
   "t": 47.47,
+  "who": "samuel",
+  "pose": "idle",
+  "text": "Y no todo es trabajo: cada proyecto tiene su chat de equipo y también le puedo escribir directo a cualquier compañero.",
+  "audio": true,
+  "until": 53.83,
+  "pos": {
+   "x": 1556,
+   "y": 78,
+   "s": 1.0
+  },
+  "subTop": false
+ },
+ {
+  "t": 55.71,
+  "who": "samuel",
+  "pose": "point",
+  "text": "Además, existen las organizaciones como laboratorios o grupos estudiantiles que tienen sus propios miembros y publican sus proyectos.",
+  "audio": true,
+  "until": 63.12,
+  "pos": {
+   "x": 1556,
+   "y": 700,
+   "s": 1.0
+  },
+  "subTop": false
+ },
+ {
+  "t": 65.7,
+  "who": "samuel",
+  "pose": "idle",
+  "text": "Y en mi perfil voy ganando insignias parecido a GitHub conforme completo tareas y proyectos.",
+  "audio": true,
+  "until": 71.61,
+  "pos": {
+   "x": 1593,
+   "y": -3,
+   "s": 0.78
+  },
+  "subTop": false
+ },
+ {
+  "t": 73.17,
   "who": "derek",
   "pose": "idle",
   "text": "Ahora yo como líder mi trabajo es organizar el equipo y para eso tengo todo en un solo lugar",
   "audio": true,
-  "until": 53.74,
+  "until": 79.44,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -140,12 +182,12 @@
   "subTop": false
  },
  {
-  "t": 55.37,
+  "t": 81.07,
   "who": "derek",
   "pose": "point",
   "text": "Reviso las postulaciones que llegaron, veo el perfil de cada estudiante y decido a quién acepto",
   "audio": true,
-  "until": 61.5,
+  "until": 87.2,
   "pos": {
    "x": 1556,
    "y": 78,
@@ -154,12 +196,12 @@
   "subTop": false
  },
  {
-  "t": 63.35,
+  "t": 89.05,
   "who": "derek",
   "pose": "idle",
   "text": "Después armo el sprint, creo las tareas, les pongo responsable, prioridad y fecha y quedan en el tablero de todos.",
   "audio": true,
-  "until": 71.36,
+  "until": 97.06,
   "pos": {
    "x": 1593,
    "y": -3,
@@ -168,12 +210,12 @@
   "subTop": true
  },
  {
-  "t": 74.27,
+  "t": 99.97,
   "who": "derek",
   "pose": "point",
   "text": "Desde aquí también programo reuniones y llevo el control de quién va avanzando y quién se está quedando atrás y",
   "audio": true,
-  "until": 80.89,
+  "until": 106.59,
   "pos": {
    "x": 1593,
    "y": 700,
@@ -182,12 +224,12 @@
   "subTop": false
  },
  {
-  "t": 82.6,
+  "t": 108.3,
   "who": "derek",
   "pose": "idle",
   "text": "cuando un estudiante registra horas me llegan a mí.",
   "audio": true,
-  "until": 85.18,
+  "until": 110.88,
   "pos": {
    "x": 1593,
    "y": 700,
@@ -196,12 +238,12 @@
   "subTop": false
  },
  {
-  "t": 85.45,
+  "t": 111.15,
   "who": "derek",
   "pose": "point",
   "text": "Las reviso y las apruebo, las rechazo con un comentario",
   "audio": true,
-  "until": 88.58,
+  "until": 114.28,
   "pos": {
    "x": 213,
    "y": 700,
@@ -210,12 +252,12 @@
   "subTop": false
  },
  {
-  "t": 88.83,
+  "t": 114.53,
   "who": "derek",
   "pose": "idle",
   "text": "Así las horas son reales y no solamente un número",
   "audio": true,
-  "until": 91.92,
+  "until": 117.62,
   "pos": {
    "x": 213,
    "y": -3,
@@ -224,12 +266,12 @@
   "subTop": false
  },
  {
-  "t": 93.53,
+  "t": 119.23,
   "who": "saul",
   "pose": "idle",
   "text": "Yo represento a la Junta Directiva de una asociación,",
   "audio": true,
-  "until": 96.97,
+  "until": 122.67,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -238,12 +280,12 @@
   "subTop": false
  },
  {
-  "t": 97.23,
+  "t": 122.93,
   "who": "saul",
   "pose": "point",
   "text": "nosotros vemos el panorama completo, no solo un proyecto.",
   "audio": true,
-  "until": 100.7,
+  "until": 126.4,
   "pos": {
    "x": 1593,
    "y": 700,
@@ -252,12 +294,12 @@
   "subTop": true
  },
  {
-  "t": 100.85,
+  "t": 126.55,
   "who": "saul",
   "pose": "idle",
   "text": "Aquí tenemos a todos los miembros de la asociación,",
   "audio": true,
-  "until": 103.53,
+  "until": 129.23,
   "pos": {
    "x": 1556,
    "y": 78,
@@ -266,12 +308,12 @@
   "subTop": true
  },
  {
-  "t": 103.77,
+  "t": 129.47,
   "who": "saul",
   "pose": "point",
   "text": "los proyectos que estamos impulsando y quién lidera cada uno.",
   "audio": true,
-  "until": 107.5,
+  "until": 133.2,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -280,12 +322,12 @@
   "subTop": false
  },
  {
-  "t": 108.24,
+  "t": 133.94,
   "who": "saul",
   "pose": "idle",
   "text": "Podemos crear proyectos nuevos, asignar líderes y ver en qué estado va cada iniciativa.",
   "audio": true,
-  "until": 113.99,
+  "until": 139.69,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -294,12 +336,12 @@
   "subTop": false
  },
  {
-  "t": 119.4,
+  "t": 145.1,
   "who": "saul",
   "pose": "point",
   "text": "Y a fin de ciclo ya no hay que andar juntando hojas de Excel.",
   "audio": true,
-  "until": 124.05,
+  "until": 149.75,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -308,12 +350,12 @@
   "subTop": false
  },
  {
-  "t": 123.92,
+  "t": 149.62,
   "who": "saul",
   "pose": "idle",
   "text": "Los reportes de horas y participación salen de aquí directamente.",
   "audio": true,
-  "until": 128.07,
+  "until": 153.77,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -322,12 +364,12 @@
   "subTop": false
  },
  {
-  "t": 129.63,
+  "t": 155.33,
   "who": "vernel",
   "pose": "idle",
   "text": "Yo soy el coordinador académico.",
   "audio": true,
-  "until": 132.43,
+  "until": 158.38,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -336,12 +378,12 @@
   "subTop": false
  },
  {
-  "t": 132.73,
+  "t": 158.68,
   "who": "vernel",
   "pose": "point",
   "text": "Mi vista se parece a la del administrador, pero solo veo las carreras que me tocan.",
   "audio": true,
-  "until": 137.87,
+  "until": 164.2,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -350,12 +392,12 @@
   "subTop": false
  },
  {
-  "t": 139.73,
+  "t": 165.56,
   "who": "vernel",
   "pose": "idle",
-  "text": "Puedo ver los estudiantes de mi carrera, en qué proyectos participan y cuántas horas llevan validadas.",
+  "text": "Puedo ver a los estudiantes de mi carrera, en qué proyectos participan y cuántas horas llevan validadas.",
   "audio": true,
-  "until": 146.05,
+  "until": 172.58,
   "pos": {
    "x": 213,
    "y": 700,
@@ -364,12 +406,12 @@
   "subTop": true
  },
  {
-  "t": 146.31,
+  "t": 172.88,
   "who": "vernel",
   "pose": "point",
   "text": "Si necesito entregar un informe, filtro y descargo las horas en PDF o en CSV con un clic.",
   "audio": true,
-  "until": 152.84,
+  "until": 179.7,
   "pos": {
    "x": 213,
    "y": -3,
@@ -378,12 +420,12 @@
   "subTop": true
  },
  {
-  "t": 154.92,
+  "t": 180.78,
   "who": "vernel",
   "pose": "idle",
-  "text": "Así la universidad tiene información confiable para dar seguimiento, sin pedirle a cada estudiante que lo compruebe a mano.",
+  "text": "Así la universidad tiene información confiable para dar seguimiento sin pedirle a cada estudiante que lo compruebe a mano.",
   "audio": true,
-  "until": 162.07,
+  "until": 188.63,
   "pos": {
    "x": 1593,
    "y": 700,
@@ -392,12 +434,12 @@
   "subTop": false
  },
  {
-  "t": 163.6,
+  "t": 190.2,
   "who": "angel",
   "pose": "idle",
   "text": "Por último, el administrador. Desde aquí se gestiona toda la plataforma,",
   "audio": true,
-  "until": 168.13,
+  "until": 194.73,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -406,12 +448,12 @@
   "subTop": false
  },
  {
-  "t": 168.43,
+  "t": 195.03,
   "who": "angel",
   "pose": "point",
   "text": "usuarios, roles, asociaciones, carreras y facultades.",
   "audio": true,
-  "until": 172.25,
+  "until": 198.85,
   "pos": {
    "x": 1593,
    "y": 700,
@@ -420,12 +462,12 @@
   "subTop": false
  },
  {
-  "t": 174.1,
+  "t": 200.7,
   "who": "angel",
   "pose": "idle",
   "text": "Tenemos un panel de estado del sistema que muestra si cada servicio está funcionando y un modo mantenimiento por si hay que realizar algún tipo de cambios.",
   "audio": true,
-  "until": 182.97,
+  "until": 209.57,
   "pos": {
    "x": 1593,
    "y": 700,
@@ -434,12 +476,12 @@
   "subTop": true
  },
  {
-  "t": 184.35,
+  "t": 210.95,
   "who": "angel",
   "pose": "point",
   "text": "Todo con permisos por rol: cada persona ve sólo lo que le corresponde.",
   "audio": true,
-  "until": 188.9,
+  "until": 215.5,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -448,7 +490,7 @@
   "subTop": false
  },
  {
-  "t": 189.7,
+  "t": 216.3,
   "hide": true
  }
 ]

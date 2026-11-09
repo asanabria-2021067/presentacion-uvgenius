@@ -81,6 +81,7 @@ function enter(s, instant) {
   gsap.killTweensOf(Q(el, '*'))
   if (s.aud !== undefined) return enterAud(s, instant)
   if (s.ci) return enterCI(s, instant)
+  if (s.rain) return enterRain(s, instant)
   if (s.id === 'demo') return
   if (instant) return revealAll(s)
   const base = Q(el, '.kick, .title, .cv-logo, .cv-meta, .cv-names')
@@ -189,6 +190,30 @@ function failCI(s) {
   tl.fromTo(foot, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, t + 2.4); tl.call(() => sfx('pop'), null, t + 2.4)
 }
 
+// ---------- lluvia de ideas: todo cae y se acomoda alrededor de UVGenius ----------
+function enterRain(s, instant) {
+  const el = s.el, ws = Q(el, '.rw'), c = el.querySelector('.rain-c')
+  const rings = [[440, 200, 8], [640, 310, 12], [800, 420, 16]]
+  let k = 0; const pos = []
+  for (const [rx, ry, n] of rings) for (let j = 0; j < n && k < ws.length; j++, k++) {
+    const a = (j / n) * Math.PI * 2 + (rx % 7) * 0.3
+    pos.push([960 + Math.cos(a) * rx, 545 + Math.sin(a) * ry])
+  }
+  ws.forEach((w, i) => { const [x, y] = pos[i] || [960, 545]; w.style.left = x + 'px'; w.style.top = y + 'px' })
+  gsap.set([c, ...ws], { xPercent: -50, yPercent: -50, transform: 'none' }); gsap.set([c, ...ws], { xPercent: -50, yPercent: -50 })
+  if (instant) { gsap.set([c, ...ws], { opacity: 1, y: 0, x: 0, rotate: 0, scale: 1 }); return }
+  gsap.set(ws, { opacity: 0 }); gsap.set(c, { opacity: 0, scale: 0.6 })
+  const tl = (TL = gsap.timeline())
+  tl.to(c, { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.6)' }, 0.2); tl.call(() => sfx('reveal'), null, 0.2)
+  ws.forEach((w, i) => {
+    const at = 0.9 + i * 0.07 + Math.random() * 0.25
+    tl.fromTo(w, { opacity: 1, y: -700 - Math.random() * 300, x: (Math.random() - 0.5) * 300, rotate: (Math.random() - 0.5) * 60 },
+      { y: 0, x: 0, rotate: (Math.random() - 0.5) * 6, duration: 1.0, ease: 'bounce.out' }, at)
+    if (i % 3 === 0) tl.call(() => sfx('pop', 0.5, 0.8 + Math.random() * 0.6), null, at + 0.55)
+  })
+  tl.call(() => sfx('bell'), null, 0.9 + ws.length * 0.07 + 1.2)
+}
+
 // ---------- navegación ----------
 let index = -1, step = 0
 const T0 = { start: null }
@@ -245,7 +270,7 @@ addEventListener('keydown', (e) => {
   else if (k === 'End') show(SLIDES.length - 1)
   else if (k === '?' || k === 'h') document.body.classList.toggle('showhelp')
 })
-stage.addEventListener('click', (e) => { if (e.clientX > innerWidth * 0.5) next(); else prev() })
+stage.addEventListener('click', (e) => { if (e.target.closest('video[controls]')) return; if (e.clientX > innerWidth * 0.5) next(); else prev() })
 
 chan.onmessage = ({ data }) => {
   if (data.type === 'cmd') ({ next, prev })[data.cmd]?.()

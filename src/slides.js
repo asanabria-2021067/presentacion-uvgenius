@@ -106,29 +106,29 @@ S({
 })
 
 const AUD = [
-  { icon: 'graduation-cap', t: 'Estudiantes', img: '/shots/e_explorar.jpg', url: 'uvgenius / proyectos',
-    can: [['search', 'Encuentran proyectos con filtros por área y tipo de horas'], ['send', 'Se postulan a un rol y ven el estado de su solicitud'], ['timer', 'Registran horas ligadas a sus tareas'], ['link', 'Comparten su portafolio con un enlace']] },
-  { icon: 'crown', t: 'Líderes de asociación', img: '/shots/e_kanban.jpg', url: 'uvgenius / tablero',
-    can: [['megaphone', 'Publican proyectos y abren roles'], ['user-check', 'Aceptan o rechazan postulaciones'], ['kanban', 'Organizan el trabajo por sprints o metas'], ['badge-check', 'Revisan y validan las horas del equipo']] },
-  { icon: 'book-open-check', t: 'Coordinadores académicos', img: '/shots/a_horas.jpg', url: 'uvgenius / horas',
-    can: [['school', 'Ven solo las carreras que coordinan'], ['bar-chart-3', 'Siguen las horas por semestre y por estudiante'], ['triangle-alert', 'Detectan a quién le faltan horas'], ['file-down', 'Descargan reportes en PDF o CSV']] },
+  { icon: 'graduation-cap', t: 'Estudiantes', img: '/shots/e_explorar.jpg', url: 'uvgenius / proyectos', who: 'Vernel',
+    can: [['search', 'Exploran proyectos por horas beca o de extensión y por carrera'], ['send', 'Se postulan a un rol y siguen el estado de su solicitud'], ['kanban', 'Trabajan en el tablero y registran horas en cada tarea'], ['message-circle', 'Chatean con su equipo y con cualquier compañero'], ['award', 'Comparten su portafolio, con insignias y enlace al CV']] },
+  { icon: 'crown', t: 'Líderes de asociación', img: '/shots/asoc.jpg', url: 'uvgenius / mi asociación', who: 'Angel',
+    can: [['users', 'Ven el avance de horas de los estudiantes de sus carreras'], ['bell-ring', 'Detectan quién va en riesgo y le envían un aviso'], ['folder-plus', 'Crean proyectos a nombre de la asociación y asignan al equipo y al líder'], ['chart-no-axes-column', 'Siguen el avance de cada proyecto por tareas y sprints'], ['megaphone', 'Publican anuncios y descargan reportes en PDF o CSV']] },
+  { icon: 'book-open-check', t: 'Coordinadores académicos', img: '/shots/coord.jpg', url: 'uvgenius / coordinación', who: 'Vernel',
+    can: [['school', 'Ven solo las carreras que coordinan'], ['bar-chart-3', 'Revisan horas beca y de extensión: declaradas y acreditadas'], ['triangle-alert', 'Ven a los estudiantes en riesgo de no completar sus horas'], ['clipboard-check', 'Atienden proyectos en revisión y solicitudes de cierre'], ['file-down', 'Descargan reportes por semestre en PDF o CSV']] },
 ]
 const audCards = (focus) => `<div class="aud">${AUD.map((a, i) => `<div class="aud-c${i < focus ? ' seen' : ''}" data-i="${i}"><div class="ib">${ic(a.icon, 40)}</div><div class="t">${a.t}</div><div class="go">${i < focus ? ic('check', 22, 3) + ' Visto' : 'Ver qué puede hacer ' + ic('arrow-right', 22, 2.5)}</div></div>`).join('')}</div>
   <div class="aud-cursor">${ic('mouse-pointer-2', 52, 1.6)}</div><div class="aud-ripple"></div>`
 const audNotes = [
-  'En esta primera etapa, UVGenius está pensado para tres públicos. [→ el cursor abre Estudiantes]',
+  'ANGEL: En esta primera etapa, UVGenius está pensado para tres públicos. Vernel les cuenta el primero. [→ el cursor abre Estudiantes]',
   '[→ el cursor abre Líderes de asociación]',
   '[→ el cursor abre Coordinadores académicos]',
 ]
 const audDetail = [
-  'Los estudiantes encuentran proyectos con filtros, se postulan a un rol y ven en qué va su solicitud; registran sus horas en cada tarea y al final comparten su portafolio con un enlace.',
-  'Los líderes de asociación publican sus proyectos, eligen a quién aceptar, organizan el trabajo por sprints o metas y revisan las horas de su equipo.',
-  'Y los coordinadores académicos ven solo las carreras que coordinan: siguen las horas por semestre, detectan a quién le faltan y descargan los reportes. [Sigue: el flujo]',
+  'VERNEL: Los estudiantes exploran proyectos filtrando por horas beca o de extensión y por su carrera, se postulan a un rol y siguen el estado de su solicitud. Ya dentro, trabajan en el tablero y registran sus horas en cada tarea, chatean con su equipo y al final comparten su portafolio, con insignias y un enlace a su CV.',
+  'ANGEL: Los líderes de asociación ven el avance de horas de todos los estudiantes de sus carreras y detectan quién va en riesgo para enviarle un aviso. Crean proyectos a nombre de la asociación y asignan directamente al equipo y al líder, siguen el avance de cada proyecto y publican anuncios y reportes.',
+  'VERNEL: Y los coordinadores académicos ven solo las carreras que coordinan: revisan las horas beca y de extensión, declaradas y acreditadas, ven quién está en riesgo, atienden los proyectos en revisión y las solicitudes de cierre, y descargan los reportes del semestre. [Angel sigue con la demo]',
 ]
 AUD.forEach((a, i) => {
-  S({ id: `para-quien-${i}`, act: 'La solución', who: 'Angel', t: i === 0 ? 15 : 4, aud: i, notes: audNotes[i],
+  S({ id: `para-quien-${i}`, act: 'La solución', who: i === 0 ? 'Angel' : a.who, t: i === 0 ? 15 : 4, aud: i, notes: audNotes[i],
     html: `${head('Público objetivo · primera etapa', 'Pensado para <em>tres públicos.</em>')}${audCards(i)}` })
-  S({ id: `publico-${i}`, act: 'La solución', who: 'Angel', t: 14, gap: 0.55, notes: audDetail[i],
+  S({ id: `publico-${i}`, act: 'La solución', who: a.who, t: 18, gap: 0.55, notes: audDetail[i],
     html: `<div class="kick">Público objetivo · ${i + 1} de 3</div><h2 class="title">${a.t}</h2>
     <div class="pd-shot" data-step="1" data-sfx="slide"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>${a.url}</span></div><div class="shot"><img src="${a.img}" alt="" /></div></div></div>
     <div class="pd-can">${a.can.map(([ico, t], k) => `<div class="pd-i" data-step="${k + 2}" data-sfx="pop"><span class="ib">${ic(ico, 30)}</span>${t}</div>`).join('')}</div>` })
@@ -232,7 +232,7 @@ const stack = [
   ['Infraestructura', [['siDocker', 'Docker'], ['siNginx', 'Nginx'], ['siGithubactions', 'GitHub Actions']], 'Todo en contenedores: la base de datos también. Se mueve a otro servidor sin cambiar código.'],
 ]
 S({
-  id: 'tecnologias', act: 'Tecnología', who: 'Vernel', t: 35, gap: 0.9,
+  id: 'tecnologias', act: 'Tecnología', who: 'Angel', t: 35, gap: 0.9,
   notes: `Estas son las tecnologías. La interfaz es Next.js con React y TypeScript; la API es NestJS con Prisma. Los datos viven en PostgreSQL, que también corre en un contenedor de Docker. El chat, los avisos y el tablero en tiempo real usan Socket.io con Redis, y los archivos van a Cloudinary. Todo se despliega con Docker, Nginx y GitHub Actions.
 SI PREGUNTAN POR QUÉ:
 • Next.js: renderiza en el servidor (carga rápida) y es TypeScript igual que la API.
@@ -322,6 +322,13 @@ S({
 })
 
 // Orden de la presentación: pitch, equipo, problema, público objetivo y la demo lo antes posible.
+const RAIN = ['Explorar proyectos', 'Filtrar por horas beca', 'Horas de extensión', 'Postularse a un rol', 'Preguntas de postulación', 'Estado de la solicitud', 'Aceptar postulantes', 'Tablero Kanban', 'Sprints', 'Metas', 'Registrar horas', 'Validar horas', 'Chat de equipo', 'Mensajes directos', 'Avisos en tiempo real', 'Calendario', 'Reuniones', 'Organizaciones', 'Asociaciones', 'Junta directiva', 'Anuncios', 'Metas del semestre', 'Estudiantes en riesgo', 'Reportes PDF', 'Reportes CSV', 'Portafolio', 'Insignias', 'CV con enlace', 'Panel de coordinación', 'Cierre de proyectos', 'Roles y permisos', 'Estado del sistema', 'Modo mantenimiento', 'Accesibilidad', 'Modo oscuro', 'Búsqueda global']
+S({
+  id: 'lluvia', act: 'Todo en uno', who: 'Derek', t: 15, rain: true,
+  notes: '(Opcional) Todo lo que hace UVGenius, en un solo lugar.',
+  html: `<div class="rain">${RAIN.map((t) => `<span class="rw">${t}</span>`).join('')}<div class="rain-c"><div class="wordmark">UVGenius</div><small>todo en un solo lugar</small></div></div>`,
+})
+
 const ORDER = ['pitch', 'historia', 'equipo', 'canales', 'sintomas', 'revelacion', 'para-quien-0', 'publico-0', 'para-quien-1', 'publico-1', 'para-quien-2', 'publico-2', 'demo',
-  'recorrido', 'neurolab', 'mejoras', 'tecnologias', 'arquitectura', 'ci', 'antes-despues', 'herramientas', 'costos', 'impacto', 'siguiente', 'cierre']
+  'recorrido', 'neurolab', 'mejoras', 'tecnologias', 'arquitectura', 'ci', 'antes-despues', 'herramientas', 'costos', 'impacto', 'siguiente', 'cierre', 'lluvia']
 SLIDES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id))

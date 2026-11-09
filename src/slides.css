@@ -402,3 +402,15 @@
 .cv-team.eq { left: 128px; right: 128px; bottom: 110px; justify-content: space-between; }
 .cv-team.eq figure { width: 290px; height: 312px; }
 .cv-team.eq figcaption { font-size: 24px; }
+/* lluvia de ideas */
+.slide[data-id="lluvia"] { background: var(--green-ink); }
+.rain { position: absolute; inset: 0; }
+.rain-c { position: absolute; left: 960px; top: 545px; text-align: center; }
+.rain-c .wordmark { font-size: 130px; }
+.rain-c small { display: block; margin-top: 8px; font: 600 26px var(--f-head); color: var(--lime); letter-spacing: .02em; }
+.rw { position: absolute; white-space: nowrap; padding: 10px 20px; border-radius: 99px; background: rgba(255, 255, 255, .08); border: 1px solid rgba(183, 245, 104, .3); color: #eef7f1; font: 600 22px var(--f-head); }
+.rw:nth-child(3n) { background: var(--lime); color: var(--green-ink); border-color: transparent; }
+.rw:nth-child(4n) { font-size: 26px; }
+.rw:nth-child(5n) { background: #fff; color: var(--green-ink); }
+/* la barra del video encima de todo cuando se pide con V */
+.demo-slide.dm-ctrl #dm-full { z-index: 40; }
