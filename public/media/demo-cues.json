@@ -1,133 +1,222 @@
 [
  {
-  "t": 0,
+  "t": 0.6,
   "who": "samuel",
   "pose": "idle",
-  "text": "Empiezo yo, como estudiante. Entro con mi correo de la UVG y lo primero que veo es mi panel."
+  "text": "Empiezo yo, como estudiante, entro con mi correo de la UVG y lo primero que veo es mi panel,",
+  "audio": true,
+  "until": 6.07
  },
  {
-  "t": 12,
+  "t": 11.42,
   "who": "samuel",
   "pose": "point",
-  "text": "Mis proyectos, mis horas acumuladas y lo que tengo pendiente."
+  "text": "mis proyectos, mis horas acumuladas y lo que tengo pendiente.",
+  "audio": true,
+  "until": 15.01
  },
  {
-  "t": 19,
+  "t": 15.46,
   "who": "samuel",
   "pose": "idle",
-  "text": "Si quiero hacer voluntariado, voy a Explorar y filtro por área o asociación."
+  "text": "Si quiero hacer voluntariado voy a explorar.",
+  "audio": true,
+  "until": 18.19
  },
  {
-  "t": 34,
+  "t": 18.64,
   "who": "samuel",
   "pose": "point",
-  "text": "Leo de qué trata, qué roles buscan, y me postulo con un clic."
+  "text": "Aquí veo los proyectos abiertos, filtro por área o asociación y entro al que me interesa.",
+  "audio": true,
+  "until": 24.23
  },
  {
-  "t": 44,
+  "t": 26.45,
   "who": "samuel",
   "pose": "idle",
-  "text": "Ya dentro del proyecto, mis tareas están en el tablero."
+  "text": "Leo de qué trata, qué roles buscan y me postulo con un clic.",
+  "audio": true,
+  "until": 30.5
  },
  {
-  "t": 57,
+  "t": 35.19,
   "who": "samuel",
   "pose": "point",
-  "text": "Cada hora que trabajo queda registrada y, cuando me la validan, se suma a mi portafolio."
+  "text": "El líder recibe mi solicitud al instante.",
+  "audio": true,
+  "until": 37.75
  },
  {
-  "t": 61.4,
+  "t": 38.59,
+  "who": "samuel",
+  "pose": "idle",
+  "text": "Ya dentro del proyecto mis tareas están en el tablero,",
+  "audio": true,
+  "until": 41.79
+ },
+ {
+  "t": 42.24,
+  "who": "samuel",
+  "pose": "point",
+  "text": "las muevo de columna conforme avanzo y el equipo lo ve en tiempo real y lo mejor,",
+  "audio": true,
+  "until": 47.54
+ },
+ {
+  "t": 47.99,
+  "who": "samuel",
+  "pose": "idle",
+  "text": "cada hora que trabajo queda registrada cuando me la validan se suma a mi portafolio que puedo compartir con un enlace.",
+  "audio": true,
+  "until": 54.72
+ },
+ {
+  "t": 57.67,
   "who": "derek",
   "pose": "idle",
-  "text": "Ahora yo como líder, mi trabajo es organizar el equipo y para eso tengo todo en un solo lugar Reviso las postulaciones que llegaron,",
-  "audio": true
+  "text": "Ahora yo como líder mi trabajo es organizar el equipo y para eso tengo todo en un solo lugar",
+  "audio": true,
+  "until": 63.96
  },
  {
-  "t": 70.0,
+  "t": 64.41,
   "who": "derek",
   "pose": "point",
-  "text": "veo el perfil de cada estudiante y decido a quién acepto Después armo el sprint, creo las tareas, les pongo responsable, prioridad y fecha y quedan en el tablero de todos.",
-  "audio": true
+  "text": "Reviso las postulaciones que llegaron, veo el perfil de cada estudiante y decido a quién acepto",
+  "audio": true,
+  "until": 70.56
  },
  {
-  "t": 81.02,
+  "t": 72.78,
   "who": "derek",
   "pose": "idle",
-  "text": "Desde aquí también programo reuniones y llevo el control de quién va avanzando y quién se está quedando atrás y cuando un estudiante registra horas me llegan a mí.",
-  "audio": true
+  "text": "Después armo el sprint, creo las tareas, les pongo responsable, prioridad y fecha y quedan en el tablero de todos.",
+  "audio": true,
+  "until": 80.96
  },
  {
-  "t": 90.02,
+  "t": 84.29,
   "who": "derek",
   "pose": "point",
-  "text": "Las reviso y las apruebo, las rechazo con un comentario Así las horas son reales y no solamente un número",
-  "audio": true
+  "text": "Desde aquí también programo reuniones y llevo el control de quién va avanzando y quién se está quedando atrás y",
+  "audio": true,
+  "until": 90.94
  },
  {
-  "t": 98.1,
+  "t": 94.51,
+  "who": "derek",
+  "pose": "idle",
+  "text": "cuando un estudiante registra horas me llegan a mí.",
+  "audio": true,
+  "until": 97.24
+ },
+ {
+  "t": 97.69,
+  "who": "derek",
+  "pose": "point",
+  "text": "Las reviso y las apruebo, las rechazo con un comentario",
+  "audio": true,
+  "until": 100.81
+ },
+ {
+  "t": 101.26,
+  "who": "derek",
+  "pose": "idle",
+  "text": "Así las horas son reales y no solamente un número",
+  "audio": true,
+  "until": 104.4
+ },
+ {
+  "t": 106.6,
   "who": "saul",
   "pose": "idle",
-  "text": "Yo represento a la Junta Directiva de una asociación, nosotros vemos el panorama completo, no solo un proyecto.",
-  "audio": true
+  "text": "Yo represento a la Junta Directiva de una asociación,",
+  "audio": true,
+  "until": 110.23
  },
  {
-  "t": 105.38,
+  "t": 110.68,
   "who": "saul",
   "pose": "point",
-  "text": "Aquí tenemos a todos los miembros de la asociación, los proyectos que estamos impulsando y quién lidera cada uno.",
-  "audio": true
+  "text": "nosotros vemos el panorama completo, no solo un proyecto.",
+  "audio": true,
+  "until": 114.19
  },
  {
-  "t": 112.06,
+  "t": 114.64,
+  "who": "saul",
+  "pose": "idle",
+  "text": "Aquí tenemos a todos los miembros de la asociación,",
+  "audio": true,
+  "until": 117.45
+ },
+ {
+  "t": 117.9,
+  "who": "saul",
+  "pose": "point",
+  "text": "los proyectos que estamos impulsando y quién lidera cada uno.",
+  "audio": true,
+  "until": 121.78
+ },
+ {
+  "t": 122.23,
   "who": "saul",
   "pose": "idle",
   "text": "Podemos crear proyectos nuevos, asignar líderes y ver en qué estado va cada iniciativa.",
-  "audio": true
+  "audio": true,
+  "until": 128.18
  },
  {
-  "t": 118.16,
+  "t": 128.63,
   "who": "saul",
   "pose": "point",
   "text": "Y a fin de ciclo ya no hay que andar juntando hojas de Excel.",
-  "audio": true
+  "audio": true,
+  "until": 133.02
  },
  {
-  "t": 122.54,
+  "t": 133.47,
   "who": "saul",
   "pose": "idle",
   "text": "Los reportes de horas y participación salen de aquí directamente.",
-  "audio": true
+  "audio": true,
+  "until": 137.63
  },
  {
-  "t": 128.2,
+  "t": 139.8,
   "who": "angel",
   "pose": "idle",
   "text": "Por último, el administrador. Desde aquí se gestiona toda la plataforma,",
-  "audio": true
+  "audio": true,
+  "until": 144.59
  },
  {
-  "t": 133.14,
+  "t": 145.04,
   "who": "angel",
   "pose": "point",
   "text": "usuarios, roles, asociaciones, carreras y facultades.",
-  "audio": true
+  "audio": true,
+  "until": 149.09
  },
  {
-  "t": 137.04,
+  "t": 153.54,
   "who": "angel",
   "pose": "idle",
   "text": "Tenemos un panel de estado del sistema que muestra si cada servicio está funcionando y un modo mantenimiento por si hay que realizar algún tipo de cambios.",
-  "audio": true
+  "audio": true,
+  "until": 162.69
  },
  {
-  "t": 145.82,
+  "t": 163.14,
   "who": "angel",
   "pose": "point",
   "text": "Todo con permisos por rol cada persona ve sólo lo que le corresponde.",
-  "audio": true
+  "audio": true,
+  "until": 167.93
  },
  {
-  "t": 151.0,
+  "t": 169.33,
   "hide": true
  }
 ]

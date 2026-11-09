@@ -173,17 +173,26 @@ S({
   <div class="arch-foot" data-step="3"><span>${ic('container', 26)} Docker</span><span>${ic('cloud-cog', 26)} VM de Azure</span><span>${ic('git-branch', 26)} GitHub Actions</span></div>`,
 })
 
-const ciCols = [
-  ['Cada pull request', 'Integración continua', ['Lint y tipos (TypeScript)', 'Pruebas unitarias con Vitest', 'Integración contra Postgres real', 'Build de producción']],
-  ['Cada pull request', 'Seguridad', ['Secretos con gitleaks', 'Dependencias y npm audit', 'Revisión OWASP de cambios', 'Título con ticket de Jira']],
-  ['Antes de entregar y cada semana', 'E2E y carga', ['E2E con Playwright, en paralelo', 'Accesibilidad con axe', 'k6: carga semanal programada', 'Deploy solo desde main']],
+const pipe = [
+  ['git-pull-request', 'Pull request', 'Con ticket de Jira'],
+  ['shield-check', 'CI', 'Lint, tipos, unitarias, integración, secretos y OWASP'],
+  ['users', 'Revisión', 'Otro integrante aprueba'],
+  ['git-merge', 'Merge a main', 'CI corre otra vez'],
+  ['package', 'Imagen Docker', 'Tag inmutable por commit'],
+  ['heart-pulse', 'Deploy y salud', 'La API debe responder'],
+  ['rocket', 'Producción', 'Estado del sistema en vivo'],
 ]
 S({
   id: 'ci', act: 'Calidad', who: 'Vernel', t: 35,
-  notes: 'Nada llega a producción sin pasar por CI. En cada pull request corren lint y tipos, las pruebas unitarias con Vitest y las de integración contra un Postgres real, más un escaneo de secretos con gitleaks, la revisión de dependencias y de OWASP. Antes de entregar corremos los E2E con Playwright y accesibilidad con axe, y k6 corre cada semana. En total son 9,832 pruebas, y la revisión técnica de otro grupo no encontró defectos críticos.',
-  html: `${head('Calidad · GitHub Actions', 'Nada llega a producción <em>sin pasar por CI.</em>')}
-  <div class="ci-grid">${ciCols.map(([w, t, items], i) => `<div class="ci-c" data-step="${i + 1}"><div class="when">${w}</div><div class="t">${t}</div><ul>${items.map((x) => `<li>${ic('circle-check', 24, 2.4)}${x}</li>`).join('')}</ul></div>`).join('')}</div>
-  <div class="ci-foot" data-step="4"><span><b>9,832</b>pruebas automatizadas</span><span><b>9 / 381</b>rutas públicas</span><span><b>0</b>defectos críticos en la revisión externa</span></div>`,
+  notes: 'Así validamos cada cambio antes de que llegue a producción. Todo empieza con un pull request ligado a un ticket de Jira. CI corre lint, tipos, pruebas unitarias y de integración, y revisa secretos y OWASP; luego otro integrante lo revisa. Al hacer merge a main, CI corre otra vez, se construye una imagen de Docker con un tag que no se puede sobrescribir y se despliega. El deploy solo termina si la API responde; si no, se detiene y deja los logs. En total son 9,832 pruebas, y la revisión externa no encontró defectos críticos.',
+  html: `${head('Calidad · de un cambio a producción', 'Cada cambio pasa <em>siete filtros.</em>')}
+  <div class="pipe2">
+    <svg class="pipe-line" viewBox="0 0 1664 20" preserveAspectRatio="none"><line x1="20" y1="10" x2="1644" y2="10" /></svg>
+    <i class="pipe-dot"></i>
+    ${pipe.map(([a, b, c], i) => `<div class="pn${i === pipe.length - 1 ? ' last' : ''}" data-step="${i < 3 ? 1 : i < 5 ? 2 : 3}" style="--d:${(i % 3) * 0.12}s"><div class="pi">${ic(a, 38)}</div><div class="pt">${b}</div><div class="pd">${c}</div></div>`).join('')}
+  </div>
+  <div class="pipe-fail" data-step="3">${ic('octagon-x', 26)} <span>Si cualquier filtro falla, el cambio <b>no llega a producción.</b></span></div>
+  <div class="ci-foot" data-step="4"><span><b>9,832</b>pruebas automatizadas</span><span><b>9 / 381</b>rutas públicas</span><span><b>0</b>defectos críticos en la revisión externa</span><span><b>k6</b>carga cada semana</span></div>`,
 })
 
 S({

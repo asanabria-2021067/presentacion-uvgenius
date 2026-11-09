@@ -209,3 +209,21 @@
 .ld.wide { grid-column: span 2; display: flex; gap: 26px; align-items: center; }
 .ld.wide .ib { width: 64px; height: 64px; }
 .ld.wide .l { margin: 0; }
+
+/* ---------- pipeline de deploy ---------- */
+.pipe2 { position: absolute; left: 128px; right: 128px; top: 400px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; }
+.pipe-line { position: absolute; left: 0; width: 100%; top: 58px; height: 20px; }
+.pipe-line line { stroke: var(--green); stroke-width: 4; stroke-dasharray: 10 12; opacity: .35; }
+.pipe-dot { position: absolute; top: 59px; left: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 8px rgba(0,132,61,.15); animation: pdot 6s linear infinite; }
+@keyframes pdot { from { left: 2%; } to { left: 96%; } }
+.pn { position: relative; text-align: center; }
+.pn .pi { width: 124px; height: 124px; margin: 0 auto; border-radius: 34px; background: var(--card); box-shadow: var(--shadow); display: grid; place-items: center; color: var(--green-2); position: relative; z-index: 1; }
+.pn.last .pi { background: var(--green); color: #fff; }
+.pn .pt { font: 700 28px/1.1 var(--f-head); letter-spacing: -.015em; margin-top: 26px; }
+.pn .pd { font: 400 19px/1.35 var(--f-body); color: var(--muted); margin-top: 8px; padding: 0 4px; }
+.pipe-fail { position: absolute; left: 128px; top: 790px; display: flex; gap: 12px; align-items: center; font: 500 26px var(--f-body); color: var(--soft); }
+.pipe-fail svg { color: var(--red); } .pipe-fail b { color: var(--ink); }
+#dm-full video { object-fit: cover !important; }
+.dm-a { width: 300px !important; height: 323px !important; margin-left: -90px !important; }
+#dm-guide canvas { width: 340px !important; height: 366px !important; }
+.dm-sub { margin-bottom: 220px !important; max-width: 720px !important; font-size: 27px !important; }
