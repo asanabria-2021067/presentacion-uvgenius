@@ -197,10 +197,10 @@ S({
 
 S({
   id: 'carga', act: 'Infraestructura', who: 'Vernel', t: 45,
-  notes: 'Todo corre en una sola máquina virtual de Azure en la región de México: una instancia pequeña de un núcleo y un giga de RAM, de unos 8 dólares al mes, con cuatro contenedores. Con k6 medimos que la API responde en unos 200 milisegundos en el percentil 95, sin un solo error de servidor. Lo primero que se satura es el limitador de peticiones por IP, que es una protección, no el hardware. Y optimizando las cinco secciones más lentas bajamos su tiempo entre 59 y 76 %. [Relevo a Angel]',
+  notes: 'Todo corre en una sola máquina virtual de Azure en la región de México: una instancia B2ats v2 de dos núcleos y un giga de RAM, más dos de swap, de unos 8 dólares al mes, con cuatro contenedores. Con k6 medimos que la API responde en unos 200 milisegundos en el percentil 95, sin un solo error de servidor. Lo primero que se satura es el limitador de peticiones por IP, que es una protección, no el hardware. Y optimizando las cinco secciones más lentas bajamos su tiempo entre 59 y 76 %. [Relevo a Angel]',
   html: `${head('Infraestructura y carga · k6', 'Una máquina pequeña <em>que aguanta.</em>')}
   <div class="infra" data-step="1"><div class="when">Producción hoy</div><div class="t">VM de Azure</div>
-    <div class="spec"><div>Instancia<b>B1s</b></div><div>Región<b>México</b></div><div>Recursos<b>1 vCPU · 1 GB</b></div><div>Costo<b>≈ US$8 / mes</b></div></div>
+    <div class="spec"><div>Instancia<b>B2ats v2</b></div><div>Región<b>México Central</b></div><div>Recursos<b>2 vCPU · 1 GB</b></div><div>Costo<b>≈ US$8 / mes</b></div></div>
     <div class="stack">Docker Compose con 4 contenedores: Next.js, NestJS, PostgreSQL y Redis, detrás de Nginx con HTTPS.</div></div>
   <div class="load">
     <div class="ld" data-step="2"><div class="v">~200<small>ms</small></div><div class="l">p95 de la API en producción</div><div class="s">k6 con rampa de 1 a 20 usuarios</div></div>
