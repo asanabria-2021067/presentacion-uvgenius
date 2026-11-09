@@ -153,7 +153,7 @@ const comp = [
 ]
 const mark = { si: ic('check', 32, 3), no: ic('x', 28, 2.5), mid: ic('minus', 28, 3) }
 S({
-  id: 'herramientas', act: 'Competencia', who: 'Derek', t: 35, gap: 0.6,
+  id: 'herramientas', act: 'Competencia', who: 'Samuel', t: 35, gap: 0.6,
   notes: '¿Por qué no usar lo que ya existe? Jira organiza muy bien el trabajo, pero no publica convocatorias ni valida horas para la universidad. Notion se puede armar a mano, pero cada asociación tendría que construirlo y mantenerlo. Y Forms con WhatsApp es lo que se usa hoy. UVGenius une las tres partes: convocatoria, trabajo en equipo y validación de horas.',
   html: `${head('Competencia', 'Otras herramientas resuelven <em>una parte.</em>')}
   <div class="cmp">
@@ -182,7 +182,7 @@ S({
 
 const rows = [['Encontrar un proyecto', 'Preguntar en grupos', 'Explorar con filtros'], ['Postularse', 'Mensaje informal', 'Postulación con estado'], ['Ver el avance', 'Al final', 'Sprint por sprint'], ['Validar horas', 'Reporte manual', 'Horas por tarea']]
 S({
-  id: 'antes-despues', act: 'Valor', who: 'Derek', t: 20, gap: 0.7,
+  id: 'antes-despues', act: 'Valor', who: 'Vernel', t: 20, gap: 0.7,
   notes: 'Lo que cambia en el día a día: encontrar un proyecto deja de depender de grupos; la postulación tiene un estado; el avance se ve sprint por sprint y las horas quedan ligadas a tareas reales.',
   html: `${head('Antes y después', 'Lo que cambia <em>en el día a día.</em>')}
   <div class="ba"><div class="ba-h"><div></div><div>Antes</div><div>Con UVGenius</div></div>
@@ -323,5 +323,5 @@ S({
 
 // Orden de la presentación: pitch, equipo, problema, público objetivo y la demo lo antes posible.
 const ORDER = ['pitch', 'historia', 'equipo', 'canales', 'sintomas', 'revelacion', 'para-quien-0', 'publico-0', 'para-quien-1', 'publico-1', 'para-quien-2', 'publico-2', 'demo',
-  'recorrido', 'neurolab', 'mejoras', 'tecnologias', 'arquitectura', 'ci', 'herramientas', 'costos', 'antes-despues', 'impacto', 'siguiente', 'cierre']
+  'recorrido', 'neurolab', 'mejoras', 'tecnologias', 'arquitectura', 'ci', 'antes-despues', 'herramientas', 'costos', 'impacto', 'siguiente', 'cierre']
 SLIDES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id))
