@@ -147,7 +147,7 @@ AUD.forEach((a, i) => {
 
 const flow = [['megaphone', 'Publicar el proyecto'], ['send', 'Postularse a un rol'], ['kanban', 'Trabajar por sprints o metas'], ['timer', 'Registrar horas'], ['badge-check', 'Validar']]
 S({
-  id: 'recorrido', act: 'La solución', who: 'Derek', t: 30, gap: 0.8,
+  id: 'recorrido', act: 'La solución', who: 'Samuel', t: 30, gap: 0.8,
   notes: 'Todo pasa en un solo flujo: el líder publica el proyecto, el estudiante se postula a un rol, el equipo trabaja por sprints o por metas, cada hora queda registrada en una tarea y al final se valida con evidencia. ',
   html: `${head('Cómo funciona', 'Un solo flujo, <em>de la convocatoria a la validación.</em>')}
   <div class="flow"><div class="flow-track"><i></i></div>${flow.map(([a, b], i) => `<div class="fs" data-step="${i + 1}" data-sfx="pop"><div class="fi">${ic(a, 50)}</div><div class="fn">0${i + 1}</div><div class="t">${b}</div></div>`).join('')}</div>`,
@@ -262,7 +262,7 @@ const nodes = [
   ['PostgreSQL', 'database', 1400, 280], ['Redis', 'zap', 1400, 480], ['Cloudinary', 'cloud', 1400, 680],
 ]
 S({
-  id: 'arquitectura', act: 'Tecnología', who: 'Angel', t: 25, gap: 0.9,
+  id: 'arquitectura', act: 'Tecnología', who: 'Vernel', t: 25, gap: 0.9,
   notes: 'Y así se conectan: el navegador entra por Nginx con HTTPS; la interfaz es Next.js y la API NestJS. Los datos viven en PostgreSQL, el tiempo real pasa por Redis y los archivos por Cloudinary. Todo en Docker, sobre una VM de Azure.',
   html: `${head('Arquitectura', 'Simple de operar, <em>lista para crecer.</em>')}
   <svg class="wires" viewBox="0 0 1920 1080" data-step="2" data-sfx="none">
