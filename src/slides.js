@@ -102,7 +102,7 @@ S({
   html: `<div class="glow"></div><div class="rv">
     <div class="rv-k" data-step="1" data-sfx="none">De este problema nace</div>
     <div class="wordmark xl" data-step="2" data-sfx="reveal">UVGenius</div>
-    <p class="rv-sub" data-step="3" data-sfx="bell">Todos los proyectos de la UVG, <em>en un solo lugar.</em></p></div>`,
+    <p class="rv-sub" data-step="3" data-sfx="pop">Todos los proyectos de la UVG, <em>en un solo lugar.</em></p></div>`,
 })
 
 const AUD = [
@@ -173,7 +173,7 @@ S({
   id: 'costos', act: 'Competencia', who: 'Derek', t: 25, gap: 0.7,
   notes: 'Y el costo. Para una asociación con 50 estudiantes activos, Jira Standard sale en unos 396 dólares al mes porque cobra por persona y el plan gratis llega solo a 10. Notion Plus, entre 600 y 800. Forms y WhatsApp son gratis, pero no dan estado, horas ni seguimiento. ¿Y UVGenius? No cobra por persona: su costo es el del servidor, y eso se los cuento en la siguiente. (Precios de lista en dólares, 2026.)',
   html: `${head('Costo al mes · ejemplo con 50 estudiantes', 'Las otras cobran por persona. <em>¿Y UVGenius?</em>')}
-  <div class="cost2">${costs.map(([k, n, p, note, tot, lo], i) => `<div class="cr${i === 3 ? ' us' : ''}" data-step="${i + 1}" data-sfx="${i === 3 ? 'bell' : 'slide'}">
+  <div class="cost2">${costs.map(([k, n, p, note, tot, lo], i) => `<div class="cr${i === 3 ? ' us' : ''}" data-step="${i + 1}" data-sfx="${i === 3 ? 'pop' : 'slide'}">
     <div class="cr-h">${k ? logo(k, 44) : '<span class="co-uvg">UV</span>'}<div><b>${n} <small>${p}</small></b><span>${note}</span></div></div>
     <div class="cr-bar"><i style="--w:${tot === null ? 0 : Math.max(1.2, (tot / 800) * 100)}%"></i></div>
     <div class="cr-v">${tot === null ? '<span class="q">?</span>' : `<small>US$</small><span data-count="${lo ?? tot}" ${lo ? `data-suffix="–${tot}"` : ''}>0</span>`}</div></div>`).join('')}</div>
@@ -286,13 +286,16 @@ S({
 
 // =========================================================== ACTO VI · CIERRE (Angel)
 S({
-  id: 'costo-uvg', act: 'Costo', who: 'Derek', t: 35, gap: 0.8,
-  notes: `¿Cuánto cuesta UVGenius? Construirlo, estimado con puntos de casos de uso, son 5,670 horas-persona: unos 850 mil quetzales a 150 la hora. Tenerlo funcionando hoy nos ha costado unos 6 dólares al mes, pero ojo: es el servidor de desarrollo, sin carga real. En producción el costo depende de cuántos lo usen y de dónde se hospede: en el data center de la UVG; híbrido, con el backend en la UVG y una entrada pública en Azure o AWS que solo redirige; o todo en la nube, escalando el servidor. En ningún caso se paga por persona.
-SI PREGUNTAN: al cierre del Sprint 10 el equivalente ejecutado fue mayor (unos Q1.3 M, 8,717 h-p) porque el alcance creció de 415 a 452 SP por mejoras que pidió el Product Owner.`,
+  id: 'costo-uvg', act: 'Costo', who: 'Angel', t: 40, gap: 0.8,
+  notes: `¿Cuánto cuesta UVGenius? El presupuesto lo estimamos al inicio con puntos de casos de uso: 5,670 horas-persona, unos 850 mil quetzales. Después lo recalibramos con lo que realmente construimos: 126 historias de usuario y 452 story points en 10 sprints. A 2,892.86 quetzales por punto, que sale de 150 quetzales la hora-persona, el costo de construirlo es de 1.31 millones de quetzales. Creció porque el alcance pasó de 415 a 452 puntos con las mejoras que pidió el Product Owner.
+Tenerlo funcionando hoy cuesta unos 8 dólares al mes: es una instancia de Azure que pagamos con el plan educativo, para desarrollo y la demo. En producción el costo depende de cuántos la usen y de dónde se hospede: en el data center de la UVG; híbrido, con el backend en la UVG y una entrada pública en Azure o AWS que solo redirige; o todo en la nube, escalando el servidor. En ningún caso se paga por persona.`,
   html: `${head('Costo de UVGenius', '¿Cuánto cuesta <em>UVGenius?</em>')}
   <div class="cu">
-    <div class="cu-k" data-step="1" data-sfx="slide"><div class="cu-l">Construirlo · estimado con UCP</div><div class="cu-v">Q<span data-count="850500" data-fmt="miles">0</span></div><div class="cu-s">5,670 horas-persona a Q150 la hora</div></div>
-    <div class="cu-k dark" data-step="2" data-sfx="slide"><div class="cu-l">Tenerlo funcionando hoy</div><div class="cu-v">≈ US$<span data-count="6">0</span><small>/ mes</small></div><div class="cu-s">Servidor de desarrollo y demo, sin carga real. No es el costo en producción.</div></div>
+    <div class="cu-k" data-step="1" data-sfx="slide"><div class="cu-l">Construirlo · recalibrado a story points</div>
+      <div class="cu-v">Q<span data-count="1307571" data-fmt="miles">0</span></div>
+      <div class="cu-s">452 SP × Q2,892.86 por punto (Q150 la hora-persona) · estimado inicial con UCP: Q850,500</div>
+      <div class="cu-chips"><span><b>126</b> historias de usuario</span><span><b>452</b> story points</span><span><b>10</b> sprints</span></div></div>
+    <div class="cu-k dark" data-step="2" data-sfx="slide"><div class="cu-l">Tenerlo funcionando hoy</div><div class="cu-v">≈ US$<span data-count="8">0</span><small>/ mes</small></div><div class="cu-s">Una instancia de Azure con el plan educativo, para desarrollo y la demo. No es el costo en producción.</div></div>
   </div>
   <div class="cu-h" data-step="3" data-sfx="none">En producción, el costo depende de cuántos la usen y de dónde se hospede:</div>
   <div class="cu-o">${[['building-2', 'Data center de la UVG', 'Todo en servidores de la universidad'], ['split', 'Híbrido', 'Backend en la UVG y una entrada pública en Azure o AWS que solo redirige'], ['cloud', 'En la nube', 'Se escala el servidor según la carga, no por persona']].map(([a, b, c], i) => `<div class="cu-c" data-step="${i + 4}" data-sfx="pop"><span class="ib">${ic(a, 30)}</span><div><b>${b}</b><small>${c}</small></div></div>`).join('')}</div>`,
@@ -320,7 +323,7 @@ S({
   <div class="cl">
     <div class="bef" data-step="1" data-sfx="none">Antes: te enterabas <s>si estabas en el grupo correcto.</s></div>
     <h1 class="display sm" data-step="2" data-sfx="reveal">Ahora: cualquier estudiante lo encuentra, <em>y su trabajo cuenta.</em></h1>
-    <div class="thx" data-step="3" data-sfx="bell">Gracias · <em>¿Preguntas?</em></div>
+    <div class="thx" data-step="3" data-sfx="none">Gracias · <em>¿Preguntas?</em></div>
   </div>
   <div class="qr" data-step="3" data-sfx="none"><img src="/img/qr.png" alt="" /><div>Pruébalo<br /><b>158.23.57.118.nip.io</b></div></div>
   <div class="cl-team" data-step="3" data-sfx="none">${TEAM.map((p) => `<figure data-id="${p.id}"><canvas></canvas><figcaption>${p.short}</figcaption></figure>`).join('')}</div>`,

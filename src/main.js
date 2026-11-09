@@ -165,7 +165,7 @@ function enterCI(s, instant) {
   tl.set(dot, { opacity: 1, x: cx(0) }, t)
   nodes.forEach((n, i) => { const at = t + i * 0.42; tl.to(dot, { x: cx(i), duration: 0.42, ease: 'none' }, at - 0.42 > t ? at - 0.42 : t); tl.call(() => { n.classList.add('ok'); sfx('tick', 1.2, 1 + i * 0.08) }, null, at) })
   t += 7 * 0.42
-  tl.call(() => sfx('bell'), null, t)
+  tl.call(() => sfx('reveal', 0.6), null, t)
   tl.to(dot, { opacity: 0, duration: 0.3 }, t + 0.3)
   s._failShown = false
 }
@@ -211,7 +211,6 @@ function enterRain(s, instant) {
       { y: 0, x: 0, rotate: (Math.random() - 0.5) * 6, duration: 1.0, ease: 'bounce.out' }, at)
     if (i % 3 === 0) tl.call(() => sfx('pop', 0.5, 0.8 + Math.random() * 0.6), null, at + 0.55)
   })
-  tl.call(() => sfx('bell'), null, 0.9 + ws.length * 0.07 + 1.2)
 }
 
 // ---------- navegación ----------
@@ -231,6 +230,12 @@ function render() {
   if (location.hash !== h) history.replaceState(null, '', h)
 }
 
+// música lofi suave mientras hacen preguntas (solo en el cierre)
+const lofi = new Audio('/audio/lofi.mp3'); lofi.loop = true; lofi.volume = 0
+let lofiT = null
+function lofiOn(delay) { clearTimeout(lofiT); lofiT = setTimeout(() => { lofi.currentTime = 0; lofi.play().catch(() => {}); gsap.to(lofi, { volume: 0.35, duration: 3 }) }, delay) }
+function lofiOff() { clearTimeout(lofiT); gsap.to(lofi, { volume: 0, duration: 0.8, onComplete: () => lofi.pause() }) }
+
 function show(i, instant = false, st = 0) {
   i = Math.max(0, Math.min(SLIDES.length - 1, i))
   if (index >= 0 && i !== index) {
@@ -243,6 +248,7 @@ function show(i, instant = false, st = 0) {
   s.el.classList.add('on')
   enter(s, instant)
   if (s.id === 'demo') demo.enter()
+  if (s.id === 'cierre') lofiOn(instant ? 300 : 3600); else if (!lofi.paused) lofiOff()
   render()
 }
 
@@ -264,7 +270,7 @@ addEventListener('keydown', (e) => {
   else if (k === 'p' || k === 'P') window.open('/presenter.html', 'uvg-presenter', 'width=1280,height=800')
   else if (k === 'f' || k === 'F') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()
   else if (k === 'b' || k === 'B' || k === '.') blackout.classList.toggle('on')
-  else if (k === 'm' || k === 'M') toggleMute()
+  else if (k === 'm' || k === 'M') { toggleMute(); lofi.muted = !lofi.muted }
   else if (k === 'r' || k === 'R') show(index)
   else if (k === 'Home') show(0)
   else if (k === 'End') show(SLIDES.length - 1)
