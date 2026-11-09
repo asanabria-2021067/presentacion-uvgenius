@@ -70,7 +70,7 @@ let TL = null
 function revealAll(s) {
   for (const e of Q(s.el, '[data-step], .kick, .title')) gsap.set(e, { opacity: 1, y: 0, x: 0, scale: 1, filter: 'none' })
   countUp(s.el, null)
-  for (const b of Q(s.el, '.sus b, .bt i')) gsap.set(b, { clearProps: 'width' })
+  for (const b of Q(s.el, '.sus b, .bt i, .cr-bar i')) gsap.set(b, { clearProps: 'width' })
   const tr = s.el.querySelector('.flow-track i'); if (tr) tr.style.width = '100%'
 }
 
@@ -100,7 +100,7 @@ function enter(s, instant) {
     const snd = e.dataset.sfx ?? 'pop'
     if (snd !== 'none') tl.call(() => sfx(snd), null, at)
     if (e.querySelector('[data-count]')) countUp(e, tl, at + 0.1)
-    for (const b of Q(e, '.sus b, .bt i')) tl.from(b, { width: 0, duration: 1.2, ease: 'power2.out' }, at + 0.2)
+    for (const b of Q(e, '.sus b, .bt i, .cr-bar i')) tl.from(b, { width: 0, duration: 1.2, ease: 'power2.out' }, at + 0.2)
     if (e.matches('.wires')) tl.fromTo(Q(e, 'path'), { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.08 }, at)
     if (e.matches('.cl-team')) tl.fromTo(e.children, { y: 160, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'back.out(1.6)' }, at)
     if (e.matches('.st-full')) tl.fromTo(e, { scale: 1.6, rotate: -14 }, { scale: 1, rotate: -6, duration: 0.45, ease: 'back.out(2)' }, at)
@@ -153,7 +153,7 @@ function enterCI(s, instant) {
   const cx = (i) => nodes[i].offsetLeft + nodes[i].offsetWidth / 2 - 9
   if (instant) {
     gsap.set([...base, ...nodes, fail, foot], { opacity: 1, y: 0 }); gsap.set(dot, { opacity: 0 })
-    nodes.forEach((n) => n.classList.add('ok')); return
+    nodes.forEach((n) => n.classList.add('ok')); s._failShown = true; return
   }
   gsap.set([fail, foot], { opacity: 0 }); gsap.set(nodes, { opacity: 0 }); gsap.set(dot, { opacity: 0, x: cx(0), background: 'var(--green)' })
   const tl = (TL = gsap.timeline())
@@ -166,10 +166,17 @@ function enterCI(s, instant) {
   t += 7 * 0.42
   tl.call(() => sfx('bell'), null, t)
   tl.to(dot, { opacity: 0, duration: 0.3 }, t + 0.3)
-  // mensaje y luego la falla
-  t += 0.9
+  s._failShown = false
+}
+// con la flecha: el mensaje, una falla en CI y todo lo que sigue se cae
+function failCI(s) {
+  s._failShown = true
+  const el = s.el, nodes = Q(el, '.pn'), dot = el.querySelector('.pipe-dot'), fail = el.querySelector('.pipe-fail'), foot = el.querySelector('.ci-foot')
+  const cx = (i) => nodes[i].offsetLeft + nodes[i].offsetWidth / 2 - 9
+  TL?.progress(1); TL?.kill()
+  const tl = (TL = gsap.timeline()); let t = 0.1
   tl.fromTo(fail, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, t); tl.call(() => sfx('pop'), null, t)
-  t += 1.4
+  t += 1.0
   tl.call(() => nodes.forEach((n) => n.classList.remove('ok')), null, t)
   tl.set(dot, { x: cx(0), opacity: 1, background: 'var(--red)' }, t)
   tl.call(() => nodes[0].classList.add('ok'), null, t + 0.1)
@@ -218,6 +225,7 @@ function next() {
   if (T0.start === null) T0.start = Date.now()
   const s = SLIDES[index]
   if (s.aud !== undefined && !s._clicked) return clickAud(s)
+  if (s.ci && !s._failShown) return failCI(s)
   if (s.manual && step < s.steps) { step++; render(); return }
   if (index < SLIDES.length - 1) show(index + 1)
 }

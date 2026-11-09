@@ -343,3 +343,38 @@
 .st-full { white-space: nowrap; left: 120px !important; top: 230px !important; }
 .cover .tagline { margin-top: 120px; }
 .co-v { font-size: 64px !important; }
+
+/* costos en filas */
+.cost2 { position: absolute; left: 128px; right: 128px; top: 350px; display: grid; gap: 22px; }
+.cr { display: grid; grid-template-columns: 560px 1fr 300px; gap: 40px; align-items: center; background: var(--card); border-radius: 26px; box-shadow: var(--shadow); padding: 26px 40px; min-height: 120px; }
+.cr-h { display: flex; gap: 22px; align-items: center; }
+.cr-h b { display: block; font: 700 32px var(--f-head); letter-spacing: -.01em; }
+.cr-h b small { font: 600 17px var(--f-head); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-left: 8px; }
+.cr-h span { display: block; font: 500 20px var(--f-body); color: var(--muted); margin-top: 4px; }
+.cr-bar { height: 22px; border-radius: 99px; background: var(--bg-2); overflow: hidden; }
+.cr-bar i { display: block; height: 100%; width: var(--w); border-radius: 99px; background: #c9cfcb; }
+.cr-v { text-align: right; font: 800 72px/1 var(--f-head); letter-spacing: -.04em; white-space: nowrap; }
+.cr-v small { font-size: 24px; letter-spacing: 0; color: var(--muted); margin-right: 8px; }
+.cr.us { background: var(--green-ink); color: #eef7f1; }
+.cr.us .cr-h span, .cr.us .cr-h b small, .cr.us .cr-v small { color: rgba(238, 247, 241, .7); }
+.cr.us .cr-bar { background: rgba(255, 255, 255, .12); } .cr.us .cr-bar i { background: var(--lime); }
+.cr.us .cr-v { color: var(--lime); }
+.cost-src { top: 930px !important; }
+
+/* tecnologías en columnas */
+.stk2 { position: absolute; left: 128px; right: 128px; top: 320px; height: 640px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; }
+.sc { background: var(--card); border-radius: 30px; box-shadow: var(--shadow); padding: 34px 28px 30px; display: flex; flex-direction: column; border-top: 8px solid var(--green); }
+.sc-k { font: 700 18px var(--f-head); letter-spacing: .14em; text-transform: uppercase; color: var(--green); }
+.sc-l { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: 20px 0; }
+.lg2 { display: flex; gap: 16px; align-items: center; } .lg2 b { font: 700 27px var(--f-head); letter-spacing: -.01em; }
+.sc-w { font: 500 20px/1.4 var(--f-body); color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; min-height: 130px; }
+
+/* lo que sigue: flujo de 4 */
+.flow.f4 { grid-template-columns: repeat(4, 1fr) !important; top: 450px; }
+.flow.f4 .flow-track { left: 12.5%; right: 12.5%; }
+.flow.f4 .fs .t { font-size: 32px !important; padding: 0 20px; }
+
+/* demo: el video se ve completo y lo que sobra queda verde */
+#dm-full { background: var(--green-ink) !important; }
+#dm-full video { object-fit: contain !important; background: transparent !important; }
+.cr { grid-template-columns: 540px 1fr 380px !important; } .cr-v { font-size: 66px !important; } .sc-l { gap: 34px !important; } .lg2 svg { width: 66px; height: 66px; } .lg2 b { font-size: 29px !important; }

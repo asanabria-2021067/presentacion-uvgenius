@@ -156,20 +156,19 @@ S({
 })
 
 const costs = [
-  ['siJira', 'Jira', 'Standard', '7.91', '396', 'por persona; el plan gratis llega a 10'],
-  ['siNotion', 'Notion', 'Plus', '12–16', '600–800', 'por persona, según pago anual o mensual'],
-  ['siGoogleforms', 'Forms + WhatsApp', 'Gratis', '0', '0', 'pero sin estado, horas ni seguimiento'],
-  [null, 'UVGenius', 'Servidor propio', '—', '≈ 8', 'costo fijo del servidor, no por persona'],
+  ['siJira', 'Jira', 'Standard', 'US$ 7.91 por persona · gratis solo hasta 10', 396],
+  ['siNotion', 'Notion', 'Plus', 'US$ 12 a 16 por persona', 800, 600],
+  ['siGoogleforms', 'Forms + WhatsApp', 'Gratis', 'sin estado, horas ni seguimiento', 0],
+  [null, 'UVGenius', 'Servidor propio', 'costo fijo del servidor, no por persona', 8],
 ]
 S({
   id: 'costos', act: 'Competencia', who: 'Derek', t: 25, gap: 0.7,
-  notes: 'Y el costo. Para una asociación con 50 estudiantes activos, Jira Standard sale en unos 396 dólares al mes porque cobra por persona y el plan gratis llega solo a 10. Notion Plus, entre 600 y 800. Forms y WhatsApp son gratis, pero no dan estado, horas ni seguimiento. UVGenius corre hoy en un servidor de unos 8 dólares al mes, y ese costo es del servidor, no por persona. (Precios de lista en dólares, consultados en noviembre de 2026.)',
-  html: `${head('Costo · ejemplo con 50 estudiantes', 'Las otras cobran <em>por persona.</em>')}
-  <div class="cost">${costs.map(([k, n, p, u, tot, note], i) => `<div class="co${i === 3 ? ' us' : ''}" data-step="${i + 1}" data-sfx="${i === 3 ? 'bell' : 'slide'}">
-    <div class="co-h">${k ? logo(k, 40) : '<span class="co-uvg">UV</span>'}<div><b>${n}</b><small>${p}</small></div></div>
-    <div class="co-v"><small>US$</small><span data-count="${tot === '≈ 8' ? 8 : tot.split('–')[0]}" ${tot.includes('–') ? `data-suffix="–${tot.split('–')[1]}"` : ''} ${tot === '≈ 8' ? 'data-prefix="≈ "' : ''}>0</span><small>/ mes</small></div>
-    <div class="co-u">${u === '—' ? 'Sin cobro por persona' : `US$ ${u} por persona al mes`}</div>
-    <div class="co-n">${note}</div></div>`).join('')}</div>
+  notes: 'Y el costo. Para una asociación con 50 estudiantes activos, Jira Standard sale en unos 396 dólares al mes porque cobra por persona y el plan gratis llega solo a 10. Notion Plus, entre 600 y 800. Forms y WhatsApp son gratis, pero no dan estado, horas ni seguimiento. UVGenius corre hoy en un servidor de unos 8 dólares al mes, y ese costo es del servidor, no por persona. (Precios de lista en dólares, 2026.)',
+  html: `${head('Costo al mes · ejemplo con 50 estudiantes', 'Las otras cobran <em>por persona.</em>')}
+  <div class="cost2">${costs.map(([k, n, p, note, tot, lo], i) => `<div class="cr${i === 3 ? ' us' : ''}" data-step="${i + 1}" data-sfx="${i === 3 ? 'bell' : 'slide'}">
+    <div class="cr-h">${k ? logo(k, 44) : '<span class="co-uvg">UV</span>'}<div><b>${n} <small>${p}</small></b><span>${note}</span></div></div>
+    <div class="cr-bar"><i style="--w:${Math.max(1.2, (tot / 800) * 100)}%"></i></div>
+    <div class="cr-v"><small>US$</small><span data-count="${lo ?? tot}" ${lo ? `data-suffix="–${tot}"` : ''} ${i === 3 ? 'data-prefix="≈ "' : ''}>0</span></div></div>`).join('')}</div>
   <div class="cost-src" data-step="5" data-sfx="none">Precios de lista en US$ (Jira y Notion, 2026). UVGenius: VM actual de Azure; con más usuarios se escala el servidor, no las licencias.</div>`,
 })
 
@@ -235,7 +234,7 @@ SI PREGUNTAN POR QUÉ:
 • Socket.io + Redis: tiempo real con reconexión automática; Redis permite varias instancias de la API.
 • Cloudinary: no llenamos el disco de la VM con fotos y se sirven por CDN.`,
   html: `${head('Tecnologías', 'Con qué está hecho, <em>y por qué.</em>')}
-  <div class="stk">${stack.map(([k, ls, why], i) => `<div class="stk-r" data-step="${i + 1}" data-sfx="pop"><div class="stk-k">${k}</div><div class="stk-l">${ls.map(([s, n]) => `<span class="lg">${logo(s, 40)}${n}</span>`).join('')}</div><div class="stk-w">${why}</div></div>`).join('')}</div>`,
+  <div class="stk2">${stack.map(([k, ls, why], i) => `<div class="sc" data-step="${i + 1}" data-sfx="pop"><div class="sc-k">${k}</div><div class="sc-l">${ls.map(([s, n]) => `<span class="lg2">${logo(s, 58)}<b>${n}</b></span>`).join('')}</div><div class="sc-w">${why}</div></div>`).join('')}</div>`,
 })
 
 const nodes = [
@@ -266,7 +265,7 @@ const pipe = [
 ]
 S({
   id: 'ci', act: 'Calidad', who: 'Vernel', t: 35, ci: true,
-  notes: 'Así validamos cada cambio antes de que llegue a producción. Empieza con un pull request ligado a un ticket de Jira. CI corre lint, tipos, pruebas unitarias y de integración, y revisa secretos y OWASP; luego otro integrante lo revisa. Al hacer merge a main, CI corre otra vez, se construye una imagen de Docker con un tag que no se puede sobrescribir y se despliega. El deploy solo termina si la API responde. [La animación muestra una falla en CI] Si cualquier filtro falla, el cambio se detiene ahí y no llega a producción. En total son 9,832 pruebas, y la revisión externa no encontró defectos críticos.',
+  notes: 'Así validamos cada cambio antes de que llegue a producción. Empieza con un pull request ligado a un ticket de Jira. CI corre lint, tipos, pruebas unitarias y de integración, y revisa secretos y OWASP; luego otro integrante lo revisa. Al hacer merge a main, CI corre otra vez, se construye una imagen de Docker con un tag que no se puede sobrescribir y se despliega. El deploy solo termina si la API responde. [→ flecha: aparece la falla] Si cualquier filtro falla, el cambio se detiene ahí y no llega a producción. En total son 9,832 pruebas, la revisión externa no encontró defectos críticos y cada semana corre una prueba de carga con k6: la API responde en unos 200 milisegundos en el percentil 95, sin errores de servidor. [Relevo a Angel]',
   html: `${head('Calidad · de un cambio a producción', 'Cada cambio pasa <em>siete filtros.</em>')}
   <div class="pipe2">
     <svg class="pipe-line" viewBox="0 0 1664 20" preserveAspectRatio="none"><line x1="20" y1="10" x2="1644" y2="10" /></svg>
@@ -277,27 +276,13 @@ S({
   <div class="ci-foot"><span><b>9,832</b>pruebas automatizadas</span><span><b>9 / 381</b>rutas públicas</span><span><b>0</b>defectos críticos en la revisión externa</span><span><b>k6</b>carga cada semana</span></div>`,
 })
 
-S({
-  id: 'carga', act: 'Infraestructura', who: 'Vernel', t: 35, gap: 0.9,
-  notes: 'Hoy todo corre en una máquina virtual de Azure en la región de México: una B2ats v2 de dos núcleos y un giga de RAM, de unos 8 dólares al mes. Es la que usamos para desarrollo y para mostrarle la plataforma al cliente; para toda la universidad se dimensiona según cuántos estudiantes la usen, y como todo está en Docker solo se cambia el tamaño del servidor. Con k6 medimos que la API responde en unos 200 milisegundos en el percentil 95, sin un solo error de servidor. Lo primero que se satura es el límite de peticiones por IP, que es una protección. Y optimizando las cinco secciones más lentas bajamos su tiempo entre 59 y 76 por ciento. [Relevo a Angel]',
-  html: `${head('Infraestructura y carga · k6', 'Infraestructura <em>y pruebas de carga.</em>')}
-  <div class="infra" data-step="1" data-sfx="slide"><div class="when">Servidor actual · desarrollo y demo</div><div class="t">VM de Azure</div>
-    <div class="spec"><div>Instancia<b>B2ats v2</b></div><div>Región<b>México Central</b></div><div>Recursos<b>2 vCPU · 1 GB</b></div><div>Costo<b>≈ US$8 / mes</b></div></div>
-    <div class="stack">4 contenedores: Next.js, NestJS, PostgreSQL y Redis, detrás de Nginx con HTTPS. Para toda la UVG se elige el tamaño según los estudiantes que la usen.</div></div>
-  <div class="load">
-    <div class="ld" data-step="2" data-sfx="pop"><div class="v">~<span data-count="200">0</span><small>ms</small></div><div class="l">p95 de la API en producción</div><div class="s">k6 con rampa de 1 a 20 usuarios</div></div>
-    <div class="ld" data-step="2" data-sfx="none" style="--d:.15s"><div class="v"><span data-count="0">0</span></div><div class="l">errores de servidor</div><div class="s">ni caídas ni timeouts durante la prueba</div></div>
-    <div class="ld" data-step="3" data-sfx="pop"><div class="v range">−59 % <span>a</span> −76 %</div><div class="l">menos tiempo en las 5 secciones más lentas</div><div class="s">tablero, sprint, proyecto, admin y sesión: ninguna pasa de 75 ms</div></div>
-    <div class="ld" data-step="3" data-sfx="none" style="--d:.15s"><div class="v">5<small>req/s</small></div><div class="l">límite por IP</div><div class="s">lo primero que se satura es la protección, no el hardware</div></div>
-  </div>`,
-})
-
 // =========================================================== ACTO VI · CIERRE (Angel)
+const plan = [['rocket', 'Piloto con la Asociación de Estudiantes de Computación'], ['message-square-heart', 'Ajustes con lo que nos digan'], ['users', 'Más asociaciones y carreras'], ['trending-up', 'Toda la UVG, sin rehacerlo']]
 S({
   id: 'siguiente', act: 'Lo que sigue', who: 'Angel', t: 20, gap: 0.8,
-  notes: 'Lo que sigue: un piloto con la Asociación de Estudiantes de Computación, mover la plataforma a un servidor de la UVG —como todo está en Docker se mueve sin cambiar código— y seguir creciendo sin rehacerla. Y ahora, mejor véanlo funcionando.',
+  notes: 'Lo que sigue: un piloto con la Asociación de Estudiantes de Computación, ajustar con lo que nos digan, sumar más asociaciones y carreras, y llegar a toda la UVG sin rehacer la plataforma: como todo está en Docker, solo se cambia el tamaño del servidor. Y ahora, mejor véanlo funcionando.',
   html: `${head('Lo que sigue', 'Listo para un <em>piloto real.</em>')}
-  <div class="next">${[['rocket', 'Piloto con la Asociación de Estudiantes de Computación'], ['server-cog', 'Servidor propio de la UVG'], ['trending-up', 'Seguir creciendo sin rehacerlo']].map(([a, b], i) => `<div class="nx" data-step="${i + 1}" data-sfx="pop"><div class="ib">${ic(a, 40)}</div><div class="t">${b}</div></div>`).join('')}</div>`,
+  <div class="flow f4"><div class="flow-track"><i></i></div>${plan.map(([a, b], i) => `<div class="fs" data-step="${i + 1}" data-sfx="pop"><div class="fi">${ic(a, 50)}</div><div class="fn">0${i + 1}</div><div class="t">${b}</div></div>`).join('')}</div>`,
 })
 
 S({

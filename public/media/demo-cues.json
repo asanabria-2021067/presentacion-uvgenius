@@ -5,7 +5,7 @@
   "pose": "idle",
   "text": "Empiezo yo, como estudiante, entro con mi correo de la UVG y lo primero que veo es mi panel,",
   "audio": true,
-  "until": 5.91,
+  "until": 5.96,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -14,12 +14,12 @@
   "subTop": false
  },
  {
-  "t": 8.17,
+  "t": 8.2,
   "who": "samuel",
   "pose": "point",
   "text": "mis proyectos, mis horas acumuladas y lo que tengo pendiente.",
   "audio": true,
-  "until": 11.61,
+  "until": 11.67,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -28,12 +28,12 @@
   "subTop": false
  },
  {
-  "t": 11.91,
+  "t": 11.94,
   "who": "samuel",
   "pose": "idle",
   "text": "Si quiero hacer voluntariado voy a explorar.",
   "audio": true,
-  "until": 14.38,
+  "until": 14.45,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -42,12 +42,12 @@
   "subTop": false
  },
  {
-  "t": 14.68,
+  "t": 14.71,
   "who": "samuel",
   "pose": "point",
   "text": "Aquí veo los proyectos abiertos, filtro por área o asociación y entro al que me interesa.",
   "audio": true,
-  "until": 20.09,
+  "until": 20.16,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -56,12 +56,12 @@
   "subTop": false
  },
  {
-  "t": 21.56,
+  "t": 21.62,
   "who": "samuel",
   "pose": "idle",
   "text": "Leo de qué trata, qué roles buscan y me postulo con un clic.",
   "audio": true,
-  "until": 25.36,
+  "until": 25.47,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -70,12 +70,12 @@
   "subTop": false
  },
  {
-  "t": 26.99,
+  "t": 27.09,
   "who": "samuel",
   "pose": "point",
   "text": "El líder recibe mi solicitud al instante.",
   "audio": true,
-  "until": 29.29,
+  "until": 29.43,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -84,54 +84,54 @@
   "subTop": false
  },
  {
-  "t": 30.33,
+  "t": 30.46,
   "who": "samuel",
   "pose": "idle",
   "text": "Ya dentro del proyecto mis tareas están en el tablero,",
   "audio": true,
-  "until": 33.5,
+  "until": 33.67,
   "pos": {
-   "x": 213,
+   "x": 1593,
    "y": 700,
    "s": 0.78
   },
-  "subTop": false
+  "subTop": true
  },
  {
-  "t": 33.8,
+  "t": 33.93,
   "who": "samuel",
   "pose": "point",
   "text": "las muevo de columna conforme avanzo y el equipo lo ve en tiempo real. Y lo mejor:",
   "audio": true,
-  "until": 38.99,
+  "until": 39.17,
   "pos": {
-   "x": 213,
+   "x": 1593,
    "y": 700,
    "s": 0.78
   },
-  "subTop": false
+  "subTop": true
  },
  {
-  "t": 39.29,
+  "t": 39.42,
   "who": "samuel",
   "pose": "idle",
   "text": "cada hora que trabajo queda registrada; cuando me la validan, se suma a mi portafolio que puedo compartir con un enlace.",
   "audio": true,
-  "until": 45.75,
+  "until": 45.92,
   "pos": {
-   "x": 1556,
+   "x": 1593,
    "y": 700,
-   "s": 1.0
+   "s": 0.78
   },
   "subTop": false
  },
  {
-  "t": 47.33,
+  "t": 47.47,
   "who": "derek",
   "pose": "idle",
   "text": "Ahora yo como líder mi trabajo es organizar el equipo y para eso tengo todo en un solo lugar",
   "audio": true,
-  "until": 53.56,
+  "until": 53.74,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -140,96 +140,96 @@
   "subTop": false
  },
  {
-  "t": 55.21,
+  "t": 55.37,
   "who": "derek",
   "pose": "point",
   "text": "Reviso las postulaciones que llegaron, veo el perfil de cada estudiante y decido a quién acepto",
   "audio": true,
-  "until": 61.29,
+  "until": 61.5,
   "pos": {
-   "x": 250,
-   "y": 700,
+   "x": 1556,
+   "y": 78,
    "s": 1.0
   },
-  "subTop": true
+  "subTop": false
  },
  {
-  "t": 63.16,
+  "t": 63.35,
   "who": "derek",
   "pose": "idle",
   "text": "Después armo el sprint, creo las tareas, les pongo responsable, prioridad y fecha y quedan en el tablero de todos.",
   "audio": true,
-  "until": 71.13,
+  "until": 71.36,
   "pos": {
-   "x": 1556,
-   "y": 78,
-   "s": 1.0
+   "x": 1593,
+   "y": -3,
+   "s": 0.78
   },
-  "subTop": false
+  "subTop": true
  },
  {
-  "t": 74.05,
+  "t": 74.27,
   "who": "derek",
   "pose": "point",
   "text": "Desde aquí también programo reuniones y llevo el control de quién va avanzando y quién se está quedando atrás y",
   "audio": true,
-  "until": 80.63,
+  "until": 80.89,
   "pos": {
-   "x": 1556,
+   "x": 1593,
    "y": 700,
-   "s": 1.0
+   "s": 0.78
   },
   "subTop": false
  },
  {
-  "t": 82.35,
+  "t": 82.6,
   "who": "derek",
   "pose": "idle",
   "text": "cuando un estudiante registra horas me llegan a mí.",
   "audio": true,
-  "until": 84.9,
+  "until": 85.18,
   "pos": {
-   "x": 213,
+   "x": 1593,
    "y": 700,
    "s": 0.78
   },
   "subTop": false
  },
  {
-  "t": 85.2,
+  "t": 85.45,
   "who": "derek",
   "pose": "point",
   "text": "Las reviso y las apruebo, las rechazo con un comentario",
   "audio": true,
-  "until": 88.28,
+  "until": 88.58,
   "pos": {
-   "x": 250,
+   "x": 213,
    "y": 700,
-   "s": 1.0
+   "s": 0.78
   },
   "subTop": false
  },
  {
-  "t": 88.58,
+  "t": 88.83,
   "who": "derek",
   "pose": "idle",
   "text": "Así las horas son reales y no solamente un número",
   "audio": true,
-  "until": 91.63,
+  "until": 91.92,
   "pos": {
-   "x": 250,
-   "y": 78,
-   "s": 1.0
+   "x": 213,
+   "y": -3,
+   "s": 0.78
   },
   "subTop": false
  },
  {
-  "t": 93.23,
+  "t": 93.53,
   "who": "saul",
   "pose": "idle",
   "text": "Yo represento a la Junta Directiva de una asociación,",
   "audio": true,
-  "until": 96.63,
+  "until": 96.97,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -238,26 +238,26 @@
   "subTop": false
  },
  {
-  "t": 96.93,
+  "t": 97.23,
   "who": "saul",
   "pose": "point",
   "text": "nosotros vemos el panorama completo, no solo un proyecto.",
   "audio": true,
-  "until": 100.24,
+  "until": 100.7,
   "pos": {
-   "x": 213,
+   "x": 1593,
    "y": 700,
    "s": 0.78
   },
   "subTop": true
  },
  {
-  "t": 100.55,
+  "t": 100.85,
   "who": "saul",
   "pose": "idle",
   "text": "Aquí tenemos a todos los miembros de la asociación,",
   "audio": true,
-  "until": 103.17,
+  "until": 103.53,
   "pos": {
    "x": 1556,
    "y": 78,
@@ -266,12 +266,12 @@
   "subTop": true
  },
  {
-  "t": 103.47,
+  "t": 103.77,
   "who": "saul",
   "pose": "point",
   "text": "los proyectos que estamos impulsando y quién lidera cada uno.",
   "audio": true,
-  "until": 107.15,
+  "until": 107.5,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -280,12 +280,12 @@
   "subTop": false
  },
  {
-  "t": 107.91,
+  "t": 108.24,
   "who": "saul",
   "pose": "idle",
   "text": "Podemos crear proyectos nuevos, asignar líderes y ver en qué estado va cada iniciativa.",
   "audio": true,
-  "until": 113.61,
+  "until": 113.99,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -294,12 +294,12 @@
   "subTop": false
  },
  {
-  "t": 119.02,
+  "t": 119.4,
   "who": "saul",
   "pose": "point",
   "text": "Y a fin de ciclo ya no hay que andar juntando hojas de Excel.",
   "audio": true,
-  "until": 123.25,
+  "until": 124.05,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -308,12 +308,12 @@
   "subTop": false
  },
  {
-  "t": 123.55,
+  "t": 123.92,
   "who": "saul",
   "pose": "idle",
   "text": "Los reportes de horas y participación salen de aquí directamente.",
   "audio": true,
-  "until": 127.64,
+  "until": 128.07,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -322,12 +322,12 @@
   "subTop": false
  },
  {
-  "t": 129.2,
+  "t": 129.63,
   "who": "vernel",
   "pose": "idle",
   "text": "Yo soy el coordinador académico.",
   "audio": true,
-  "until": 132.0,
+  "until": 132.43,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -336,12 +336,12 @@
   "subTop": false
  },
  {
-  "t": 132.3,
+  "t": 132.73,
   "who": "vernel",
   "pose": "point",
   "text": "Mi vista se parece a la del administrador, pero solo veo las carreras que me tocan.",
   "audio": true,
-  "until": 137.4,
+  "until": 137.87,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -350,12 +350,12 @@
   "subTop": false
  },
  {
-  "t": 139.27,
+  "t": 139.73,
   "who": "vernel",
   "pose": "idle",
   "text": "Puedo ver los estudiantes de mi carrera, en qué proyectos participan y cuántas horas llevan validadas.",
   "audio": true,
-  "until": 145.55,
+  "until": 146.05,
   "pos": {
    "x": 213,
    "y": 700,
@@ -364,12 +364,12 @@
   "subTop": true
  },
  {
-  "t": 145.85,
+  "t": 146.31,
   "who": "vernel",
   "pose": "point",
   "text": "Si necesito entregar un informe, filtro y descargo las horas en PDF o en CSV con un clic.",
   "audio": true,
-  "until": 152.33,
+  "until": 152.84,
   "pos": {
    "x": 213,
    "y": -3,
@@ -378,68 +378,26 @@
   "subTop": true
  },
  {
-  "t": 154.43,
+  "t": 154.92,
   "who": "vernel",
   "pose": "idle",
   "text": "Así la universidad tiene información confiable para dar seguimiento, sin pedirle a cada estudiante que lo compruebe a mano.",
   "audio": true,
-  "until": 161.5,
+  "until": 162.07,
   "pos": {
-   "x": 1556,
+   "x": 1593,
    "y": 700,
-   "s": 1.0
-  },
-  "subTop": false
- },
- {
-  "t": 163.07,
-  "who": "angel",
-  "pose": "idle",
-  "text": "Por último, el administrador. Desde aquí se gestiona toda la plataforma,",
-  "audio": true,
-  "until": 167.6,
-  "pos": {
-   "x": 1556,
-   "y": 700,
-   "s": 1.0
-  },
-  "subTop": false
- },
- {
-  "t": 167.9,
-  "who": "angel",
-  "pose": "point",
-  "text": "usuarios, roles, asociaciones, carreras y facultades.",
-  "audio": true,
-  "until": 171.68,
-  "pos": {
-   "x": 213,
-   "y": -3,
    "s": 0.78
   },
   "subTop": false
  },
  {
-  "t": 173.54,
+  "t": 163.6,
   "who": "angel",
   "pose": "idle",
-  "text": "Tenemos un panel de estado del sistema que muestra si cada servicio está funcionando y un modo mantenimiento por si hay que realizar algún tipo de cambios.",
+  "text": "Por último, el administrador. Desde aquí se gestiona toda la plataforma,",
   "audio": true,
-  "until": 182.37,
-  "pos": {
-   "x": 1556,
-   "y": 700,
-   "s": 1.0
-  },
-  "subTop": true
- },
- {
-  "t": 183.76,
-  "who": "angel",
-  "pose": "point",
-  "text": "Todo con permisos por rol: cada persona ve sólo lo que le corresponde.",
-  "audio": true,
-  "until": 188.27,
+  "until": 168.13,
   "pos": {
    "x": 1556,
    "y": 700,
@@ -448,7 +406,49 @@
   "subTop": false
  },
  {
-  "t": 189.07,
+  "t": 168.43,
+  "who": "angel",
+  "pose": "point",
+  "text": "usuarios, roles, asociaciones, carreras y facultades.",
+  "audio": true,
+  "until": 172.25,
+  "pos": {
+   "x": 1593,
+   "y": 700,
+   "s": 0.78
+  },
+  "subTop": false
+ },
+ {
+  "t": 174.1,
+  "who": "angel",
+  "pose": "idle",
+  "text": "Tenemos un panel de estado del sistema que muestra si cada servicio está funcionando y un modo mantenimiento por si hay que realizar algún tipo de cambios.",
+  "audio": true,
+  "until": 182.97,
+  "pos": {
+   "x": 1593,
+   "y": 700,
+   "s": 0.78
+  },
+  "subTop": true
+ },
+ {
+  "t": 184.35,
+  "who": "angel",
+  "pose": "point",
+  "text": "Todo con permisos por rol: cada persona ve sólo lo que le corresponde.",
+  "audio": true,
+  "until": 188.9,
+  "pos": {
+   "x": 1556,
+   "y": 700,
+   "s": 1.0
+  },
+  "subTop": false
+ },
+ {
+  "t": 189.7,
   "hide": true
  }
 ]
