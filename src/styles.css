@@ -15,6 +15,8 @@ body.dark-bg { background: var(--green-ink); }
 #slides { position: absolute; inset: 0; }
 .slide { position: absolute; inset: 0; visibility: hidden; overflow: hidden; background: var(--bg); }
 .slide.on { visibility: visible; }
+.inner { position: absolute; left: var(--ox, 0px); top: var(--oy, 0px); width: 1920px; height: 1080px; }
+.bleed, .glow, #dm-full { position: absolute; left: calc(-1 * var(--ox, 0px)) !important; top: calc(-1 * var(--oy, 0px)) !important; width: var(--sw, 1920px) !important; height: var(--sh, 1080px) !important; }
 .slide.dark { background: var(--green-ink); color: #eef7f1; }
 
 .kick { position: absolute; left: 128px; top: 112px; font: 700 20px var(--f-head); letter-spacing: .16em; text-transform: uppercase; color: var(--green); }
@@ -26,7 +28,7 @@ body.dark-bg { background: var(--green-ink); }
 
 #progress { position: absolute; left: 0; bottom: 0; height: 5px; width: 100%; z-index: 50; }
 #progress i { display: block; height: 100%; width: 0; background: var(--green); transition: width .5s ease; }
-#secname { position: absolute; left: 128px; bottom: 34px; font: 600 15px var(--f-head); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); z-index: 50; }
+#secname { position: absolute; left: calc(128px + var(--ox, 0px)); bottom: 34px; font: 600 15px var(--f-head); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); z-index: 50; }
 .hide-chrome #progress, .hide-chrome #secname, .on-dark #secname { opacity: 0; }
 #blackout { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; z-index: 100; transition: opacity .3s; }
 #blackout.on { opacity: 1; }

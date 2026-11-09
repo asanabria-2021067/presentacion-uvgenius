@@ -16,6 +16,7 @@ export class Demo {
     this.still = this.q('.dm-still')
     this.video = this.q('#dm-video')
     this.intro = this.q('#dm-intro')
+    this.outro = this.q('#dm-outro')
     this.click = this.q('#dm-click')
     this.cursor = this.q('#dm-cursor')
     this.ripples = root.querySelectorAll('.dm-ripple')
@@ -31,6 +32,7 @@ export class Demo {
     fetch(CUES_URL).then((r) => (r.ok ? r.json() : [])).then((c) => (this.cues = c)).catch(() => {})
     addEventListener('keydown', (e) => { if (e.key === 's' || e.key === 'S') { this.subs = !this.subs; this.sub.classList.toggle('off', !this.subs) } })
     this.video.addEventListener('timeupdate', () => this.onTime())
+    this.video.addEventListener('ended', () => this.playOutro())
     this.raf = this.raf.bind(this)
   }
 
@@ -41,7 +43,7 @@ export class Demo {
       this.ctx = new AudioContext()
       this.an = this.ctx.createAnalyser(); this.an.fftSize = 512
       this.buf = new Uint8Array(this.an.fftSize)
-      for (const m of [this.intro, this.video]) this.ctx.createMediaElementSource(m).connect(this.an)
+      for (const m of [this.intro, this.video, this.outro]) this.ctx.createMediaElementSource(m).connect(this.an)
       this.an.connect(this.ctx.destination)
     } catch { this.ctx = null }
   }
@@ -58,7 +60,7 @@ export class Demo {
     const lv = this.level()
     // sin audio (video de prueba) la boca se mueve sola mientras haya diálogo
     const talk = lv > 0.02 || (this.fakeTalk && Math.sin(now / 70) > 0)
-    if (this.phase === 'intro') {
+    if (this.phase === 'intro' || this.phase === 'outro') {
       for (const [id, a] of Object.entries(this.teamAv)) a.talk = id === this.speaker && talk ? 1 : 0
     } else if (this.phase === 'video' && this.cur) {
       const a = this.guideAv[this.cur.who]
@@ -76,7 +78,7 @@ export class Demo {
   reset() {
     this.running = false
     this.tl?.kill()
-    for (const m of [this.intro, this.video]) { m.pause(); m.currentTime = 0 }
+    for (const m of [this.intro, this.video, this.outro]) { m.pause(); m.currentTime = 0 }
     gsap.set(this.lap, { x: 0, y: 0, scale: 1, opacity: 1, transformOrigin: '0 0' })
     gsap.set(this.full, { opacity: 0, visibility: 'hidden' })
     gsap.set(this.video, { opacity: 0 })
@@ -139,6 +141,16 @@ export class Demo {
       .add(() => { this.phase = 'video'; this.video.currentTime = 0; this.video.play().catch(() => {}) })
       .to(this.video, { opacity: 1, duration: .5 }, '<')
       .to(this.still, { opacity: 0, duration: .5 }, '<.3')
+  }
+
+  // al terminar el recorrido vuelve el equipo completo a despedirse
+  playOutro() {
+    if (this.phase !== 'video') return
+    this.phase = 'outro'; this.speaker = 'angel'
+    this.untrackGuide?.(); this.untrackGuide = null
+    gsap.to(this.guide, { opacity: 0, x: 60, duration: .35 })
+    gsap.to(this.team, { opacity: 1, y: 0, duration: .8, stagger: .1, ease: 'back.out(1.5)', delay: .3 })
+    setTimeout(() => { this.outro.currentTime = 0; this.outro.play().catch(() => {}) }, 900)
   }
 
   onTime() {

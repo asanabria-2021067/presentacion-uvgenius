@@ -1,8 +1,133 @@
 [
-  { "t": 0, "who": "samuel", "pose": "idle", "text": "Empiezo yo, como estudiante. Entro con mi correo de la UVG y lo primero que veo es mi panel." },
-  { "t": 12, "who": "samuel", "pose": "point", "text": "Mis proyectos, mis horas acumuladas y lo que tengo pendiente." },
-  { "t": 19, "who": "samuel", "pose": "idle", "text": "Si quiero hacer voluntariado, voy a Explorar y filtro por área o asociación." },
-  { "t": 34, "who": "samuel", "pose": "point", "text": "Leo de qué trata, qué roles buscan, y me postulo con un clic." },
-  { "t": 44, "who": "samuel", "pose": "idle", "text": "Ya dentro del proyecto, mis tareas están en el tablero." },
-  { "t": 57, "who": "samuel", "pose": "point", "text": "Cada hora que trabajo queda registrada y, cuando me la validan, se suma a mi portafolio." }
+ {
+  "t": 0,
+  "who": "samuel",
+  "pose": "idle",
+  "text": "Empiezo yo, como estudiante. Entro con mi correo de la UVG y lo primero que veo es mi panel."
+ },
+ {
+  "t": 12,
+  "who": "samuel",
+  "pose": "point",
+  "text": "Mis proyectos, mis horas acumuladas y lo que tengo pendiente."
+ },
+ {
+  "t": 19,
+  "who": "samuel",
+  "pose": "idle",
+  "text": "Si quiero hacer voluntariado, voy a Explorar y filtro por área o asociación."
+ },
+ {
+  "t": 34,
+  "who": "samuel",
+  "pose": "point",
+  "text": "Leo de qué trata, qué roles buscan, y me postulo con un clic."
+ },
+ {
+  "t": 44,
+  "who": "samuel",
+  "pose": "idle",
+  "text": "Ya dentro del proyecto, mis tareas están en el tablero."
+ },
+ {
+  "t": 57,
+  "who": "samuel",
+  "pose": "point",
+  "text": "Cada hora que trabajo queda registrada y, cuando me la validan, se suma a mi portafolio."
+ },
+ {
+  "t": 61.4,
+  "who": "derek",
+  "pose": "idle",
+  "text": "Ahora yo como líder, mi trabajo es organizar el equipo y para eso tengo todo en un solo lugar Reviso las postulaciones que llegaron,",
+  "audio": true
+ },
+ {
+  "t": 70.0,
+  "who": "derek",
+  "pose": "point",
+  "text": "veo el perfil de cada estudiante y decido a quién acepto Después armo el sprint, creo las tareas, les pongo responsable, prioridad y fecha y quedan en el tablero de todos.",
+  "audio": true
+ },
+ {
+  "t": 81.02,
+  "who": "derek",
+  "pose": "idle",
+  "text": "Desde aquí también programo reuniones y llevo el control de quién va avanzando y quién se está quedando atrás y cuando un estudiante registra horas me llegan a mí.",
+  "audio": true
+ },
+ {
+  "t": 90.02,
+  "who": "derek",
+  "pose": "point",
+  "text": "Las reviso y las apruebo, las rechazo con un comentario Así las horas son reales y no solamente un número",
+  "audio": true
+ },
+ {
+  "t": 98.1,
+  "who": "saul",
+  "pose": "idle",
+  "text": "Yo represento a la Junta Directiva de una asociación, nosotros vemos el panorama completo, no solo un proyecto.",
+  "audio": true
+ },
+ {
+  "t": 105.38,
+  "who": "saul",
+  "pose": "point",
+  "text": "Aquí tenemos a todos los miembros de la asociación, los proyectos que estamos impulsando y quién lidera cada uno.",
+  "audio": true
+ },
+ {
+  "t": 112.06,
+  "who": "saul",
+  "pose": "idle",
+  "text": "Podemos crear proyectos nuevos, asignar líderes y ver en qué estado va cada iniciativa.",
+  "audio": true
+ },
+ {
+  "t": 118.16,
+  "who": "saul",
+  "pose": "point",
+  "text": "Y a fin de ciclo ya no hay que andar juntando hojas de Excel.",
+  "audio": true
+ },
+ {
+  "t": 122.54,
+  "who": "saul",
+  "pose": "idle",
+  "text": "Los reportes de horas y participación salen de aquí directamente.",
+  "audio": true
+ },
+ {
+  "t": 128.2,
+  "who": "angel",
+  "pose": "idle",
+  "text": "Por último, el administrador. Desde aquí se gestiona toda la plataforma,",
+  "audio": true
+ },
+ {
+  "t": 133.14,
+  "who": "angel",
+  "pose": "point",
+  "text": "usuarios, roles, asociaciones, carreras y facultades.",
+  "audio": true
+ },
+ {
+  "t": 137.04,
+  "who": "angel",
+  "pose": "idle",
+  "text": "Tenemos un panel de estado del sistema que muestra si cada servicio está funcionando y un modo mantenimiento por si hay que realizar algún tipo de cambios.",
+  "audio": true
+ },
+ {
+  "t": 145.82,
+  "who": "angel",
+  "pose": "point",
+  "text": "Todo con permisos por rol cada persona ve sólo lo que le corresponde.",
+  "audio": true
+ },
+ {
+  "t": 151.0,
+  "hide": true
+ }
 ]

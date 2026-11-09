@@ -37,7 +37,7 @@ S({
 })
 
 S({
-  id: 'historia', act: 'El problema', who: 'Saúl', t: 30, cls: 'story',
+  id: 'historia', act: 'El problema', who: 'Saúl', t: 25, cls: 'story',
   notes: 'Piensen en un estudiante de la UVG que necesita completar sus horas beca este semestre. Sabe que hay proyectos, pero no sabe dónde están. Le pregunta a un amigo, revisa el correo, entra a tres grupos de WhatsApp… y cuando por fin encuentra uno, ya se llenó.',
   html: `<div class="story-wrap">
     <div class="st-line" data-step="1">Un estudiante necesita <b>horas beca</b> este semestre.</div>
@@ -103,7 +103,7 @@ const comp = [
 ]
 const mark = { si: ic('check', 32, 3), no: ic('x', 28, 2.5), mid: ic('minus', 28, 3) }
 S({
-  id: 'herramientas', act: 'Competencia', who: 'Derek', t: 50,
+  id: 'herramientas', act: 'Competencia', who: 'Derek', t: 45,
   notes: '¿Por qué no usar lo que ya existe? Jira organiza muy bien el trabajo y registra tiempo, pero no publica convocatorias ni valida horas para la universidad. Notion se puede armar a mano, pero cada asociación tendría que construirlo y mantenerlo. Y Forms con WhatsApp es lo que se usa hoy. UVGenius une las tres partes: convocatoria, trabajo en equipo y validación de horas.',
   html: `${head('Competencia', 'Otras herramientas resuelven <em>una parte.</em>')}
   <div class="cmp">
@@ -135,7 +135,7 @@ S({
 // =========================================================== ACTO IV · LOS USUARIOS (Samuel)
 const times = [['Crear cuenta', 73, 7.0], ['Sesión y perfil', 105, 7.0], ['Buscar y postularse', 37, 6.8], ['Tablero y horas', 60, 5.4], ['Chat y avisos', 45, 5.4]]
 S({
-  id: 'neurolab', act: 'Usuarios', who: 'Samuel', t: 40,
+  id: 'neurolab', act: 'Usuarios', who: 'Samuel', t: 35,
   notes: 'Lo llevamos al NeuroLab de la UVG con cinco estudiantes, eye tracking y un sensor de estrés. Los cinco terminaron todo sin ayuda y el SUS fue de 85.5, arriba del 68 de referencia. Pero el tablero con las horas y el chat fueron lo peor calificado.',
   html: `${head('Pruebas con usuarios · NeuroLab UVG', 'Lo probamos con <em>eye tracking.</em>')}
   <div class="lab">
@@ -148,7 +148,7 @@ S({
 
 const ch = [['message-circle', 'Tardaron 39 s en encontrar el chat', 'Chat en la barra superior, con contador'], ['list-checks', '4 de 5 no llegaban a su tarea', 'El aviso lleva directo a «Ver mi tarea»'], ['triangle-alert', 'Errores que no decían qué corregir', 'Cada campo marca su error']]
 S({
-  id: 'mejoras', act: 'Usuarios', who: 'Samuel', t: 40,
+  id: 'mejoras', act: 'Usuarios', who: 'Samuel', t: 35,
   notes: 'El eye tracker mostró lo que la encuesta no: tardaron 39 segundos en encontrar el chat, cuatro de cinco no llegaban a su tarea y los errores no decían qué corregir. Cada hallazgo se volvió un cambio. [Relevo a Vernel]',
   html: `${head('Del hallazgo a la mejora', 'Lo que vio el eye tracker <em>se volvió un cambio.</em>')}
   <div class="eye-img" data-step="1"><img src="/img/lab_p02.jpg" alt="" /></div>
@@ -162,8 +162,8 @@ const nodes = [
   ['PostgreSQL', 'database', 1400, 280], ['Redis', 'zap', 1400, 480], ['Cloudinary', 'cloud', 1400, 680],
 ]
 S({
-  id: 'arquitectura', act: 'Tecnología', who: 'Vernel', t: 40,
-  notes: 'La arquitectura es simple: el navegador entra por Nginx con HTTPS; la interfaz es Next.js y la API NestJS. Los datos viven en PostgreSQL, el chat y los avisos en tiempo real usan Redis con Socket.io y los archivos van a Cloudinary. Todo corre en Docker en una máquina virtual de Azure.',
+  id: 'arquitectura', act: 'Tecnología', who: 'Vernel', t: 35,
+  notes: 'La arquitectura es simple: el navegador entra por Nginx con HTTPS; la interfaz es Next.js y la API NestJS. Los datos viven en PostgreSQL, el chat y los avisos en tiempo real usan Redis con Socket.io y los archivos van a Cloudinary. Todo corre en Docker; ahora les cuento en qué máquina.',
   html: `${head('Arquitectura', 'Simple de operar, <em>lista para crecer.</em>')}
   <svg class="wires" viewBox="0 0 1920 1080" data-step="2">
     <path d="M440 520 H560" /><path d="M850 500 C910 500 910 390 970 390" /><path d="M850 540 C910 540 910 650 970 650" />
@@ -173,17 +173,37 @@ S({
   <div class="arch-foot" data-step="3"><span>${ic('container', 26)} Docker</span><span>${ic('cloud-cog', 26)} VM de Azure</span><span>${ic('git-branch', 26)} GitHub Actions</span></div>`,
 })
 
-const q = [['9,832', 'pruebas automatizadas'], ['9 / 381', 'rutas públicas'], ['0', 'defectos críticos'], ['85.5', 'SUS']]
+const ciCols = [
+  ['Cada pull request', 'Integración continua', ['Lint y tipos (TypeScript)', 'Pruebas unitarias con Vitest', 'Integración contra Postgres real', 'Build de producción']],
+  ['Cada pull request', 'Seguridad', ['Secretos con gitleaks', 'Dependencias y npm audit', 'Revisión OWASP de cambios', 'Título con ticket de Jira']],
+  ['Antes de entregar y cada semana', 'E2E y carga', ['E2E con Playwright, en paralelo', 'Accesibilidad con axe', 'k6: carga semanal programada', 'Deploy solo desde main']],
+]
 S({
-  id: 'calidad', act: 'Tecnología', who: 'Vernel', t: 30,
-  notes: 'Como validamos horas que cuentan para una beca, tenía que ser confiable: 9,832 pruebas automatizadas entre unitarias, de integración, E2E y de carga; solo 9 de 381 rutas son públicas; y la revisión técnica de otro grupo no encontró defectos críticos.',
-  html: `${head('Calidad y seguridad', 'Confiable para <em>validar horas reales.</em>')}
-  <div class="nums">${q.map(([a, b], i) => `<div class="num-c" data-step="${i + 1}"><div class="v">${a}</div><div class="l">${b}</div></div>`).join('')}</div>`,
+  id: 'ci', act: 'Calidad', who: 'Vernel', t: 35,
+  notes: 'Nada llega a producción sin pasar por CI. En cada pull request corren lint y tipos, las pruebas unitarias con Vitest y las de integración contra un Postgres real, más un escaneo de secretos con gitleaks, la revisión de dependencias y de OWASP. Antes de entregar corremos los E2E con Playwright y accesibilidad con axe, y k6 corre cada semana. En total son 9,832 pruebas, y la revisión técnica de otro grupo no encontró defectos críticos.',
+  html: `${head('Calidad · GitHub Actions', 'Nada llega a producción <em>sin pasar por CI.</em>')}
+  <div class="ci-grid">${ciCols.map(([w, t, items], i) => `<div class="ci-c" data-step="${i + 1}"><div class="when">${w}</div><div class="t">${t}</div><ul>${items.map((x) => `<li>${ic('circle-check', 24, 2.4)}${x}</li>`).join('')}</ul></div>`).join('')}</div>
+  <div class="ci-foot" data-step="4"><span><b>9,832</b>pruebas automatizadas</span><span><b>9 / 381</b>rutas públicas</span><span><b>0</b>defectos críticos en la revisión externa</span></div>`,
+})
+
+S({
+  id: 'carga', act: 'Infraestructura', who: 'Vernel', t: 45,
+  notes: 'Todo corre en una sola máquina virtual de Azure en la región de México: una instancia pequeña de un núcleo y un giga de RAM, de unos 8 dólares al mes, con cuatro contenedores. Con k6 medimos que la API responde en unos 200 milisegundos en el percentil 95, sin un solo error de servidor. Lo primero que se satura es el limitador de peticiones por IP, que es una protección, no el hardware. Y optimizando las cinco secciones más lentas bajamos su tiempo entre 59 y 76 %. [Relevo a Angel]',
+  html: `${head('Infraestructura y carga · k6', 'Una máquina pequeña <em>que aguanta.</em>')}
+  <div class="infra" data-step="1"><div class="when">Producción hoy</div><div class="t">VM de Azure</div>
+    <div class="spec"><div>Instancia<b>B1s</b></div><div>Región<b>México</b></div><div>Recursos<b>1 vCPU · 1 GB</b></div><div>Costo<b>≈ US$8 / mes</b></div></div>
+    <div class="stack">Docker Compose con 4 contenedores: Next.js, NestJS, PostgreSQL y Redis, detrás de Nginx con HTTPS.</div></div>
+  <div class="load">
+    <div class="ld" data-step="2"><div class="v">~200<small>ms</small></div><div class="l">p95 de la API en producción</div><div class="s">k6 con rampa de 1 a 20 usuarios</div></div>
+    <div class="ld" data-step="2"><div class="v">0</div><div class="l">errores de servidor</div><div class="s">ni caídas ni timeouts durante la prueba</div></div>
+    <div class="ld" data-step="3"><div class="v">−59<small>a</small>−76<small>%</small></div><div class="l">tiempo de las 5 secciones más lentas</div><div class="s">tablero, sprint, proyecto, admin y sesión: ninguna pasa de 75 ms</div></div>
+    <div class="ld" data-step="3"><div class="v">5<small>req/s</small></div><div class="l">límite por IP</div><div class="s">lo primero que se satura es la protección, no el hardware</div></div>
+  </div>`,
 })
 
 const proc = [['10', 'sprints'], ['9', 'meses'], ['5', 'integrantes']]
 S({
-  id: 'proceso', act: 'Proceso', who: 'Vernel', t: 30,
+  id: 'proceso', act: 'Proceso', who: 'Vernel', t: 25,
   notes: 'Trabajamos con Scrum durante diez sprints, de marzo a noviembre, con Jira para el backlog y cada cambio pasando por revisión de código y por CI antes de llegar a producción. [Relevo a Angel]',
   html: `${head('Cómo trabajamos', 'Scrum, Jira <em>y revisión en cada cambio.</em>')}
   <div class="proc">${proc.map(([a, b], i) => `<div class="proc-c" data-step="1" style="--d:${i * 0.1}s"><div class="v">${a}</div><div class="l">${b}</div></div>`).join('')}</div>
@@ -209,7 +229,7 @@ S({
   <div id="dm-team">${TEAM.map((p) => `<figure class="dm-a" data-id="${p.id}"><canvas></canvas><figcaption>${p.short}</figcaption></figure>`).join('')}</div>
   <div id="dm-guide"><canvas></canvas><div class="dm-sub"><b></b><span></span></div></div>
   <div id="dm-cursor">${ic('mouse-pointer-2', 52, 1.6)}</div><div class="dm-ripple"></div><div class="dm-ripple"></div>
-  <audio id="dm-intro" src="/audio/intro.mp3" preload="auto"></audio><audio id="dm-click" src="/audio/dblclick.wav" preload="auto"></audio>`,
+  <audio id="dm-intro" src="/audio/intro.mp3" preload="auto"></audio><audio id="dm-outro" src="/audio/outro.mp3" preload="auto"></audio><audio id="dm-click" src="/audio/dblclick.wav" preload="auto"></audio>`,
 })
 
 S({

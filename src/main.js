@@ -26,7 +26,7 @@ for (const [i, s] of SLIDES.entries()) {
   const el = document.createElement('section')
   el.className = `slide ${s.cls || ''}`.trim()
   el.dataset.id = s.id
-  el.innerHTML = s.html
+  el.innerHTML = `<div class="inner">${s.html}</div>`
   slidesEl.appendChild(el)
   s.el = el
   s.steps ??= Math.max(0, ...[...el.querySelectorAll('[data-step]')].map((e) => +e.dataset.step))
@@ -35,8 +35,14 @@ const demo = new Demo(SLIDES.find((s) => s.id === 'demo').el)
 // equipo saludando en el cierre
 for (const f of document.querySelectorAll('.cl-team figure')) { const a = new Avatar(f.querySelector('canvas'), PEOPLE[f.dataset.id]); a.pose = 'wave'; track(a) }
 
+// El escenario ocupa TODA la ventana: el contenido vive en un lienzo de 1920×1080
+// centrado y los fondos se extienden hasta los bordes, sin franjas.
 function fit() {
   const k = Math.min(innerWidth / 1920, innerHeight / 1080)
+  const sw = innerWidth / k, sh = innerHeight / k
+  stage.style.width = `${sw}px`; stage.style.height = `${sh}px`
+  stage.style.setProperty('--sw', `${sw}px`); stage.style.setProperty('--sh', `${sh}px`)
+  stage.style.setProperty('--ox', `${(sw - 1920) / 2}px`); stage.style.setProperty('--oy', `${(sh - 1080) / 2}px`)
   stage.style.transform = `translate(-50%, -50%) scale(${k})`
 }
 addEventListener('resize', fit)
