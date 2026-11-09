@@ -389,3 +389,16 @@
 .cv-team figcaption { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); margin-top: 8px; text-align: center; font: 600 18px/1.25 var(--f-head); color: rgba(238, 247, 241, .85); white-space: nowrap; }
 .cover .cv-center { top: 250px !important; }
 .sc-l { justify-content: center !important; gap: 44px !important; }
+/* pitch */
+.pt { position: absolute; left: 160px; right: 160px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 30px; }
+.pt-q { font: 700 72px/1.1 var(--f-head); letter-spacing: -.03em; color: rgba(238, 247, 241, .92); max-width: 1500px; }
+.pt-q.b { font-size: 96px; color: #fff; } .pt-q em { font-style: normal; color: var(--lime); }
+.pt-q.s { font-size: 46px; font-weight: 600; color: rgba(238, 247, 241, .7); margin-top: 40px; }
+/* equipo */
+.eq-h { position: absolute; left: 128px; top: 250px; }
+.eq-k { font: 700 22px var(--f-head); letter-spacing: .16em; text-transform: uppercase; color: var(--lime); }
+.eq-t { font: 800 130px/1 Rubik, var(--f-head); letter-spacing: -.035em; color: #fff; margin-top: 14px; }
+.eq-t span { font-size: 70px; color: rgba(238, 247, 241, .65); font-weight: 700; }
+.cv-team.eq { left: 128px; right: 128px; bottom: 110px; justify-content: space-between; }
+.cv-team.eq figure { width: 290px; height: 312px; }
+.cv-team.eq figcaption { font-size: 24px; }

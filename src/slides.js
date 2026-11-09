@@ -31,16 +31,24 @@ const head = (kick, title, extra = '') => `<div class="kick">${kick}</div><h2 cl
 
 // =========================================================== ACTO I · EL PROBLEMA (Saúl)
 S({
-  id: 'portada', act: 'Inicio', who: 'Saúl', t: 15, cls: 'dark cover',
-  notes: 'Buenas noches. Somos el Grupo 6 y les presentamos UVGenius.',
+  id: 'pitch', act: 'Inicio', who: 'Angel', t: 25, cls: 'dark cover', gap: 1.8,
+  notes: 'PITCH (sin cifras). ¿Cuántos estudiantes de la UVG quieren sumarse a un proyecto… y no saben dónde buscarlo? ¿Y cuántos proyectos arrancan sin la persona que mejor encajaba, solo porque nunca se enteró? Pausa. Eso pasa todos los semestres.',
+  html: `<div class="glow"></div>
+  <div class="pt">
+    <p class="pt-q" data-step="1" data-sfx="none">¿Cuántos estudiantes de la UVG quieren sumarse a un proyecto…</p>
+    <p class="pt-q b" data-step="2" data-sfx="reveal">…y no saben <em>dónde buscarlo?</em></p>
+    <p class="pt-q s" data-step="3" data-sfx="pop">¿Y cuántos proyectos arrancan sin la persona que mejor encajaba, <em>solo porque nunca se enteró?</em></p>
+  </div>`,
+})
+
+S({
+  id: 'equipo', act: 'Inicio', who: 'Angel', t: 15, cls: 'dark cover', gap: 0.6,
+  notes: 'Buenas noches. Somos el Grupo 6 de la sección 30: Angel, Derek, Saúl, Vernel y Samuel. Y hoy les presentamos cómo resolvimos eso.',
   html: `<div class="glow"></div>
   <img class="cv-logo" src="/img/logo-claro.png" alt="UVG" />
-  <div class="cv-meta">Ingeniería de Software · Sección 30 · Grupo 6</div>
-  <div class="cv-center">
-    <div class="wordmark" data-step="1" data-sfx="reveal">UVGenius</div>
-    <h1 class="tagline" data-step="2" data-sfx="none">Conecta oportunidades, <em>mide tu impacto real.</em></h1>
-  </div>
-  <div class="cv-team" data-step="3" data-sfx="pop">${TEAM.map((p) => `<figure data-id="${p.id}"><canvas></canvas><figcaption>${p.name.replace(' ', '<br />')}</figcaption></figure>`).join('')}</div>`,
+  <div class="cv-meta">Ingeniería de Software · Universidad del Valle de Guatemala</div>
+  <div class="eq-h"><div class="eq-k" data-step="1" data-sfx="none">Equipo de trabajo</div><h1 class="eq-t" data-step="1" data-sfx="none">Grupo 6 <span>· Sección 30</span></h1></div>
+  <div class="cv-team eq" data-step="2" data-sfx="pop">${TEAM.map((p) => `<figure data-id="${p.id}"><canvas></canvas><figcaption>${p.name.replace(' ', '<br />')}</figcaption></figure>`).join('')}</div>`,
 })
 
 S({
@@ -312,3 +320,8 @@ S({
   <div class="qr" data-step="3" data-sfx="none"><img src="/img/qr.png" alt="" /><div>Pruébalo<br /><b>158.23.57.118.nip.io</b></div></div>
   <div class="cl-team" data-step="3" data-sfx="none">${TEAM.map((p) => `<figure data-id="${p.id}"><canvas></canvas><figcaption>${p.short}</figcaption></figure>`).join('')}</div>`,
 })
+
+// Orden de la presentación: pitch, equipo, problema, público objetivo y la demo lo antes posible.
+const ORDER = ['pitch', 'historia', 'equipo', 'canales', 'sintomas', 'revelacion', 'para-quien-0', 'publico-0', 'para-quien-1', 'publico-1', 'para-quien-2', 'publico-2', 'demo',
+  'recorrido', 'herramientas', 'costos', 'antes-despues', 'impacto', 'neurolab', 'mejoras', 'tecnologias', 'arquitectura', 'ci', 'siguiente', 'cierre']
+SLIDES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id))
