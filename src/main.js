@@ -35,7 +35,7 @@ for (const s of SLIDES) {
   if (!s.manual) s.steps = 0 // todo corre solo al entrar; la flecha pasa a la siguiente
 }
 const demo = new Demo(SLIDES.find((s) => s.id === 'demo').el)
-for (const f of document.querySelectorAll('.cl-team figure')) { const a = new Avatar(f.querySelector('canvas'), PEOPLE[f.dataset.id]); a.pose = 'wave'; track(a) }
+for (const f of document.querySelectorAll('.cl-team figure, .cv-team figure')) { const a = new Avatar(f.querySelector('canvas'), PEOPLE[f.dataset.id]); a.pose = 'wave'; track(a) }
 
 // El escenario ocupa TODA la ventana: el contenido vive en un lienzo de 1920×1080 centrado.
 function fit() {
@@ -102,7 +102,7 @@ function enter(s, instant) {
     if (e.querySelector('[data-count]')) countUp(e, tl, at + 0.1)
     for (const b of Q(e, '.sus b, .bt i, .cr-bar i')) tl.from(b, { width: 0, duration: 1.2, ease: 'power2.out' }, at + 0.2)
     if (e.matches('.wires')) tl.fromTo(Q(e, 'path'), { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.08 }, at)
-    if (e.matches('.cl-team')) tl.fromTo(e.children, { y: 160, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'back.out(1.6)' }, at)
+    if (e.matches('.cl-team, .cv-team')) tl.fromTo(e.children, { y: 160, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'back.out(1.6)' }, at)
     if (e.matches('.st-full')) tl.fromTo(e, { scale: 1.6, rotate: -14 }, { scale: 1, rotate: -6, duration: 0.45, ease: 'back.out(2)' }, at)
     if (tr && e.matches('.fs')) tl.call(() => (tr.style.width = `${((k - 1) / (maxStep - 1)) * 100}%`), null, at)
   }

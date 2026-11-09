@@ -40,7 +40,7 @@ S({
     <div class="wordmark" data-step="1" data-sfx="reveal">UVGenius</div>
     <h1 class="tagline" data-step="2" data-sfx="none">Conecta oportunidades, <em>mide tu impacto real.</em></h1>
   </div>
-  <div class="cv-names">Angel Sanabria · Derek Coronado · Saúl Castillo · Vernel Hernández · Samuel Robledo</div>`,
+  <div class="cv-team" data-step="3" data-sfx="pop">${TEAM.map((p) => `<figure data-id="${p.id}"><canvas></canvas><figcaption>${p.name.replace(' ', '<br />')}</figcaption></figure>`).join('')}</div>`,
 })
 
 S({
@@ -159,7 +159,7 @@ const costs = [
   ['siJira', 'Jira', 'Standard', 'US$ 7.91 por persona · gratis solo hasta 10', 396],
   ['siNotion', 'Notion', 'Plus', 'US$ 12 a 16 por persona', 800, 600],
   ['siGoogleforms', 'Forms + WhatsApp', 'Gratis', 'sin estado, horas ni seguimiento', 0],
-  [null, 'UVGenius', 'Servidor propio', 'costo fijo del servidor, no por persona', 8],
+  [null, 'UVGenius', 'Servidor propio', 'costo de hoy; si crece la carga, se escala el servidor', 8],
 ]
 S({
   id: 'costos', act: 'Competencia', who: 'Derek', t: 25, gap: 0.7,
@@ -233,8 +233,8 @@ SI PREGUNTAN POR QUÉ:
 • Base dockerizada: mismo motor y versión en desarrollo, CI y producción; respaldos con pg_dump.
 • Socket.io + Redis: tiempo real con reconexión automática; Redis permite varias instancias de la API.
 • Cloudinary: no llenamos el disco de la VM con fotos y se sirven por CDN.`,
-  html: `${head('Tecnologías', 'Con qué está hecho, <em>y por qué.</em>')}
-  <div class="stk2">${stack.map(([k, ls, why], i) => `<div class="sc" data-step="${i + 1}" data-sfx="pop"><div class="sc-k">${k}</div><div class="sc-l">${ls.map(([s, n]) => `<span class="lg2">${logo(s, 58)}<b>${n}</b></span>`).join('')}</div><div class="sc-w">${why}</div></div>`).join('')}</div>`,
+  html: `${head('Tecnologías', 'Con qué <em>está hecho.</em>')}
+  <div class="stk2">${stack.map(([k, ls, why], i) => `<div class="sc" data-step="${i + 1}" data-sfx="pop"><div class="sc-k">${k}</div><div class="sc-l">${ls.map(([s, n]) => `<span class="lg2">${logo(s, 58)}<b>${n}</b></span>`).join('')}</div></div>`).join('')}</div>`,
 })
 
 const nodes = [
