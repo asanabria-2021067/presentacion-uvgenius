@@ -138,9 +138,9 @@ const audDetail = [
   'Y los coordinadores académicos ven solo las carreras que coordinan, con las horas declaradas y acreditadas y quién va en riesgo. Revisan los proyectos antes de que se publiquen, atienden los cierres y siguen los proyectos activos, y descargan los reportes del semestre. Y ahora, véanlo funcionando.',
 ]
 AUD.forEach((a, i) => {
-  S({ id: `para-quien-${i}`, act: 'La solución', who: 'Angel', t: i === 0 ? 15 : 4, aud: i, notes: audNotes[i],
+  S({ id: `para-quien-${i}`, act: 'La solución', who: i === 2 ? 'Vernel' : 'Angel', t: i === 0 ? 15 : 4, aud: i, notes: audNotes[i],
     html: `${head('Público objetivo · primera etapa', 'Pensado para <em>tres públicos.</em>')}${audCards(i)}` })
-  S({ id: `publico-${i}`, act: 'La solución', who: 'Angel', t: 30, gap: 0.45, notes: audDetail[i],
+  S({ id: `publico-${i}`, act: 'La solución', who: i === 2 ? 'Vernel' : 'Angel', t: 30, gap: 0.45, notes: audDetail[i],
     html: `<div class="kick">Público objetivo · ${i + 1} de 3</div><h2 class="title">${a.t}</h2>
     <div class="pg">${a.groups.map(([ico, t, items], g) => `<div class="pg-c" data-step="${1 + g * 5}" data-sfx="slide"><div class="pg-h"><span class="ib">${ic(ico, 30)}</span>${t}</div>${items.map((x, k) => `<div class="pg-i" data-step="${2 + g * 5 + k}" data-sfx="pop">${ic('check', 20, 3)}${x}</div>`).join('')}</div>`).join('')}</div>` })
 })
