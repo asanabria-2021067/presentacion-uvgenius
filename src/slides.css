@@ -378,3 +378,7 @@
 #dm-full { background: var(--green-ink) !important; }
 #dm-full video { object-fit: contain !important; background: transparent !important; }
 .cr { grid-template-columns: 540px 1fr 380px !important; } .cr-v { font-size: 66px !important; } .sc-l { gap: 34px !important; } .lg2 svg { width: 66px; height: 66px; } .lg2 b { font-size: 29px !important; }
+/* el equipo y los subtítulos quedan dentro del área del video */
+#dm-team { right: 40px !important; bottom: 40px !important; }
+#dm-sub { bottom: 34px !important; }
+#dm-sub.top { top: 30px !important; bottom: auto !important; }
