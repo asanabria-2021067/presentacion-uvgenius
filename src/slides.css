@@ -436,3 +436,10 @@
 .cu-chips b { font-weight: 800; }
 .cu-v { font-size: 92px !important; }
 .cu-h { top: 760px !important; } .cu-o { top: 815px !important; }
+/* públicos por situación */
+.pg { position: absolute; left: 128px; right: 128px; top: 320px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.pg-c { background: var(--card); border-radius: 30px; box-shadow: var(--shadow); padding: 34px 34px 30px; display: flex; flex-direction: column; gap: 16px; min-height: 560px; }
+.pg-h { display: flex; gap: 16px; align-items: center; font: 700 32px var(--f-head); letter-spacing: -.015em; margin-bottom: 10px; }
+.pg-h .ib { width: 58px; height: 58px; border-radius: 16px; }
+.pg-i { display: flex; gap: 12px; align-items: flex-start; font: 500 25px/1.35 var(--f-body); color: var(--soft); padding: 14px 0; border-top: 1px solid var(--line); }
+.pg-i svg { color: var(--green); flex: none; margin-top: 5px; }

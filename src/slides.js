@@ -106,12 +106,24 @@ S({
 })
 
 const AUD = [
-  { icon: 'graduation-cap', t: 'Estudiantes', img: '/shots/e_explorar.jpg', url: 'uvgenius / proyectos', who: 'Vernel',
-    can: [['search', 'Exploran proyectos por horas beca o de extensión y por carrera'], ['send', 'Se postulan a un rol y siguen el estado de su solicitud'], ['kanban', 'Trabajan en el tablero y registran horas en cada tarea'], ['message-circle', 'Chatean con su equipo y con cualquier compañero'], ['award', 'Comparten su portafolio, con insignias y enlace al CV']] },
-  { icon: 'crown', t: 'Líderes de asociación', img: '/shots/asoc.jpg', url: 'uvgenius / mi asociación', who: 'Angel',
-    can: [['users', 'Ven el avance de horas de los estudiantes de sus carreras'], ['bell-ring', 'Detectan quién va en riesgo y le envían un aviso'], ['folder-plus', 'Crean proyectos a nombre de la asociación y asignan al equipo y al líder'], ['chart-no-axes-column', 'Siguen el avance de cada proyecto por tareas y sprints'], ['megaphone', 'Publican anuncios y descargan reportes en PDF o CSV']] },
-  { icon: 'book-open-check', t: 'Coordinadores académicos', img: '/shots/coord.jpg', url: 'uvgenius / coordinación', who: 'Vernel',
-    can: [['school', 'Ven solo las carreras que coordinan'], ['bar-chart-3', 'Revisan horas beca y de extensión: declaradas y acreditadas'], ['triangle-alert', 'Ven a los estudiantes en riesgo de no completar sus horas'], ['clipboard-check', 'Atienden proyectos en revisión y solicitudes de cierre'], ['file-down', 'Descargan reportes por semestre en PDF o CSV']] },
+  { icon: 'graduation-cap', t: 'Estudiantes', who: 'Vernel',
+    groups: [
+      ['search', 'Si está buscando', ['Filtra por horas beca o de extensión, carrera y modalidad', 'Ve recomendaciones «Para ti»', 'Se postula a un rol y sigue su solicitud']],
+      ['users', 'Si ya colabora', ['Tablero, tareas y horas con evidencia', 'Chat de equipo, menciones y encuestas', 'Reconocimientos de sus compañeros', 'Insignias, historial y CV público']],
+      ['lightbulb', 'Si tiene una idea', ['Propone su propio proyecto, aunque no tenga equipo', 'Abre roles y cupos para armarlo', 'Pasa a revisión y, al publicarse, lo lidera']],
+    ] },
+  { icon: 'crown', t: 'Líderes de asociación', who: 'Angel',
+    groups: [
+      ['users', 'Su comunidad', ['Ve a los estudiantes de sus carreras y sus horas', 'Detecta quién va en riesgo y le envía un aviso', 'Sigue las metas del semestre']],
+      ['folder-plus', 'Sus proyectos', ['Crea proyectos a nombre de la asociación', 'Asigna al equipo y al líder desde su panel', 'Ve el avance de cada proyecto']],
+      ['megaphone', 'Comunicación', ['Publica anuncios para sus miembros', 'Muestra el portafolio de la asociación', 'Descarga reportes en PDF o CSV']],
+    ] },
+  { icon: 'book-open-check', t: 'Coordinadores académicos', who: 'Vernel',
+    groups: [
+      ['bar-chart-3', 'Seguimiento', ['Solo ve las carreras que coordina', 'Horas beca y de extensión: declaradas y acreditadas', 'Estudiantes en riesgo de no completar']],
+      ['clipboard-check', 'Aprobaciones', ['Revisa los proyectos antes de publicarse', 'Atiende las solicitudes de cierre', 'Sigue los proyectos activos de sus carreras']],
+      ['file-down', 'Reportes', ['Descarga horas por semestre en PDF o CSV', 'Calendario de cierres y entregas', 'Información lista para la universidad']],
+    ] },
 ]
 const audCards = (focus) => `<div class="aud">${AUD.map((a, i) => `<div class="aud-c${i < focus ? ' seen' : ''}" data-i="${i}"><div class="ib">${ic(a.icon, 40)}</div><div class="t">${a.t}</div><div class="go">${i < focus ? ic('check', 22, 3) + ' Visto' : 'Ver qué puede hacer ' + ic('arrow-right', 22, 2.5)}</div></div>`).join('')}</div>
   <div class="aud-cursor">${ic('mouse-pointer-2', 52, 1.6)}</div><div class="aud-ripple"></div>`
@@ -121,17 +133,16 @@ const audNotes = [
   '[→ el cursor abre Coordinadores académicos]',
 ]
 const audDetail = [
-  'VERNEL: Los estudiantes exploran proyectos filtrando por horas beca o de extensión y por su carrera, se postulan a un rol y siguen el estado de su solicitud. Ya dentro, trabajan en el tablero y registran sus horas en cada tarea, chatean con su equipo y al final comparten su portafolio, con insignias y un enlace a su CV.',
-  'ANGEL: Los líderes de asociación ven el avance de horas de todos los estudiantes de sus carreras y detectan quién va en riesgo para enviarle un aviso. Crean proyectos a nombre de la asociación y asignan directamente al equipo y al líder, siguen el avance de cada proyecto y publican anuncios y reportes.',
-  'VERNEL: Y los coordinadores académicos ven solo las carreras que coordinan: revisan las horas beca y de extensión, declaradas y acreditadas, ven quién está en riesgo, atienden los proyectos en revisión y las solicitudes de cierre, y descargan los reportes del semestre. [Angel sigue con la demo]',
+  'VERNEL: Los estudiantes. Si está buscando, filtra por horas beca o de extensión, por carrera y modalidad, ve recomendaciones para él, se postula a un rol y sigue su solicitud. Si ya colabora, trabaja en el tablero y registra horas con evidencia, chatea con su equipo, recibe reconocimientos de sus compañeros al cerrar cada sprint y va juntando insignias, historial y su CV público. Y si tiene una idea, aunque no tenga equipo, propone su propio proyecto, abre roles para armarlo y, cuando se aprueba, lo lidera.',
+  'ANGEL: Los líderes de asociación ven a los estudiantes de sus carreras y sus horas, detectan quién va en riesgo y le avisan, y siguen las metas del semestre. Crean proyectos a nombre de la asociación y asignan al equipo y al líder desde su panel. Y publican anuncios, muestran el portafolio de la asociación y descargan reportes.',
+  'VERNEL: Y los coordinadores académicos ven solo las carreras que coordinan, con las horas declaradas y acreditadas y quién va en riesgo. Revisan los proyectos antes de que se publiquen, atienden los cierres y siguen los proyectos activos, y descargan los reportes del semestre. [Angel sigue con la demo]',
 ]
 AUD.forEach((a, i) => {
   S({ id: `para-quien-${i}`, act: 'La solución', who: i === 0 ? 'Angel' : a.who, t: i === 0 ? 15 : 4, aud: i, notes: audNotes[i],
     html: `${head('Público objetivo · primera etapa', 'Pensado para <em>tres públicos.</em>')}${audCards(i)}` })
-  S({ id: `publico-${i}`, act: 'La solución', who: a.who, t: 18, gap: 0.55, notes: audDetail[i],
+  S({ id: `publico-${i}`, act: 'La solución', who: a.who, t: 30, gap: 0.45, notes: audDetail[i],
     html: `<div class="kick">Público objetivo · ${i + 1} de 3</div><h2 class="title">${a.t}</h2>
-    <div class="pd-shot" data-step="1" data-sfx="slide"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>${a.url}</span></div><div class="shot"><img src="${a.img}" alt="" /></div></div></div>
-    <div class="pd-can">${a.can.map(([ico, t], k) => `<div class="pd-i" data-step="${k + 2}" data-sfx="pop"><span class="ib">${ic(ico, 30)}</span>${t}</div>`).join('')}</div>` })
+    <div class="pg">${a.groups.map(([ico, t, items], g) => `<div class="pg-c" data-step="${1 + g * 5}" data-sfx="slide"><div class="pg-h"><span class="ib">${ic(ico, 30)}</span>${t}</div>${items.map((x, k) => `<div class="pg-i" data-step="${2 + g * 5 + k}" data-sfx="pop">${ic('check', 20, 3)}${x}</div>`).join('')}</div>`).join('')}</div>` })
 })
 
 const flow = [['megaphone', 'Publicar el proyecto'], ['send', 'Postularse a un rol'], ['kanban', 'Trabajar por sprints o metas'], ['timer', 'Registrar horas'], ['badge-check', 'Validar']]
@@ -330,6 +341,8 @@ S({
 })
 
 // Orden de la presentación: pitch, equipo, problema, público objetivo y la demo lo antes posible.
-const ORDER = ['pitch', 'historia', 'equipo', 'canales', 'sintomas', 'revelacion', 'para-quien-0', 'publico-0', 'para-quien-1', 'publico-1', 'para-quien-2', 'publico-2', 'demo',
+S({ id: 'inicio', act: '', who: '—', t: 0, cls: 'dark cover blank', notes: 'Pantalla en verde mientras se acomodan. → empieza el pitch (Samuel).', html: `<div class="glow"></div>` })
+
+const ORDER = ['inicio', 'pitch', 'historia', 'equipo', 'canales', 'sintomas', 'revelacion', 'para-quien-0', 'publico-0', 'para-quien-1', 'publico-1', 'para-quien-2', 'publico-2', 'demo',
   'recorrido', 'neurolab', 'mejoras', 'tecnologias', 'arquitectura', 'ci', 'antes-despues', 'herramientas', 'costos', 'costo-uvg', 'impacto', 'cierre']
 SLIDES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id))
