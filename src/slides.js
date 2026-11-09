@@ -42,7 +42,7 @@ S({
 })
 
 S({
-  id: 'equipo', act: 'Inicio', who: 'Angel', t: 15, cls: 'dark cover', gap: 0.6,
+  id: 'equipo', act: 'Inicio', who: 'Samuel', t: 15, cls: 'dark cover', gap: 0.6,
   notes: 'Buenas noches. Somos el Grupo 6 de la sección 30: Angel, Derek, Saúl, Vernel y Samuel. Y hoy les presentamos cómo resolvimos eso.',
   html: `<div class="glow"></div>
   <img class="cv-logo" src="/img/logo-claro.png" alt="UVG" />
@@ -52,7 +52,7 @@ S({
 })
 
 S({
-  id: 'historia', act: 'El problema', who: 'Angel', t: 25, gap: 1.6,
+  id: 'historia', act: 'El problema', who: 'Samuel', t: 25, gap: 1.6,
   notes: 'Piensen en un estudiante de la UVG que necesita completar sus horas beca o de extensión este semestre. Sabe que hay proyectos, pero no sabe dónde están. Le pregunta a un amigo, revisa el correo, entra a tres grupos de WhatsApp… y cuando por fin encuentra uno, ya se llenó.',
   html: `<div class="story-wrap">
     <div class="st-line" data-step="1" data-sfx="none">Un estudiante necesita <b>horas beca o de extensión</b> este semestre.</div>
@@ -74,7 +74,7 @@ S({
 
 const chans = [['message-circle', 'Boca en boca', 'Un amigo te cuenta'], ['mail', 'Correos', 'Se pierden entre otros'], ['file-spreadsheet', 'Formularios', 'Uno distinto por proyecto'], ['message-square-text', 'Grupos de WhatsApp', 'Solo si estás en el grupo']]
 S({
-  id: 'canales', act: 'El problema', who: 'Samuel', t: 25, gap: 0.7,
+  id: 'canales', act: 'El problema', who: 'Saúl', t: 25, gap: 0.7,
   notes: 'El problema: la información de los proyectos está descentralizada. Hoy un proyecto se anuncia de boca en boca, por correo, con un formulario distinto cada vez o en grupos de WhatsApp. Son cuatro lugares que no se hablan entre sí: si no estás en el grupo correcto, no te enteras.',
   html: `${head('El problema', 'La información de los proyectos <em>está descentralizada.</em>')}
   <p class="sub" data-step="1" data-sfx="none">Así se anuncia hoy un proyecto:</p>
@@ -89,7 +89,7 @@ const cons = [
   ['eye-off', 'Avance invisible', 'La coordinación lo ve hasta que el proyecto ya terminó.'],
 ]
 S({
-  id: 'sintomas', act: 'El problema', who: 'Samuel', t: 25, gap: 1.1,
+  id: 'sintomas', act: 'El problema', who: 'Saúl', t: 25, gap: 1.1,
   notes: 'Y eso trae tres problemas. Primero, gana el más rápido: el aviso cae en un grupo y el cupo se lo queda quien estaba pendiente del teléfono, no quien encaja mejor en el proyecto. Segundo, las horas se reportan a mano, sin una tarea que las respalde. Y tercero, la coordinación solo ve el avance cuando el proyecto ya terminó. ',
   html: `${head('Lo que pasa hoy', 'Sin un solo lugar, <em>tres problemas.</em>')}
   <div class="sym">${cons.map(([a, b, c], i) => `<div class="sym-c" data-step="${i + 1}" data-sfx="slide"><div class="n">0${i + 1}</div><div class="ib">${ic(a, 40)}</div><div class="t">${b}</div><div class="d">${c}</div></div>`).join('')}</div>`,
@@ -97,7 +97,7 @@ S({
 
 // =========================================================== ACTO II · LA SOLUCIÓN (Angel)
 S({
-  id: 'revelacion', act: 'La solución', who: 'Angel', t: 15, cls: 'dark reveal', gap: 1.2,
+  id: 'revelacion', act: 'La solución', who: 'Saúl', t: 15, cls: 'dark reveal', gap: 1.2,
   notes: 'De este problema nace UVGenius: todos los proyectos de la UVG en un solo lugar.',
   html: `<div class="glow"></div><div class="rv">
     <div class="rv-k" data-step="1" data-sfx="none">De este problema nace</div>
@@ -128,26 +128,26 @@ const AUD = [
 const audCards = (focus) => `<div class="aud">${AUD.map((a, i) => `<div class="aud-c${i < focus ? ' seen' : ''}" data-i="${i}"><div class="ib">${ic(a.icon, 40)}</div><div class="t">${a.t}</div><div class="go">${i < focus ? ic('check', 22, 3) + ' Visto' : 'Ver qué puede hacer ' + ic('arrow-right', 22, 2.5)}</div></div>`).join('')}</div>
   <div class="aud-cursor">${ic('mouse-pointer-2', 52, 1.6)}</div><div class="aud-ripple"></div>`
 const audNotes = [
-  'ANGEL: En esta primera etapa, UVGenius está pensado para tres públicos. Vernel les cuenta el primero. [→ el cursor abre Estudiantes]',
+  'En esta primera etapa, UVGenius está pensado para tres públicos. [→ el cursor abre Estudiantes]',
   '[→ el cursor abre Líderes de asociación]',
   '[→ el cursor abre Coordinadores académicos]',
 ]
 const audDetail = [
-  'VERNEL: Los estudiantes. Si está buscando, filtra por horas beca o de extensión, por carrera y modalidad, ve recomendaciones para él, se postula a un rol y sigue su solicitud. Si ya colabora, trabaja en el tablero y registra horas con evidencia, chatea con su equipo, recibe reconocimientos de sus compañeros al cerrar cada sprint y va juntando insignias, historial y su CV público. Y si tiene una idea, aunque no tenga equipo, propone su propio proyecto, abre roles para armarlo y, cuando se aprueba, lo lidera.',
-  'ANGEL: Los líderes de asociación ven a los estudiantes de sus carreras y sus horas, detectan quién va en riesgo y le avisan, y siguen las metas del semestre. Crean proyectos a nombre de la asociación y asignan al equipo y al líder desde su panel. Y publican anuncios, muestran el portafolio de la asociación y descargan reportes.',
-  'VERNEL: Y los coordinadores académicos ven solo las carreras que coordinan, con las horas declaradas y acreditadas y quién va en riesgo. Revisan los proyectos antes de que se publiquen, atienden los cierres y siguen los proyectos activos, y descargan los reportes del semestre. [Angel sigue con la demo]',
+  'Los estudiantes. Si está buscando, filtra por horas beca o de extensión, por carrera y modalidad, ve recomendaciones para él, se postula a un rol y sigue su solicitud. Si ya colabora, trabaja en el tablero y registra horas con evidencia, chatea con su equipo, recibe reconocimientos de sus compañeros al cerrar cada sprint y va juntando insignias, historial y su CV público. Y si tiene una idea, aunque no tenga equipo, propone su propio proyecto, abre roles para armarlo y, cuando se aprueba, lo lidera.',
+  'Los líderes de asociación ven a los estudiantes de sus carreras y sus horas, detectan quién va en riesgo y le avisan, y siguen las metas del semestre. Crean proyectos a nombre de la asociación y asignan al equipo y al líder desde su panel. Y publican anuncios, muestran el portafolio de la asociación y descargan reportes.',
+  'Y los coordinadores académicos ven solo las carreras que coordinan, con las horas declaradas y acreditadas y quién va en riesgo. Revisan los proyectos antes de que se publiquen, atienden los cierres y siguen los proyectos activos, y descargan los reportes del semestre. Y ahora, véanlo funcionando.',
 ]
 AUD.forEach((a, i) => {
-  S({ id: `para-quien-${i}`, act: 'La solución', who: i === 0 ? 'Angel' : a.who, t: i === 0 ? 15 : 4, aud: i, notes: audNotes[i],
+  S({ id: `para-quien-${i}`, act: 'La solución', who: 'Angel', t: i === 0 ? 15 : 4, aud: i, notes: audNotes[i],
     html: `${head('Público objetivo · primera etapa', 'Pensado para <em>tres públicos.</em>')}${audCards(i)}` })
-  S({ id: `publico-${i}`, act: 'La solución', who: a.who, t: 30, gap: 0.45, notes: audDetail[i],
+  S({ id: `publico-${i}`, act: 'La solución', who: 'Angel', t: 30, gap: 0.45, notes: audDetail[i],
     html: `<div class="kick">Público objetivo · ${i + 1} de 3</div><h2 class="title">${a.t}</h2>
     <div class="pg">${a.groups.map(([ico, t, items], g) => `<div class="pg-c" data-step="${1 + g * 5}" data-sfx="slide"><div class="pg-h"><span class="ib">${ic(ico, 30)}</span>${t}</div>${items.map((x, k) => `<div class="pg-i" data-step="${2 + g * 5 + k}" data-sfx="pop">${ic('check', 20, 3)}${x}</div>`).join('')}</div>`).join('')}</div>` })
 })
 
 const flow = [['megaphone', 'Publicar el proyecto'], ['send', 'Postularse a un rol'], ['kanban', 'Trabajar por sprints o metas'], ['timer', 'Registrar horas'], ['badge-check', 'Validar']]
 S({
-  id: 'recorrido', act: 'La solución', who: 'Saúl', t: 30, gap: 0.8,
+  id: 'recorrido', act: 'La solución', who: 'Derek', t: 30, gap: 0.8,
   notes: 'Todo pasa en un solo flujo: el líder publica el proyecto, el estudiante se postula a un rol, el equipo trabaja por sprints o por metas, cada hora queda registrada en una tarea y al final se valida con evidencia. ',
   html: `${head('Cómo funciona', 'Un solo flujo, <em>de la convocatoria a la validación.</em>')}
   <div class="flow"><div class="flow-track"><i></i></div>${flow.map(([a, b], i) => `<div class="fs" data-step="${i + 1}" data-sfx="pop"><div class="fi">${ic(a, 50)}</div><div class="fn">0${i + 1}</div><div class="t">${b}</div></div>`).join('')}</div>`,
@@ -164,7 +164,7 @@ const comp = [
 ]
 const mark = { si: ic('check', 32, 3), no: ic('x', 28, 2.5), mid: ic('minus', 28, 3) }
 S({
-  id: 'herramientas', act: 'Competencia', who: 'Samuel', t: 35, gap: 0.6,
+  id: 'herramientas', act: 'Competencia', who: 'Vernel', t: 35, gap: 0.6,
   notes: '¿Por qué no usar lo que ya existe? Jira organiza muy bien el trabajo, pero no publica convocatorias ni valida horas para la universidad. Notion se puede armar a mano, pero cada asociación tendría que construirlo y mantenerlo. Y Forms con WhatsApp es lo que se usa hoy. UVGenius une las tres partes: convocatoria, trabajo en equipo y validación de horas.',
   html: `${head('Competencia', 'Otras herramientas resuelven <em>una parte.</em>')}
   <div class="cmp">
@@ -201,7 +201,7 @@ S({
 })
 
 S({
-  id: 'impacto', act: 'Valor', who: 'Derek', t: 25, gap: 1.6,
+  id: 'impacto', act: 'Valor', who: 'Saúl', t: 25, gap: 1.6,
   notes: 'Y lo medimos en el NeuroLab con cinco estudiantes: encontrar un proyecto y postularse tomó 37 segundos en promedio, y mover una tarea en el tablero y registrar sus horas, un minuto. Los cinco lo lograron sin ayuda. ',
   html: `${head('Impacto · medido en el NeuroLab', 'Lo medimos <em>con usuarios reales.</em>')}
   <div class="kpis">
@@ -214,7 +214,7 @@ S({
 // =========================================================== ACTO IV · LOS USUARIOS (Samuel)
 const times = [['Crear cuenta', 73, 7.0], ['Sesión y perfil', 105, 7.0], ['Buscar y postularse', 37, 6.8], ['Tablero y horas', 60, 5.4], ['Chat y avisos', 45, 5.4]]
 S({
-  id: 'neurolab', act: 'Usuarios', who: 'Saúl', t: 35, gap: 1.4,
+  id: 'neurolab', act: 'Usuarios', who: 'Derek', t: 35, gap: 1.4,
   notes: 'Lo llevamos al NeuroLab de la UVG con cinco estudiantes, eye tracking y un sensor de estrés. Los cinco terminaron todo sin ayuda y el SUS fue de 85.5, arriba del 68 de referencia. Pero el tablero con las horas y el chat fueron lo peor calificado.',
   html: `${head('Pruebas con usuarios · NeuroLab UVG', 'Lo probamos con <em>eye tracking.</em>')}
   <div class="lab">
@@ -227,7 +227,7 @@ S({
 
 const ch = [['message-circle', 'Tardaban 39 s en encontrar el chat', 'Pusimos el chat en la barra superior, con contador'], ['list-checks', '4 de 5 no llegaban a su tarea', 'El aviso ahora lleva directo a «Ver mi tarea»'], ['triangle-alert', 'Los errores no decían qué corregir', 'Ahora cada campo marca su propio error']]
 S({
-  id: 'mejoras', act: 'Usuarios', who: 'Saúl', t: 35, gap: 1.2,
+  id: 'mejoras', act: 'Usuarios', who: 'Derek', t: 35, gap: 1.2,
   notes: 'El eye tracker mostró lo que la encuesta no: tardaban 39 segundos en encontrar el chat, cuatro de cinco no llegaban a su tarea y los errores no decían qué corregir. Con eso hicimos tres cambios que ya están en producción: el chat pasó a la barra superior con contador, el aviso de tarea lleva directo a «Ver mi tarea» y cada campo marca su propio error. ',
   html: `${head('Del hallazgo al cambio', 'Lo que vio el eye tracker, <em>ya está corregido.</em>')}
   <div class="eye-img" data-step="1" data-sfx="slide"><img src="/img/lab_p02.jpg" alt="" /><span class="eye-tag">Mapa de calor · NeuroLab</span></div>
@@ -262,7 +262,7 @@ const nodes = [
   ['PostgreSQL', 'database', 1400, 280], ['Redis', 'zap', 1400, 480], ['Cloudinary', 'cloud', 1400, 680],
 ]
 S({
-  id: 'arquitectura', act: 'Tecnología', who: 'Vernel', t: 25, gap: 0.9,
+  id: 'arquitectura', act: 'Tecnología', who: 'Angel', t: 25, gap: 0.9,
   notes: 'Y así se conectan: el navegador entra por Nginx con HTTPS; la interfaz es Next.js y la API NestJS. Los datos viven en PostgreSQL, el tiempo real pasa por Redis y los archivos por Cloudinary. Todo en Docker, sobre una VM de Azure.',
   html: `${head('Arquitectura', 'Simple de operar, <em>lista para crecer.</em>')}
   <svg class="wires" viewBox="0 0 1920 1080" data-step="2" data-sfx="none">
@@ -328,7 +328,7 @@ S({
 })
 
 S({
-  id: 'cierre', act: 'Cierre', who: 'Derek', t: 20, cls: 'dark cover', gap: 1.4,
+  id: 'cierre', act: 'Cierre', who: 'Samuel', t: 20, cls: 'dark cover', gap: 1.4,
   notes: 'Antes, te enterabas de un proyecto solo si estabas en el grupo correcto. Ahora cualquier estudiante lo encuentra, y su trabajo cuenta. Muchas gracias, ¿tienen preguntas?',
   html: `<div class="glow"></div>
   <div class="cl">
