@@ -26,7 +26,7 @@ export class Demo {
     const gc = this.q('#dm-guide canvas')
     this.guideAv = Object.fromEntries(TEAM.map((p) => [p.id, new Avatar(gc, PEOPLE[p.id])]))
     this.untrackGuide = null
-    this.sub = this.q('.dm-sub')
+    this.sub = this.q('#dm-sub'); this.name = this.q('#dm-guide .dm-name')
     this.cues = []
     this.subs = true
     fetch(CUES_URL).then((r) => (r.ok ? r.json() : [])).then((c) => (this.cues = c)).catch(() => {})
@@ -86,7 +86,7 @@ export class Demo {
     gsap.set([this.cursor, ...this.ripples], { opacity: 0 })
     gsap.set(this.cursor, { left: 1760, top: 1000, scale: 1 })
     gsap.set(this.team, { opacity: 0, y: 260 })
-    gsap.set(this.guide, { opacity: 0, x: 0 })
+    gsap.set(this.guide, { opacity: 0, x: 1560, y: 690, scale: 1 }); gsap.set(this.sub, { opacity: 0 })
     gsap.set(['.dm-title', '.dm-kick'].map((s) => this.q(s)), { opacity: 1, x: 0 })
     this.phase = null; this.cur = null; this.fakeTalk = false
     this.untrackGuide?.(); this.untrackGuide = null
@@ -148,7 +148,7 @@ export class Demo {
     if (this.phase !== 'video') return
     this.phase = 'outro'; this.speaker = 'angel'
     this.untrackGuide?.(); this.untrackGuide = null
-    gsap.to(this.guide, { opacity: 0, x: 60, duration: .35 })
+    gsap.to([this.guide, this.sub], { opacity: 0, duration: .35 })
     gsap.to(this.team, { opacity: 1, y: 0, duration: .8, stagger: .1, ease: 'back.out(1.5)', delay: .3 })
     setTimeout(() => { this.outro.currentTime = 0; this.outro.play().catch(() => {}) }, 900)
   }
@@ -158,16 +158,25 @@ export class Demo {
     const t = this.video.currentTime
     let c = null
     for (const x of this.cues) if (x.t <= t) c = x
+    // subtítulo solo mientras dura la frase
+    const speaking = c && c.text && (!c.until || t <= c.until + 0.3)
+    this.sub.style.opacity = speaking && this.subs ? 1 : 0
     if (c === this.cur) return
     const prevWho = this.cur?.who
     this.cur = c
     this.fakeTalk = !!c?.text && !c?.audio
-    if (!c || c.hide) { gsap.to(this.guide, { opacity: 0, x: 60, duration: .35 }); return }
-    this.sub.querySelector('b').textContent = TEAM.find((p) => p.id === c.who)?.name ?? ''
+    if (!c || c.hide) { gsap.to([this.guide, this.sub], { opacity: 0, duration: .35 }); return }
+    this.name.textContent = TEAM.find((p) => p.id === c.who)?.short ?? ''
     this.sub.querySelector('span').textContent = c.text || ''
-    this.sub.style.display = c.text ? '' : 'none'
-    if (prevWho !== c.who) { this.untrackGuide?.(); this.untrackGuide = track(this.guideAv[c.who]) }
-    if (prevWho !== c.who) gsap.fromTo(this.guide, { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: .5, ease: 'back.out(1.5)' })
-    else gsap.to(this.guide, { opacity: 1, x: 0, duration: .3 })
+    this.sub.classList.toggle('top', !!c.subTop)
+    const p = c.pos || { x: 1560, y: 690, s: 1 }
+    if (prevWho !== c.who) {
+      this.untrackGuide?.(); this.untrackGuide = track(this.guideAv[c.who])
+      gsap.set(this.guide, { x: p.x, y: p.y, scale: p.s })
+      gsap.fromTo(this.guide, { opacity: 0, y: p.y + 120 }, { opacity: 1, y: p.y, duration: .5, ease: 'back.out(1.5)' })
+    } else {
+      // se mueve a la esquina libre para no tapar lo que se está mostrando
+      gsap.to(this.guide, { opacity: 1, x: p.x, y: p.y, scale: p.s, duration: .6, ease: 'power3.inOut' })
+    }
   }
 }

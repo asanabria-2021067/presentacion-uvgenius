@@ -1,4 +1,6 @@
 import * as L from 'lucide-static'
+import { siJira, siNotion, siWhatsapp, siGoogleforms, siNextdotjs, siReact, siTypescript, siNestjs, siPrisma, siPostgresql, siSocketdotio, siRedis, siCloudinary, siDocker, siNginx, siGithubactions } from 'simple-icons'
+const SI = { siJira, siNotion, siWhatsapp, siGoogleforms, siNextdotjs, siReact, siTypescript, siNestjs, siPrisma, siPostgresql, siSocketdotio, siRedis, siCloudinary, siDocker, siNginx, siGithubactions }
 
 // ícono de lucide por nombre en kebab-case ("message-circle" -> MessageCircle)
 export const ic = (name, size = 36, sw = 2) => {
@@ -6,9 +8,12 @@ export const ic = (name, size = 36, sw = 2) => {
   const svg = L[key] || L.Circle
   return svg.replace(/width="24"/, `width="${size}"`).replace(/height="24"/, `height="${size}"`).replace(/stroke-width="2"/, `stroke-width="${sw}"`)
 }
-
-const browser = (src, url, cls = '') =>
-  `<div class="browser ${cls}"><div class="bar"><i></i><i></i><i></i><span>${url}</span></div><div class="shot"><img src="${src}" alt="" /></div></div>`
+// logo de marca (simple-icons, CC0)
+const logo = (k, size = 54, color) => {
+  const s = SI[k]
+  if (!s) return ic('box', size)
+  return `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="${color || '#' + s.hex}" aria-label="${s.title}"><path d="${s.path}"/></svg>`
+}
 
 export const TEAM = [
   { id: 'angel', name: 'Angel Sanabria', short: 'Angel' },
@@ -21,6 +26,8 @@ export const TEAM = [
 export const SLIDES = []
 const S = (o) => SLIDES.push(o)
 const head = (kick, title, extra = '') => `<div class="kick">${kick}</div><h2 class="title ${extra}">${title}</h2>`
+// Cada elemento con data-step aparece solo, en orden, al entrar a la diapositiva.
+// data-sfx elige su sonido (pop por defecto).
 
 // =========================================================== ACTO I · EL PROBLEMA (Saúl)
 S({
@@ -28,72 +35,107 @@ S({
   notes: 'Buenas noches. Somos el Grupo 6 y les presentamos UVGenius.',
   html: `<div class="glow"></div>
   <img class="cv-logo" src="/img/logo-claro.png" alt="UVG" />
-  <div class="cv-meta">Ingeniería de Software 2 · Sección 30 · Grupo 6</div>
+  <div class="cv-meta">Ingeniería de Software · Sección 30 · Grupo 6</div>
   <div class="cv-center">
-    <div class="brand"><img src="/img/logo.png" alt="" /><span>UVGenius</span></div>
-    <h1 class="display">Conecta oportunidades,<br /><em>mide tu impacto real.</em></h1>
+    <div class="wordmark" data-step="1" data-sfx="reveal">UVGenius</div>
+    <h1 class="tagline" data-step="2" data-sfx="none">Conecta oportunidades, <em>mide tu impacto real.</em></h1>
   </div>
   <div class="cv-names">Angel Sanabria · Derek Coronado · Saúl Castillo · Vernel Hernández · Samuel Robledo</div>`,
 })
 
 S({
-  id: 'historia', act: 'El problema', who: 'Saúl', t: 25, cls: 'story',
-  notes: 'Piensen en un estudiante de la UVG que necesita completar sus horas beca este semestre. Sabe que hay proyectos, pero no sabe dónde están. Le pregunta a un amigo, revisa el correo, entra a tres grupos de WhatsApp… y cuando por fin encuentra uno, ya se llenó.',
+  id: 'historia', act: 'El problema', who: 'Saúl', t: 25, gap: 1.6,
+  notes: 'Piensen en un estudiante de la UVG que necesita completar sus horas beca o de extensión este semestre. Sabe que hay proyectos, pero no sabe dónde están. Le pregunta a un amigo, revisa el correo, entra a tres grupos de WhatsApp… y cuando por fin encuentra uno, ya se llenó.',
   html: `<div class="story-wrap">
-    <div class="st-line" data-step="1">Un estudiante necesita <b>horas beca</b> este semestre.</div>
-    <div class="st-line" data-step="2">Sabe que hay proyectos. <b>No sabe dónde.</b></div>
-    <div class="st-line big" data-step="3">Cuando por fin encuentra uno, <em>ya se llenó.</em></div>
+    <div class="st-line" data-step="1" data-sfx="none">Un estudiante necesita <b>horas beca o de extensión</b> este semestre.</div>
+    <div class="st-line" data-step="2" data-sfx="none">Sabe que hay proyectos. <b>No sabe dónde.</b></div>
+    <div class="st-line big" data-step="4" data-sfx="none">Cuando por fin encuentra uno, <em>ya se llenó.</em></div>
+  </div>
+  <div class="st-art">
+    <div class="st-card" data-step="1" data-sfx="pop">
+      <div class="st-who"><span class="av">CM</span><div><b>Carlos M.</b><small>Ingeniería en Computación</small></div></div>
+      <div class="st-row"><span>Horas beca</span><b>0 / 50 h</b></div><div class="st-bar"><i></i></div>
+      <div class="st-row"><span>Horas de extensión</span><b>0 / 40 h</b></div><div class="st-bar"><i></i></div>
+    </div>
+    <div class="st-q q1" data-step="2" data-sfx="glass">${ic('message-circle', 26)} ¿Alguien sabe de un proyecto?</div>
+    <div class="st-q q2" data-step="3" data-sfx="glass">${ic('mail', 26)} 46 correos sin leer</div>
+    <div class="st-q q3" data-step="3" data-sfx="glass" style="--d:.35s">${ic('users', 26)} 3 grupos de WhatsApp</div>
+    <div class="st-full" data-step="4" data-sfx="boom">${ic('lock', 30)} Cupo lleno</div>
   </div>`,
 })
 
-const chans = [['message-circle', 'Boca en boca'], ['mail', 'Correos'], ['file-spreadsheet', 'Formularios'], ['users', 'Grupos de WhatsApp']]
+const chans = [['message-circle', 'Boca en boca', 'Un amigo te cuenta'], ['mail', 'Correos', 'Se pierden entre otros'], ['file-spreadsheet', 'Formularios', 'Uno distinto por proyecto'], ['message-square-text', 'Grupos de WhatsApp', 'Solo si estás en el grupo']]
 S({
-  id: 'canales', act: 'El problema', who: 'Saúl', t: 25,
-  notes: 'Hoy la información de los proyectos vive en cuatro lugares que no se hablan entre sí. Si no estás en el grupo correcto, no te enteras.',
-  html: `${head('El problema', 'Hoy un proyecto se encuentra <em>de boca en boca.</em>')}
-  <div class="chans">${chans.map(([a, b], i) => `<div class="chip-card" data-step="${i + 1}"><div class="ib">${ic(a, 44)}</div><span>${b}</span></div>`).join('')}</div>
-  <p class="foot" data-step="5">Cuatro lugares que <b>no se hablan entre sí.</b></p>`,
+  id: 'canales', act: 'El problema', who: 'Saúl', t: 25, gap: 0.7,
+  notes: 'El problema: la información de los proyectos está descentralizada. Hoy un proyecto se anuncia de boca en boca, por correo, con un formulario distinto cada vez o en grupos de WhatsApp. Son cuatro lugares que no se hablan entre sí: si no estás en el grupo correcto, no te enteras.',
+  html: `${head('El problema', 'La información de los proyectos <em>está descentralizada.</em>')}
+  <p class="sub" data-step="1" data-sfx="none">Así se anuncia hoy un proyecto:</p>
+  <div class="chans">${chans.map(([a, b, c], i) => `<div class="chip-card" data-step="${i + 1}" data-sfx="slide"><div class="ib">${ic(a, 44)}</div><span>${b}</span><small>${c}</small></div>`).join('')}</div>
+  <svg class="ch-break" viewBox="0 0 1664 60" data-step="5" data-sfx="none"><path d="M0 30 H1664" /></svg>
+  <p class="foot" data-step="5" data-sfx="bong">Cuatro lugares que <b>no se hablan entre sí.</b></p>`,
 })
 
-const cons = [['user-x', 'Cupos que no se llenan'], ['clock-alert', 'Horas sin evidencia'], ['eye-off', 'Avance invisible']]
+const cons = [
+  ['zap', 'Gana el más rápido', 'El cupo se lo queda quien vio primero el WhatsApp, no quien encaja mejor.'],
+  ['clock-alert', 'Horas sin evidencia', 'Se reportan a mano, sin una tarea que las respalde.'],
+  ['eye-off', 'Avance invisible', 'La coordinación lo ve hasta que el proyecto ya terminó.'],
+]
 S({
-  id: 'sintomas', act: 'El problema', who: 'Saúl', t: 25,
-  notes: 'Y eso tiene tres síntomas: cupos que no se llenan porque nadie se entera, horas que se acreditan sin evidencia y un avance que la autoridad solo ve cuando el proyecto ya terminó. [Relevo a Angel]',
-  html: `${head('Tres síntomas', 'El costo de no tener <em>un solo lugar.</em>')}
-  <div class="sym">${cons.map(([a, b], i) => `<div class="sym-c" data-step="${i + 1}"><div class="n">0${i + 1}</div><div class="ib">${ic(a, 40)}</div><div class="t">${b}</div></div>`).join('')}</div>`,
+  id: 'sintomas', act: 'El problema', who: 'Saúl', t: 25, gap: 1.1,
+  notes: 'Y eso trae tres problemas. Primero, gana el más rápido: el aviso cae en un grupo y el cupo se lo queda quien estaba pendiente del teléfono, no quien encaja mejor en el proyecto. Segundo, las horas se reportan a mano, sin una tarea que las respalde. Y tercero, la coordinación solo ve el avance cuando el proyecto ya terminó. [Relevo a Angel]',
+  html: `${head('Lo que pasa hoy', 'Sin un solo lugar, <em>tres problemas.</em>')}
+  <div class="sym">${cons.map(([a, b, c], i) => `<div class="sym-c" data-step="${i + 1}" data-sfx="slide"><div class="n">0${i + 1}</div><div class="ib">${ic(a, 40)}</div><div class="t">${b}</div><div class="d">${c}</div></div>`).join('')}</div>`,
 })
 
 // =========================================================== ACTO II · LA SOLUCIÓN (Angel)
 S({
-  id: 'revelacion', act: 'La solución', who: 'Angel', t: 15, cls: 'dark reveal',
-  notes: 'Por eso creamos UVGenius: todos los proyectos de la UVG en un solo lugar.',
+  id: 'revelacion', act: 'La solución', who: 'Angel', t: 15, cls: 'dark reveal', gap: 1.2,
+  notes: 'De este problema nace UVGenius: todos los proyectos de la UVG en un solo lugar.',
   html: `<div class="glow"></div><div class="rv">
-    <div class="brand xl"><img src="/img/logo.png" alt="" /><span>UVGenius</span></div>
-    <p class="rv-sub" data-step="1">Todos los proyectos de la UVG, <em>en un solo lugar.</em></p></div>`,
+    <div class="rv-k" data-step="1" data-sfx="none">De este problema nace</div>
+    <div class="wordmark xl" data-step="2" data-sfx="reveal">UVGenius</div>
+    <p class="rv-sub" data-step="3" data-sfx="bell">Todos los proyectos de la UVG, <em>en un solo lugar.</em></p></div>`,
 })
 
-const aud = [
-  ['graduation-cap', 'Estudiantes', 'Encuentran proyectos y completan sus horas beca y de extensión.', '/shots/e_explorar.jpg'],
-  ['crown', 'Líderes de asociación', 'Publican proyectos, arman su equipo y validan horas.', '/shots/e_kanban.jpg'],
-  ['book-open-check', 'Coordinadores académicos', 'Dan seguimiento a las horas de su carrera con reportes.', '/shots/a_horas.jpg'],
+const AUD = [
+  { icon: 'graduation-cap', t: 'Estudiantes', img: '/shots/e_explorar.jpg', url: 'uvgenius / proyectos',
+    can: [['search', 'Encuentran proyectos con filtros por área y tipo de horas'], ['send', 'Se postulan a un rol y ven el estado de su solicitud'], ['timer', 'Registran horas ligadas a sus tareas'], ['link', 'Comparten su portafolio con un enlace']] },
+  { icon: 'crown', t: 'Líderes de asociación', img: '/shots/e_kanban.jpg', url: 'uvgenius / tablero',
+    can: [['megaphone', 'Publican proyectos y abren roles'], ['user-check', 'Aceptan o rechazan postulaciones'], ['kanban', 'Organizan el trabajo por sprints o metas'], ['badge-check', 'Revisan y validan las horas del equipo']] },
+  { icon: 'book-open-check', t: 'Coordinadores académicos', img: '/shots/a_horas.jpg', url: 'uvgenius / horas',
+    can: [['school', 'Ven solo las carreras que coordinan'], ['bar-chart-3', 'Siguen las horas por semestre y por estudiante'], ['triangle-alert', 'Detectan a quién le faltan horas'], ['file-down', 'Descargan reportes en PDF o CSV']] },
 ]
-S({
-  id: 'para-quien', act: 'La solución', who: 'Angel', t: 35,
-  notes: 'En esta primera etapa, UVGenius es para tres públicos: los estudiantes que buscan proyectos y horas, los líderes de asociación que publican proyectos y arman su equipo, y los coordinadores académicos que dan seguimiento a las horas de su carrera.',
-  html: `${head('Público objetivo · primera etapa', 'Pensado para <em>tres públicos.</em>')}
-  <div class="aud">${aud.map(([a, b, c, img], i) => `<div class="aud-c" data-step="${i + 1}"><div class="aud-img"><img src="${img}" alt="" /></div><div class="aud-b"><div class="ib">${ic(a, 34)}</div><div class="t">${b}</div><div class="d">${c}</div></div></div>`).join('')}</div>`,
+const audCards = (focus) => `<div class="aud">${AUD.map((a, i) => `<div class="aud-c${i < focus ? ' seen' : ''}" data-i="${i}"><div class="ib">${ic(a.icon, 40)}</div><div class="t">${a.t}</div><div class="go">${i < focus ? ic('check', 22, 3) + ' Visto' : 'Ver qué puede hacer ' + ic('arrow-right', 22, 2.5)}</div></div>`).join('')}</div>
+  <div class="aud-cursor">${ic('mouse-pointer-2', 52, 1.6)}</div><div class="aud-ripple"></div>`
+const audNotes = [
+  'En esta primera etapa, UVGenius está pensado para tres públicos. [→ el cursor abre Estudiantes]',
+  '[→ el cursor abre Líderes de asociación]',
+  '[→ el cursor abre Coordinadores académicos]',
+]
+const audDetail = [
+  'Los estudiantes encuentran proyectos con filtros, se postulan a un rol y ven en qué va su solicitud; registran sus horas en cada tarea y al final comparten su portafolio con un enlace.',
+  'Los líderes de asociación publican sus proyectos, eligen a quién aceptar, organizan el trabajo por sprints o metas y revisan las horas de su equipo.',
+  'Y los coordinadores académicos ven solo las carreras que coordinan: siguen las horas por semestre, detectan a quién le faltan y descargan los reportes. [Sigue: el flujo]',
+]
+AUD.forEach((a, i) => {
+  S({ id: `para-quien-${i}`, act: 'La solución', who: 'Angel', t: i === 0 ? 15 : 4, aud: i, notes: audNotes[i],
+    html: `${head('Público objetivo · primera etapa', 'Pensado para <em>tres públicos.</em>')}${audCards(i)}` })
+  S({ id: `publico-${i}`, act: 'La solución', who: 'Angel', t: 14, gap: 0.55, notes: audDetail[i],
+    html: `<div class="kick">Público objetivo · ${i + 1} de 3</div><h2 class="title">${a.t}</h2>
+    <div class="pd-shot" data-step="1" data-sfx="slide"><div class="browser"><div class="bar"><i></i><i></i><i></i><span>${a.url}</span></div><div class="shot"><img src="${a.img}" alt="" /></div></div></div>
+    <div class="pd-can">${a.can.map(([ico, t], k) => `<div class="pd-i" data-step="${k + 2}" data-sfx="pop"><span class="ib">${ic(ico, 30)}</span>${t}</div>`).join('')}</div>` })
 })
 
-const flow = [['megaphone', 'Publicar'], ['send', 'Postularse'], ['kanban', 'Trabajar por sprints'], ['timer', 'Registrar horas'], ['badge-check', 'Validar']]
+const flow = [['megaphone', 'Publicar el proyecto'], ['send', 'Postularse a un rol'], ['kanban', 'Trabajar por sprints o metas'], ['timer', 'Registrar horas'], ['badge-check', 'Validar']]
 S({
-  id: 'recorrido', act: 'La solución', who: 'Angel', t: 35,
-  notes: 'Todo pasa en un solo flujo de cinco pasos: el líder publica, el estudiante se postula, el equipo trabaja por sprints, cada hora queda ligada a una tarea y al final la autoridad valida con evidencia. [Relevo a Derek]',
+  id: 'recorrido', act: 'La solución', who: 'Angel', t: 30, gap: 0.8,
+  notes: 'Todo pasa en un solo flujo: el líder publica el proyecto, el estudiante se postula a un rol, el equipo trabaja por sprints o por metas, cada hora queda registrada en una tarea y al final se valida con evidencia. [Relevo a Derek]',
   html: `${head('Cómo funciona', 'Un solo flujo, <em>de la convocatoria a la validación.</em>')}
-  <div class="flow"><div class="flow-track"><i></i></div>${flow.map(([a, b], i) => `<div class="fs" data-step="${i + 1}"><div class="fi">${ic(a, 50)}</div><div class="fn">0${i + 1}</div><div class="t">${b}</div></div>`).join('')}</div>`,
+  <div class="flow"><div class="flow-track"><i></i></div>${flow.map(([a, b], i) => `<div class="fs" data-step="${i + 1}" data-sfx="pop"><div class="fi">${ic(a, 50)}</div><div class="fn">0${i + 1}</div><div class="t">${b}</div></div>`).join('')}</div>`,
 })
 
 // =========================================================== ACTO III · EL MERCADO (Derek)
-const cols = ['Jira', 'Notion', 'Forms + WhatsApp', 'UVGenius']
+const cols = [['siJira', 'Jira'], ['siNotion', 'Notion'], ['siWhatsapp', 'Forms + WhatsApp'], [null, 'UVGenius']]
 const comp = [
   ['Publicar convocatorias para toda la UVG', ['no', 'mid', 'mid', 'si']],
   ['Postulación con estado y respuesta', ['no', 'mid', 'no', 'si']],
@@ -103,74 +145,114 @@ const comp = [
 ]
 const mark = { si: ic('check', 32, 3), no: ic('x', 28, 2.5), mid: ic('minus', 28, 3) }
 S({
-  id: 'herramientas', act: 'Competencia', who: 'Derek', t: 45,
-  notes: '¿Por qué no usar lo que ya existe? Jira organiza muy bien el trabajo y registra tiempo, pero no publica convocatorias ni valida horas para la universidad. Notion se puede armar a mano, pero cada asociación tendría que construirlo y mantenerlo. Y Forms con WhatsApp es lo que se usa hoy. UVGenius une las tres partes: convocatoria, trabajo en equipo y validación de horas.',
+  id: 'herramientas', act: 'Competencia', who: 'Derek', t: 35, gap: 0.6,
+  notes: '¿Por qué no usar lo que ya existe? Jira organiza muy bien el trabajo, pero no publica convocatorias ni valida horas para la universidad. Notion se puede armar a mano, pero cada asociación tendría que construirlo y mantenerlo. Y Forms con WhatsApp es lo que se usa hoy. UVGenius une las tres partes: convocatoria, trabajo en equipo y validación de horas.',
   html: `${head('Competencia', 'Otras herramientas resuelven <em>una parte.</em>')}
   <div class="cmp">
-    <div class="cmp-r cmp-h"><div></div>${cols.map((c, j) => `<div class="${j === 3 ? 'us' : ''}">${c}</div>`).join('')}</div>
-    ${comp.map(([k, v], i) => `<div class="cmp-r" data-step="${i + 1}"><div class="k">${k}</div>${v.map((x, j) => `<div class="m ${x}${j === 3 ? ' us' : ''}">${mark[x]}</div>`).join('')}</div>`).join('')}
+    <div class="cmp-r cmp-h"><div></div>${cols.map(([k, c], j) => `<div class="${j === 3 ? 'us' : ''}">${k ? logo(k, 30, j === 2 ? undefined : undefined) : ''}<span>${c}</span></div>`).join('')}</div>
+    ${comp.map(([k, v], i) => `<div class="cmp-r" data-step="${i + 1}" data-sfx="tick"><div class="k">${k}</div>${v.map((x, j) => `<div class="m ${x}${j === 3 ? ' us' : ''}">${mark[x]}</div>`).join('')}</div>`).join('')}
     <div class="cmp-leg">${mark.mid} se puede, pero hay que armarlo o hacerlo a mano</div>
   </div>`,
 })
 
+const costs = [
+  ['siJira', 'Jira', 'Standard', '7.91', '396', 'por persona; el plan gratis llega a 10'],
+  ['siNotion', 'Notion', 'Plus', '12–16', '600–800', 'por persona, según pago anual o mensual'],
+  ['siGoogleforms', 'Forms + WhatsApp', 'Gratis', '0', '0', 'pero sin estado, horas ni seguimiento'],
+  [null, 'UVGenius', 'Servidor propio', '—', '≈ 8', 'costo fijo del servidor, no por persona'],
+]
+S({
+  id: 'costos', act: 'Competencia', who: 'Derek', t: 25, gap: 0.7,
+  notes: 'Y el costo. Para una asociación con 50 estudiantes activos, Jira Standard sale en unos 396 dólares al mes porque cobra por persona y el plan gratis llega solo a 10. Notion Plus, entre 600 y 800. Forms y WhatsApp son gratis, pero no dan estado, horas ni seguimiento. UVGenius corre hoy en un servidor de unos 8 dólares al mes, y ese costo es del servidor, no por persona. (Precios de lista en dólares, consultados en noviembre de 2026.)',
+  html: `${head('Costo · ejemplo con 50 estudiantes', 'Las otras cobran <em>por persona.</em>')}
+  <div class="cost">${costs.map(([k, n, p, u, tot, note], i) => `<div class="co${i === 3 ? ' us' : ''}" data-step="${i + 1}" data-sfx="${i === 3 ? 'bell' : 'slide'}">
+    <div class="co-h">${k ? logo(k, 40) : '<span class="co-uvg">UV</span>'}<div><b>${n}</b><small>${p}</small></div></div>
+    <div class="co-v"><small>US$</small><span data-count="${tot === '≈ 8' ? 8 : tot.split('–')[0]}" ${tot.includes('–') ? `data-suffix="–${tot.split('–')[1]}"` : ''} ${tot === '≈ 8' ? 'data-prefix="≈ "' : ''}>0</span><small>/ mes</small></div>
+    <div class="co-u">${u === '—' ? 'Sin cobro por persona' : `US$ ${u} por persona al mes`}</div>
+    <div class="co-n">${note}</div></div>`).join('')}</div>
+  <div class="cost-src" data-step="5" data-sfx="none">Precios de lista en US$ (Jira y Notion, 2026). UVGenius: VM actual de Azure; con más usuarios se escala el servidor, no las licencias.</div>`,
+})
+
 const rows = [['Encontrar un proyecto', 'Preguntar en grupos', 'Explorar con filtros'], ['Postularse', 'Mensaje informal', 'Postulación con estado'], ['Ver el avance', 'Al final', 'Sprint por sprint'], ['Validar horas', 'Reporte manual', 'Horas por tarea']]
 S({
-  id: 'antes-despues', act: 'Valor', who: 'Derek', t: 30,
+  id: 'antes-despues', act: 'Valor', who: 'Derek', t: 20, gap: 0.7,
   notes: 'Lo que cambia en el día a día: encontrar un proyecto deja de depender de grupos; la postulación tiene un estado; el avance se ve sprint por sprint y las horas quedan ligadas a tareas reales.',
   html: `${head('Antes y después', 'Lo que cambia <em>en el día a día.</em>')}
   <div class="ba"><div class="ba-h"><div></div><div>Antes</div><div>Con UVGenius</div></div>
-  ${rows.map(([a, b, c], i) => `<div class="ba-r" data-step="${i + 1}"><div class="k">${a}</div><div class="b">${b}</div><div class="a">${ic('arrow-right', 26, 2.5)}${c}</div></div>`).join('')}</div>`,
+  ${rows.map(([a, b, c], i) => `<div class="ba-r" data-step="${i + 1}" data-sfx="switch"><div class="k">${a}</div><div class="b">${b}</div><div class="a">${ic('arrow-right', 26, 2.5)}${c}</div></div>`).join('')}</div>`,
 })
 
 S({
-  id: 'impacto', act: 'Valor', who: 'Derek', t: 30,
-  notes: 'En el laboratorio, encontrar un proyecto y postularse tomó 37 segundos en promedio, y los cinco participantes lo lograron sin ayuda. Y si la autoridad revisa 20 proyectos por semestre, pasar de una hora a 15 minutos por proyecto son unas 15 horas menos de revisión; esos supuestos los confirmaremos con el cliente. [Relevo a Samuel]',
-  html: `${head('Impacto', 'Lo medimos <em>y lo estimamos.</em>')}
+  id: 'impacto', act: 'Valor', who: 'Derek', t: 25, gap: 1.6,
+  notes: 'Y lo medimos en el NeuroLab con cinco estudiantes: encontrar un proyecto y postularse tomó 37 segundos en promedio, y mover una tarea en el tablero y registrar sus horas, un minuto. Los cinco lo lograron sin ayuda. [Relevo a Samuel]',
+  html: `${head('Impacto · medido en el NeuroLab', 'Lo medimos <em>con usuarios reales.</em>')}
   <div class="kpis">
-    <div class="kpi" data-step="1"><div class="v"><span data-count="37">0</span><small>s</small></div><div class="l">para encontrar un proyecto y postularse</div><div class="s">Medido en el NeuroLab · 5 de 5 sin ayuda</div></div>
-    <div class="kpi" data-step="2"><div class="v"><span data-count="15">0</span><small>h</small></div><div class="l">menos de revisión por semestre</div><div class="s">Estimado: 20 proyectos × 45 min ahorrados</div></div>
+    <div class="kpi" data-step="1" data-sfx="none"><div class="v"><span data-count="37">0</span><small>s</small></div><div class="l">para encontrar un proyecto y postularse</div><div class="s">Promedio de 5 estudiantes</div></div>
+    <div class="kpi" data-step="2" data-sfx="none"><div class="v"><span data-count="60">0</span><small>s</small></div><div class="l">para mover una tarea y registrar sus horas</div><div class="s">Promedio de 5 estudiantes</div></div>
+    <div class="kpi" data-step="3" data-sfx="none"><div class="v"><span data-count="5">0</span><small>/5</small></div><div class="l">terminaron todas las tareas sin ayuda</div><div class="s">Prueba con eye tracking y sensor de estrés</div></div>
   </div>`,
 })
 
 // =========================================================== ACTO IV · LOS USUARIOS (Samuel)
 const times = [['Crear cuenta', 73, 7.0], ['Sesión y perfil', 105, 7.0], ['Buscar y postularse', 37, 6.8], ['Tablero y horas', 60, 5.4], ['Chat y avisos', 45, 5.4]]
 S({
-  id: 'neurolab', act: 'Usuarios', who: 'Samuel', t: 35,
+  id: 'neurolab', act: 'Usuarios', who: 'Samuel', t: 35, gap: 1.4,
   notes: 'Lo llevamos al NeuroLab de la UVG con cinco estudiantes, eye tracking y un sensor de estrés. Los cinco terminaron todo sin ayuda y el SUS fue de 85.5, arriba del 68 de referencia. Pero el tablero con las horas y el chat fueron lo peor calificado.',
   html: `${head('Pruebas con usuarios · NeuroLab UVG', 'Lo probamos con <em>eye tracking.</em>')}
   <div class="lab">
-    <div class="lab-k" data-step="1"><div class="v"><span data-count="85.5" data-dec="1">0</span></div><div class="l">puntaje SUS</div><div class="sus"><b></b><i></i><span>68 · promedio</span></div>
+    <div class="lab-k" data-step="1" data-sfx="none"><div class="v"><span data-count="85.5" data-dec="1">0</span></div><div class="l">puntaje SUS</div><div class="sus"><b></b><i></i><span>68 · promedio</span></div>
       <div class="v sm">5/5</div><div class="l">terminaron sin ayuda</div></div>
-    <div class="lab-c" data-step="2"><div class="chh"><span>Facilidad por tarea</span><span>1 a 7</span></div>
+    <div class="lab-c" data-step="2" data-sfx="slide"><div class="chh"><span>Facilidad por tarea</span><span>1 a 7</span></div>
       ${times.map(([l, v, s]) => `<div class="br${s < 6 ? ' lo' : ''}"><div class="bk">${l}</div><div class="bt"><i style="--w:${(s / 7) * 100}%"></i></div><div class="bs">${s.toFixed(1)}</div></div>`).join('')}</div>
   </div>`,
 })
 
-const ch = [['message-circle', 'Tardaron 39 s en encontrar el chat', 'Chat en la barra superior, con contador'], ['list-checks', '4 de 5 no llegaban a su tarea', 'El aviso lleva directo a «Ver mi tarea»'], ['triangle-alert', 'Errores que no decían qué corregir', 'Cada campo marca su error']]
+const ch = [['message-circle', 'Tardaban 39 s en encontrar el chat', 'Pusimos el chat en la barra superior, con contador'], ['list-checks', '4 de 5 no llegaban a su tarea', 'El aviso ahora lleva directo a «Ver mi tarea»'], ['triangle-alert', 'Los errores no decían qué corregir', 'Ahora cada campo marca su propio error']]
 S({
-  id: 'mejoras', act: 'Usuarios', who: 'Samuel', t: 35,
-  notes: 'El eye tracker mostró lo que la encuesta no: tardaron 39 segundos en encontrar el chat, cuatro de cinco no llegaban a su tarea y los errores no decían qué corregir. Cada hallazgo se volvió un cambio. [Relevo a Vernel]',
-  html: `${head('Del hallazgo a la mejora', 'Lo que vio el eye tracker <em>se volvió un cambio.</em>')}
-  <div class="eye-img" data-step="1"><img src="/img/lab_p02.jpg" alt="" /></div>
-  <div class="hms">${ch.map(([a, b, c], i) => `<div class="hm" data-step="${i + 2}"><div class="h1">${b}</div><div class="h2"><span class="ib">${ic(a, 26)}</span>${c}</div></div>`).join('')}</div>`,
+  id: 'mejoras', act: 'Usuarios', who: 'Samuel', t: 35, gap: 1.2,
+  notes: 'El eye tracker mostró lo que la encuesta no: tardaban 39 segundos en encontrar el chat, cuatro de cinco no llegaban a su tarea y los errores no decían qué corregir. Con eso hicimos tres cambios que ya están en producción: el chat pasó a la barra superior con contador, el aviso de tarea lleva directo a «Ver mi tarea» y cada campo marca su propio error. [Relevo a Vernel]',
+  html: `${head('Del hallazgo al cambio', 'Lo que vio el eye tracker, <em>ya está corregido.</em>')}
+  <div class="eye-img" data-step="1" data-sfx="slide"><img src="/img/lab_p02.jpg" alt="" /><span class="eye-tag">Mapa de calor · NeuroLab</span></div>
+  <div class="hms">${ch.map(([a, b, c], i) => `<div class="hm" data-step="${i + 2}" data-sfx="pop"><div class="h1">${ic('eye', 20)} ${b}</div><div class="h2"><span class="ib">${ic(a, 26)}</span>${c}</div></div>`).join('')}</div>`,
 })
 
 // =========================================================== ACTO V · LA TÉCNICA (Vernel)
+const stack = [
+  ['Interfaz', [['siNextdotjs', 'Next.js 16'], ['siReact', 'React 19'], ['siTypescript', 'TypeScript']], 'Páginas rápidas desde el servidor y un solo lenguaje en todo el proyecto.'],
+  ['API', [['siNestjs', 'NestJS 11'], ['siPrisma', 'Prisma']], 'Módulos ordenados y permisos por rol en cada ruta.'],
+  ['Datos y tiempo real', [['siPostgresql', 'PostgreSQL'], ['siSocketdotio', 'Socket.io'], ['siRedis', 'Redis']], 'Base relacional para proyectos, roles y horas; chat y avisos al instante.'],
+  ['Archivos', [['siCloudinary', 'Cloudinary']], 'Fotos y documentos fuera del servidor, optimizados y servidos por CDN.'],
+  ['Infraestructura', [['siDocker', 'Docker'], ['siNginx', 'Nginx'], ['siGithubactions', 'GitHub Actions']], 'Todo en contenedores: la base de datos también. Se mueve a otro servidor sin cambiar código.'],
+]
+S({
+  id: 'tecnologias', act: 'Tecnología', who: 'Vernel', t: 35, gap: 0.9,
+  notes: `Estas son las tecnologías. La interfaz es Next.js con React y TypeScript; la API es NestJS con Prisma. Los datos viven en PostgreSQL, que también corre en un contenedor de Docker. El chat, los avisos y el tablero en tiempo real usan Socket.io con Redis, y los archivos van a Cloudinary. Todo se despliega con Docker, Nginx y GitHub Actions.
+SI PREGUNTAN POR QUÉ:
+• Next.js: renderiza en el servidor (carga rápida) y es TypeScript igual que la API.
+• NestJS: estructura por módulos, guardas de rol y validación en cada ruta; se integra con Socket.io.
+• PostgreSQL: los datos son relacionales (proyecto → roles → postulaciones → tareas → horas); transacciones para que una hora no se acredite dos veces.
+• Base dockerizada: mismo motor y versión en desarrollo, CI y producción; respaldos con pg_dump.
+• Socket.io + Redis: tiempo real con reconexión automática; Redis permite varias instancias de la API.
+• Cloudinary: no llenamos el disco de la VM con fotos y se sirven por CDN.`,
+  html: `${head('Tecnologías', 'Con qué está hecho, <em>y por qué.</em>')}
+  <div class="stk">${stack.map(([k, ls, why], i) => `<div class="stk-r" data-step="${i + 1}" data-sfx="pop"><div class="stk-k">${k}</div><div class="stk-l">${ls.map(([s, n]) => `<span class="lg">${logo(s, 40)}${n}</span>`).join('')}</div><div class="stk-w">${why}</div></div>`).join('')}</div>`,
+})
+
 const nodes = [
   ['Navegador', 'monitor-smartphone', 150, 470], ['Nginx', 'shield-check', 560, 470],
   ['Next.js', 'layout-dashboard', 970, 340], ['NestJS', 'server', 970, 600],
   ['PostgreSQL', 'database', 1400, 280], ['Redis', 'zap', 1400, 480], ['Cloudinary', 'cloud', 1400, 680],
 ]
 S({
-  id: 'arquitectura', act: 'Tecnología', who: 'Vernel', t: 35,
-  notes: 'La arquitectura es simple: el navegador entra por Nginx con HTTPS; la interfaz es Next.js y la API NestJS. Los datos viven en PostgreSQL, el chat y los avisos en tiempo real usan Redis con Socket.io y los archivos van a Cloudinary. Todo corre en Docker; ahora les cuento en qué máquina.',
+  id: 'arquitectura', act: 'Tecnología', who: 'Vernel', t: 25, gap: 0.9,
+  notes: 'Y así se conectan: el navegador entra por Nginx con HTTPS; la interfaz es Next.js y la API NestJS. Los datos viven en PostgreSQL, el tiempo real pasa por Redis y los archivos por Cloudinary. Todo en Docker, sobre una VM de Azure.',
   html: `${head('Arquitectura', 'Simple de operar, <em>lista para crecer.</em>')}
-  <svg class="wires" viewBox="0 0 1920 1080" data-step="2">
+  <svg class="wires" viewBox="0 0 1920 1080" data-step="2" data-sfx="none">
     <path d="M440 520 H560" /><path d="M850 500 C910 500 910 390 970 390" /><path d="M850 540 C910 540 910 650 970 650" />
     <path d="M1260 630 C1330 630 1330 330 1400 330" /><path d="M1260 650 C1330 650 1330 530 1400 530" /><path d="M1260 670 C1330 670 1330 730 1400 730" />
   </svg>
-  ${nodes.map(([t, i, x, y], k) => `<div class="node" data-step="1" style="left:${x}px;top:${y}px;--d:${k * 0.07}s"><span class="ib">${ic(i, 30)}</span>${t}</div>`).join('')}
-  <div class="arch-foot" data-step="3"><span>${ic('container', 26)} Docker</span><span>${ic('cloud-cog', 26)} VM de Azure</span><span>${ic('git-branch', 26)} GitHub Actions</span></div>`,
+  ${nodes.map(([t, i, x, y], k) => `<div class="node" data-step="1" data-sfx="${k ? 'none' : 'pop'}" style="left:${x}px;top:${y}px;--d:${k * 0.09}s"><span class="ib">${ic(i, 30)}</span>${t}</div>`).join('')}
+  <div class="arch-foot" data-step="3" data-sfx="pop"><span>${ic('container', 26)} Docker</span><span>${ic('cloud-cog', 26)} VM de Azure</span><span>${ic('git-branch', 26)} GitHub Actions</span></div>`,
 })
 
 const pipe = [
@@ -183,52 +265,43 @@ const pipe = [
   ['rocket', 'Producción', 'Estado del sistema en vivo'],
 ]
 S({
-  id: 'ci', act: 'Calidad', who: 'Vernel', t: 35,
-  notes: 'Así validamos cada cambio antes de que llegue a producción. Todo empieza con un pull request ligado a un ticket de Jira. CI corre lint, tipos, pruebas unitarias y de integración, y revisa secretos y OWASP; luego otro integrante lo revisa. Al hacer merge a main, CI corre otra vez, se construye una imagen de Docker con un tag que no se puede sobrescribir y se despliega. El deploy solo termina si la API responde; si no, se detiene y deja los logs. En total son 9,832 pruebas, y la revisión externa no encontró defectos críticos.',
+  id: 'ci', act: 'Calidad', who: 'Vernel', t: 35, ci: true,
+  notes: 'Así validamos cada cambio antes de que llegue a producción. Empieza con un pull request ligado a un ticket de Jira. CI corre lint, tipos, pruebas unitarias y de integración, y revisa secretos y OWASP; luego otro integrante lo revisa. Al hacer merge a main, CI corre otra vez, se construye una imagen de Docker con un tag que no se puede sobrescribir y se despliega. El deploy solo termina si la API responde. [La animación muestra una falla en CI] Si cualquier filtro falla, el cambio se detiene ahí y no llega a producción. En total son 9,832 pruebas, y la revisión externa no encontró defectos críticos.',
   html: `${head('Calidad · de un cambio a producción', 'Cada cambio pasa <em>siete filtros.</em>')}
   <div class="pipe2">
     <svg class="pipe-line" viewBox="0 0 1664 20" preserveAspectRatio="none"><line x1="20" y1="10" x2="1644" y2="10" /></svg>
     <i class="pipe-dot"></i>
-    ${pipe.map(([a, b, c], i) => `<div class="pn${i === pipe.length - 1 ? ' last' : ''}" data-step="${i < 3 ? 1 : i < 5 ? 2 : 3}" style="--d:${(i % 3) * 0.12}s"><div class="pi">${ic(a, 38)}</div><div class="pt">${b}</div><div class="pd">${c}</div></div>`).join('')}
+    ${pipe.map(([a, b, c], i) => `<div class="pn${i === pipe.length - 1 ? ' last' : ''}"><div class="pi">${ic(a, 38)}<span class="pok">${ic('check', 18, 3.5)}</span><span class="pko">${ic('x', 18, 3.5)}</span></div><div class="pt">${b}</div><div class="pd">${c}</div></div>`).join('')}
   </div>
-  <div class="pipe-fail" data-step="3">${ic('octagon-x', 26)} <span>Si cualquier filtro falla, el cambio <b>no llega a producción.</b></span></div>
-  <div class="ci-foot" data-step="4"><span><b>9,832</b>pruebas automatizadas</span><span><b>9 / 381</b>rutas públicas</span><span><b>0</b>defectos críticos en la revisión externa</span><span><b>k6</b>carga cada semana</span></div>`,
+  <div class="pipe-fail">${ic('octagon-x', 30)} <span>Si cualquier filtro falla, el cambio <b>no llega a producción.</b></span></div>
+  <div class="ci-foot"><span><b>9,832</b>pruebas automatizadas</span><span><b>9 / 381</b>rutas públicas</span><span><b>0</b>defectos críticos en la revisión externa</span><span><b>k6</b>carga cada semana</span></div>`,
 })
 
 S({
-  id: 'carga', act: 'Infraestructura', who: 'Vernel', t: 45,
-  notes: 'Todo corre en una sola máquina virtual de Azure en la región de México: una instancia B2ats v2 de dos núcleos y un giga de RAM, más dos de swap, de unos 8 dólares al mes, con cuatro contenedores. Con k6 medimos que la API responde en unos 200 milisegundos en el percentil 95, sin un solo error de servidor. Lo primero que se satura es el limitador de peticiones por IP, que es una protección, no el hardware. Y optimizando las cinco secciones más lentas bajamos su tiempo entre 59 y 76 %. [Relevo a Angel]',
-  html: `${head('Infraestructura y carga · k6', 'Una máquina pequeña <em>que aguanta.</em>')}
-  <div class="infra" data-step="1"><div class="when">Producción hoy</div><div class="t">VM de Azure</div>
+  id: 'carga', act: 'Infraestructura', who: 'Vernel', t: 35, gap: 0.9,
+  notes: 'Hoy todo corre en una máquina virtual de Azure en la región de México: una B2ats v2 de dos núcleos y un giga de RAM, de unos 8 dólares al mes. Es la que usamos para desarrollo y para mostrarle la plataforma al cliente; para toda la universidad se dimensiona según cuántos estudiantes la usen, y como todo está en Docker solo se cambia el tamaño del servidor. Con k6 medimos que la API responde en unos 200 milisegundos en el percentil 95, sin un solo error de servidor. Lo primero que se satura es el límite de peticiones por IP, que es una protección. Y optimizando las cinco secciones más lentas bajamos su tiempo entre 59 y 76 por ciento. [Relevo a Angel]',
+  html: `${head('Infraestructura y carga · k6', 'Infraestructura <em>y pruebas de carga.</em>')}
+  <div class="infra" data-step="1" data-sfx="slide"><div class="when">Servidor actual · desarrollo y demo</div><div class="t">VM de Azure</div>
     <div class="spec"><div>Instancia<b>B2ats v2</b></div><div>Región<b>México Central</b></div><div>Recursos<b>2 vCPU · 1 GB</b></div><div>Costo<b>≈ US$8 / mes</b></div></div>
-    <div class="stack">Docker Compose con 4 contenedores: Next.js, NestJS, PostgreSQL y Redis, detrás de Nginx con HTTPS.</div></div>
+    <div class="stack">4 contenedores: Next.js, NestJS, PostgreSQL y Redis, detrás de Nginx con HTTPS. Para toda la UVG se elige el tamaño según los estudiantes que la usen.</div></div>
   <div class="load">
-    <div class="ld" data-step="2"><div class="v">~200<small>ms</small></div><div class="l">p95 de la API en producción</div><div class="s">k6 con rampa de 1 a 20 usuarios</div></div>
-    <div class="ld" data-step="2"><div class="v">0</div><div class="l">errores de servidor</div><div class="s">ni caídas ni timeouts durante la prueba</div></div>
-    <div class="ld" data-step="3"><div class="v">−59<small>a</small>−76<small>%</small></div><div class="l">tiempo de las 5 secciones más lentas</div><div class="s">tablero, sprint, proyecto, admin y sesión: ninguna pasa de 75 ms</div></div>
-    <div class="ld" data-step="3"><div class="v">5<small>req/s</small></div><div class="l">límite por IP</div><div class="s">lo primero que se satura es la protección, no el hardware</div></div>
+    <div class="ld" data-step="2" data-sfx="pop"><div class="v">~<span data-count="200">0</span><small>ms</small></div><div class="l">p95 de la API en producción</div><div class="s">k6 con rampa de 1 a 20 usuarios</div></div>
+    <div class="ld" data-step="2" data-sfx="none" style="--d:.15s"><div class="v"><span data-count="0">0</span></div><div class="l">errores de servidor</div><div class="s">ni caídas ni timeouts durante la prueba</div></div>
+    <div class="ld" data-step="3" data-sfx="pop"><div class="v range">−59 % <span>a</span> −76 %</div><div class="l">menos tiempo en las 5 secciones más lentas</div><div class="s">tablero, sprint, proyecto, admin y sesión: ninguna pasa de 75 ms</div></div>
+    <div class="ld" data-step="3" data-sfx="none" style="--d:.15s"><div class="v">5<small>req/s</small></div><div class="l">límite por IP</div><div class="s">lo primero que se satura es la protección, no el hardware</div></div>
   </div>`,
-})
-
-const proc = [['10', 'sprints'], ['9', 'meses'], ['5', 'integrantes']]
-S({
-  id: 'proceso', act: 'Proceso', who: 'Vernel', t: 25,
-  notes: 'Trabajamos con Scrum durante diez sprints, de marzo a noviembre, con Jira para el backlog y cada cambio pasando por revisión de código y por CI antes de llegar a producción. [Relevo a Angel]',
-  html: `${head('Cómo trabajamos', 'Scrum, Jira <em>y revisión en cada cambio.</em>')}
-  <div class="proc">${proc.map(([a, b], i) => `<div class="proc-c" data-step="1" style="--d:${i * 0.1}s"><div class="v">${a}</div><div class="l">${b}</div></div>`).join('')}</div>
-  <div class="pipe" data-step="2">${['Historia en Jira', 'Rama y PR', 'Revisión', 'CI: pruebas', 'Producción'].map((s, i) => `<div class="pp"><span>${i + 1}</span>${s}</div>`).join(`<div class="pa">${ic('chevron-right', 28)}</div>`)}</div>`,
 })
 
 // =========================================================== ACTO VI · CIERRE (Angel)
 S({
-  id: 'siguiente', act: 'Lo que sigue', who: 'Angel', t: 20,
-  notes: 'Lo que sigue: un piloto con una asociación real, mover la plataforma a un servidor de la UVG —como todo está en Docker se mueve sin cambiar código— y crecer sumando servidores cuando haya más usuarios. Y ahora, mejor véanlo funcionando.',
+  id: 'siguiente', act: 'Lo que sigue', who: 'Angel', t: 20, gap: 0.8,
+  notes: 'Lo que sigue: un piloto con la Asociación de Estudiantes de Computación, mover la plataforma a un servidor de la UVG —como todo está en Docker se mueve sin cambiar código— y seguir creciendo sin rehacerla. Y ahora, mejor véanlo funcionando.',
   html: `${head('Lo que sigue', 'Listo para un <em>piloto real.</em>')}
-  <div class="next">${[['rocket', 'Piloto con una asociación'], ['server-cog', 'Servidor propio de la UVG'], ['trending-up', 'Crecer sin rehacerlo']].map(([a, b], i) => `<div class="nx" data-step="${i + 1}"><div class="ib">${ic(a, 40)}</div><div class="t">${b}</div></div>`).join('')}</div>`,
+  <div class="next">${[['rocket', 'Piloto con la Asociación de Estudiantes de Computación'], ['server-cog', 'Servidor propio de la UVG'], ['trending-up', 'Seguir creciendo sin rehacerlo']].map(([a, b], i) => `<div class="nx" data-step="${i + 1}" data-sfx="pop"><div class="ib">${ic(a, 40)}</div><div class="t">${b}</div></div>`).join('')}</div>`,
 })
 
 S({
-  id: 'demo', act: 'Demo', who: 'Todos', t: 300, cls: 'demo-slide', steps: 2,
+  id: 'demo', act: 'Demo', who: 'Todos', t: 225, cls: 'demo-slide', steps: 2, manual: true,
   notes: 'Paso 1: aparece la laptop con la landing. Paso 2 (→): doble clic, entra a pantalla completa, el equipo saluda abajo a la derecha y arranca el recorrido. No toquen nada hasta que termine; al final, → pasa al cierre.',
   html: `<div class="kick dm-kick">Demo</div>
   <h2 class="title dm-title">Ahora, <em>véanlo funcionando.</em></h2>
@@ -236,20 +309,21 @@ S({
   <div id="dm-full"><img class="dm-still" src="/media/landing.png" alt="" />
     <video id="dm-video" playsinline preload="auto"><source src="/media/demo.mp4" type="video/mp4" /></video></div>
   <div id="dm-team">${TEAM.map((p) => `<figure class="dm-a" data-id="${p.id}"><canvas></canvas><figcaption>${p.short}</figcaption></figure>`).join('')}</div>
-  <div id="dm-guide"><canvas></canvas><div class="dm-sub"><b></b><span></span></div></div>
+  <div id="dm-guide"><canvas></canvas><b class="dm-name"></b></div>
+  <div id="dm-sub"><span></span></div>
   <div id="dm-cursor">${ic('mouse-pointer-2', 52, 1.6)}</div><div class="dm-ripple"></div><div class="dm-ripple"></div>
   <audio id="dm-intro" src="/audio/intro.mp3" preload="auto"></audio><audio id="dm-outro" src="/audio/outro.mp3" preload="auto"></audio><audio id="dm-click" src="/audio/dblclick.wav" preload="auto"></audio>`,
 })
 
 S({
-  id: 'cierre', act: 'Cierre', who: 'Angel', t: 20, cls: 'dark cover',
+  id: 'cierre', act: 'Cierre', who: 'Angel', t: 20, cls: 'dark cover', gap: 1.4,
   notes: 'Antes, te enterabas de un proyecto solo si estabas en el grupo correcto. Ahora cualquier estudiante lo encuentra, y su trabajo cuenta. Muchas gracias, ¿tienen preguntas?',
   html: `<div class="glow"></div>
   <div class="cl">
-    <div class="bef" data-step="1">Antes: te enterabas <s>si estabas en el grupo correcto.</s></div>
-    <h1 class="display sm" data-step="1">Ahora: cualquier estudiante lo encuentra, <em>y su trabajo cuenta.</em></h1>
-    <div class="thx" data-step="2">Gracias · <em>¿Preguntas?</em></div>
+    <div class="bef" data-step="1" data-sfx="none">Antes: te enterabas <s>si estabas en el grupo correcto.</s></div>
+    <h1 class="display sm" data-step="2" data-sfx="reveal">Ahora: cualquier estudiante lo encuentra, <em>y su trabajo cuenta.</em></h1>
+    <div class="thx" data-step="3" data-sfx="bell">Gracias · <em>¿Preguntas?</em></div>
   </div>
-  <div class="qr" data-step="2"><img src="/img/qr.png" alt="" /><div>Pruébalo<br /><b>158.23.57.118.nip.io</b></div></div>
-  <div class="cl-team" data-step="2">${TEAM.map((p) => `<figure data-id="${p.id}"><canvas></canvas><figcaption>${p.short}</figcaption></figure>`).join('')}</div>`,
+  <div class="qr" data-step="3" data-sfx="none"><img src="/img/qr.png" alt="" /><div>Pruébalo<br /><b>158.23.57.118.nip.io</b></div></div>
+  <div class="cl-team" data-step="3" data-sfx="none">${TEAM.map((p) => `<figure data-id="${p.id}"><canvas></canvas><figcaption>${p.short}</figcaption></figure>`).join('')}</div>`,
 })
