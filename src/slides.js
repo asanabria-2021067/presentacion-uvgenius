@@ -34,7 +34,7 @@ S({
   id: 'pitch', act: 'Inicio', who: 'Samuel', t: 25, cls: 'dark cover', gap: 1.8,
   notes: 'PITCH (sin cifras). ¿Cuántos estudiantes de la UVG quieren sumarse a un proyecto… y no saben dónde buscarlo? ¿Y cuántos proyectos arrancan sin la persona que mejor encajaba, solo porque nunca se enteró? Pausa. Eso pasa todos los semestres.',
   html: `<div class="glow"></div>
-  <div class="pt">
+  <div class="pitch">
     <p class="pt-q" data-step="1" data-sfx="none">¿Cuántos estudiantes de la UVG quieren sumarse a un proyecto…</p>
     <p class="pt-q b" data-step="2" data-sfx="reveal">…y no saben <em>dónde buscarlo?</em></p>
     <p class="pt-q s" data-step="3" data-sfx="pop">¿Y cuántos proyectos arrancan sin la persona que mejor encajaba, <em>solo porque nunca se enteró?</em></p>
@@ -167,17 +167,17 @@ const costs = [
   ['siJira', 'Jira', 'Standard', 'US$ 7.91 por persona · gratis solo hasta 10', 396],
   ['siNotion', 'Notion', 'Plus', 'US$ 12 a 16 por persona', 800, 600],
   ['siGoogleforms', 'Forms + WhatsApp', 'Gratis', 'sin estado, horas ni seguimiento', 0],
-  [null, 'UVGenius', 'Servidor propio', 'costo de hoy; si crece la carga, se escala el servidor', 8],
+  [null, 'UVGenius', 'Servidor propio', 'cobra por servidor, no por persona', null],
 ]
 S({
   id: 'costos', act: 'Competencia', who: 'Derek', t: 25, gap: 0.7,
-  notes: 'Y el costo. Para una asociación con 50 estudiantes activos, Jira Standard sale en unos 396 dólares al mes porque cobra por persona y el plan gratis llega solo a 10. Notion Plus, entre 600 y 800. Forms y WhatsApp son gratis, pero no dan estado, horas ni seguimiento. UVGenius corre hoy en un servidor de unos 8 dólares al mes, y ese costo es del servidor, no por persona. (Precios de lista en dólares, 2026.)',
-  html: `${head('Costo al mes · ejemplo con 50 estudiantes', 'Las otras cobran <em>por persona.</em>')}
+  notes: 'Y el costo. Para una asociación con 50 estudiantes activos, Jira Standard sale en unos 396 dólares al mes porque cobra por persona y el plan gratis llega solo a 10. Notion Plus, entre 600 y 800. Forms y WhatsApp son gratis, pero no dan estado, horas ni seguimiento. ¿Y UVGenius? No cobra por persona: su costo es el del servidor, y eso se los cuento en la siguiente. (Precios de lista en dólares, 2026.)',
+  html: `${head('Costo al mes · ejemplo con 50 estudiantes', 'Las otras cobran por persona. <em>¿Y UVGenius?</em>')}
   <div class="cost2">${costs.map(([k, n, p, note, tot, lo], i) => `<div class="cr${i === 3 ? ' us' : ''}" data-step="${i + 1}" data-sfx="${i === 3 ? 'bell' : 'slide'}">
     <div class="cr-h">${k ? logo(k, 44) : '<span class="co-uvg">UV</span>'}<div><b>${n} <small>${p}</small></b><span>${note}</span></div></div>
-    <div class="cr-bar"><i style="--w:${Math.max(1.2, (tot / 800) * 100)}%"></i></div>
-    <div class="cr-v"><small>US$</small><span data-count="${lo ?? tot}" ${lo ? `data-suffix="–${tot}"` : ''} ${i === 3 ? 'data-prefix="≈ "' : ''}>0</span></div></div>`).join('')}</div>
-  <div class="cost-src" data-step="5" data-sfx="none">Precios de lista en US$ (Jira y Notion, 2026). UVGenius: VM actual de Azure; con más usuarios se escala el servidor, no las licencias.</div>`,
+    <div class="cr-bar"><i style="--w:${tot === null ? 0 : Math.max(1.2, (tot / 800) * 100)}%"></i></div>
+    <div class="cr-v">${tot === null ? '<span class="q">?</span>' : `<small>US$</small><span data-count="${lo ?? tot}" ${lo ? `data-suffix="–${tot}"` : ''}>0</span>`}</div></div>`).join('')}</div>
+`,
 })
 
 const rows = [['Encontrar un proyecto', 'Preguntar en grupos', 'Explorar con filtros'], ['Postularse', 'Mensaje informal', 'Postulación con estado'], ['Ver el avance', 'Al final', 'Sprint por sprint'], ['Validar horas', 'Reporte manual', 'Horas por tarea']]
@@ -285,12 +285,17 @@ S({
 })
 
 // =========================================================== ACTO VI · CIERRE (Angel)
-const plan = [['rocket', 'Piloto con la Asociación de Estudiantes de Computación'], ['message-square-heart', 'Ajustes con lo que nos digan'], ['users', 'Más asociaciones y carreras'], ['trending-up', 'Toda la UVG, sin rehacerlo']]
 S({
-  id: 'siguiente', act: 'Lo que sigue', who: 'Derek', t: 20, gap: 0.8,
-  notes: 'Lo que sigue: un piloto con la Asociación de Estudiantes de Computación, ajustar con lo que nos digan, sumar más asociaciones y carreras, y llegar a toda la UVG sin rehacer la plataforma: como todo está en Docker, solo se cambia el tamaño del servidor. Y ahora, mejor véanlo funcionando.',
-  html: `${head('Lo que sigue', 'Listo para un <em>piloto real.</em>')}
-  <div class="flow f4"><div class="flow-track"><i></i></div>${plan.map(([a, b], i) => `<div class="fs" data-step="${i + 1}" data-sfx="pop"><div class="fi">${ic(a, 50)}</div><div class="fn">0${i + 1}</div><div class="t">${b}</div></div>`).join('')}</div>`,
+  id: 'costo-uvg', act: 'Costo', who: 'Derek', t: 35, gap: 0.8,
+  notes: `¿Cuánto cuesta UVGenius? Construirlo, estimado con puntos de casos de uso, son 5,670 horas-persona: unos 850 mil quetzales a 150 la hora. Tenerlo funcionando hoy nos ha costado unos 6 dólares al mes, pero ojo: es el servidor de desarrollo, sin carga real. En producción el costo depende de cuántos lo usen y de dónde se hospede: en el data center de la UVG; híbrido, con el backend en la UVG y una entrada pública en Azure o AWS que solo redirige; o todo en la nube, escalando el servidor. En ningún caso se paga por persona.
+SI PREGUNTAN: al cierre del Sprint 10 el equivalente ejecutado fue mayor (unos Q1.3 M, 8,717 h-p) porque el alcance creció de 415 a 452 SP por mejoras que pidió el Product Owner.`,
+  html: `${head('Costo de UVGenius', '¿Cuánto cuesta <em>UVGenius?</em>')}
+  <div class="cu">
+    <div class="cu-k" data-step="1" data-sfx="slide"><div class="cu-l">Construirlo · estimado con UCP</div><div class="cu-v">Q<span data-count="850500" data-fmt="miles">0</span></div><div class="cu-s">5,670 horas-persona a Q150 la hora</div></div>
+    <div class="cu-k dark" data-step="2" data-sfx="slide"><div class="cu-l">Tenerlo funcionando hoy</div><div class="cu-v">≈ US$<span data-count="6">0</span><small>/ mes</small></div><div class="cu-s">Servidor de desarrollo y demo, sin carga real. No es el costo en producción.</div></div>
+  </div>
+  <div class="cu-h" data-step="3" data-sfx="none">En producción, el costo depende de cuántos la usen y de dónde se hospede:</div>
+  <div class="cu-o">${[['building-2', 'Data center de la UVG', 'Todo en servidores de la universidad'], ['split', 'Híbrido', 'Backend en la UVG y una entrada pública en Azure o AWS que solo redirige'], ['cloud', 'En la nube', 'Se escala el servidor según la carga, no por persona']].map(([a, b, c], i) => `<div class="cu-c" data-step="${i + 4}" data-sfx="pop"><span class="ib">${ic(a, 30)}</span><div><b>${b}</b><small>${c}</small></div></div>`).join('')}</div>`,
 })
 
 S({
@@ -322,13 +327,6 @@ S({
 })
 
 // Orden de la presentación: pitch, equipo, problema, público objetivo y la demo lo antes posible.
-const RAIN = ['Explorar proyectos', 'Filtrar por horas beca', 'Horas de extensión', 'Postularse a un rol', 'Preguntas de postulación', 'Estado de la solicitud', 'Aceptar postulantes', 'Tablero Kanban', 'Sprints', 'Metas', 'Registrar horas', 'Validar horas', 'Chat de equipo', 'Mensajes directos', 'Avisos en tiempo real', 'Calendario', 'Reuniones', 'Organizaciones', 'Asociaciones', 'Junta directiva', 'Anuncios', 'Metas del semestre', 'Estudiantes en riesgo', 'Reportes PDF', 'Reportes CSV', 'Portafolio', 'Insignias', 'CV con enlace', 'Panel de coordinación', 'Cierre de proyectos', 'Roles y permisos', 'Estado del sistema', 'Modo mantenimiento', 'Accesibilidad', 'Modo oscuro', 'Búsqueda global']
-S({
-  id: 'lluvia', act: 'Todo en uno', who: 'Derek', t: 15, rain: true,
-  notes: '(Opcional) Todo lo que hace UVGenius, en un solo lugar.',
-  html: `<div class="rain">${RAIN.map((t) => `<span class="rw">${t}</span>`).join('')}<div class="rain-c"><div class="wordmark">UVGenius</div><small>todo en un solo lugar</small></div></div>`,
-})
-
 const ORDER = ['pitch', 'historia', 'equipo', 'canales', 'sintomas', 'revelacion', 'para-quien-0', 'publico-0', 'para-quien-1', 'publico-1', 'para-quien-2', 'publico-2', 'demo',
-  'recorrido', 'neurolab', 'mejoras', 'tecnologias', 'arquitectura', 'ci', 'antes-despues', 'herramientas', 'costos', 'impacto', 'siguiente', 'cierre', 'lluvia']
+  'recorrido', 'neurolab', 'mejoras', 'tecnologias', 'arquitectura', 'ci', 'antes-despues', 'herramientas', 'costos', 'costo-uvg', 'impacto', 'cierre']
 SLIDES.sort((x, y) => ORDER.indexOf(x.id) - ORDER.indexOf(y.id))

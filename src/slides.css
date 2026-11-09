@@ -390,7 +390,7 @@
 .cover .cv-center { top: 250px !important; }
 .sc-l { justify-content: center !important; gap: 44px !important; }
 /* pitch */
-.pt { position: absolute; left: 160px; right: 160px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 30px; }
+.pitch { position: absolute; left: 160px; right: 160px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; gap: 30px; }
 .pt-q { font: 700 72px/1.1 var(--f-head); letter-spacing: -.03em; color: rgba(238, 247, 241, .92); max-width: 1500px; }
 .pt-q.b { font-size: 96px; color: #fff; } .pt-q em { font-style: normal; color: var(--lime); }
 .pt-q.s { font-size: 46px; font-weight: 600; color: rgba(238, 247, 241, .7); margin-top: 40px; }
@@ -414,3 +414,20 @@
 .rw:nth-child(5n) { background: #fff; color: var(--green-ink); }
 /* la barra del video encima de todo cuando se pide con V */
 .demo-slide.dm-ctrl #dm-full { z-index: 40; }
+/* costos: UVGenius con signo de pregunta */
+.cr-v .q { font-size: 84px; color: var(--lime); }
+/* ¿cuánto cuesta UVGenius? */
+.cu { position: absolute; left: 128px; right: 128px; top: 330px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.cu-k { background: var(--card); border-radius: 30px; box-shadow: var(--shadow); padding: 38px 44px; }
+.cu-k.dark { background: var(--green-ink); color: #eef7f1; }
+.cu-l { font: 700 18px var(--f-head); letter-spacing: .14em; text-transform: uppercase; color: var(--green); }
+.cu-k.dark .cu-l { color: var(--lime); }
+.cu-v { font: 800 104px/1 var(--f-head); letter-spacing: -.045em; margin-top: 18px; white-space: nowrap; }
+.cu-v small { font-size: 32px; letter-spacing: 0; margin-left: 10px; opacity: .7; }
+.cu-s { font: 500 22px/1.4 var(--f-body); color: var(--muted); margin-top: 16px; }
+.cu-k.dark .cu-s { color: rgba(238, 247, 241, .75); }
+.cu-h { position: absolute; left: 128px; top: 700px; font: 600 26px var(--f-head); color: var(--soft); }
+.cu-o { position: absolute; left: 128px; right: 128px; top: 760px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cu-c { display: flex; gap: 20px; align-items: flex-start; background: var(--card); border-radius: 24px; box-shadow: var(--shadow); padding: 26px 28px; }
+.cu-c b { display: block; font: 700 27px var(--f-head); } .cu-c small { display: block; font: 500 19px/1.4 var(--f-body); color: var(--muted); margin-top: 6px; }
+.cu-c .ib { width: 58px; height: 58px; border-radius: 16px; }

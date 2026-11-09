@@ -53,7 +53,7 @@ fit()
 function countUp(root, tl, at, quiet) {
   for (const n of root.querySelectorAll('[data-count]')) {
     const to = +n.dataset.count, dec = +(n.dataset.dec || 0), pre = n.dataset.prefix || '', suf = n.dataset.suffix || ''
-    const fmt = (v) => pre + v.toFixed(dec) + suf
+    const fmt = (v) => pre + (n.dataset.fmt === 'miles' ? Math.round(v).toLocaleString('en-US') : v.toFixed(dec)) + suf
     if (!tl) { n.textContent = fmt(to); continue }
     const o = { v: 0 }; let last = -1
     n.textContent = fmt(0)
