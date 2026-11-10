@@ -11,7 +11,7 @@ import '@fontsource/rubik/700.css'
 import '@fontsource/rubik/800.css'
 import './styles.css'
 import './slides.css'
-import { SLIDES } from './slides.js'
+import { SLIDES, TEAM } from './slides.js'
 import { Demo } from './demo.js'
 import { Avatar, track, PEOPLE } from './avatar3d.js'
 import { sfx, toggleMute } from './sfx.js'
@@ -35,6 +35,19 @@ for (const s of SLIDES) {
   if (!s.manual) s.steps = 0 // todo corre solo al entrar; la flecha pasa a la siguiente
 }
 const demo = new Demo(SLIDES.find((s) => s.id === 'demo').el)
+// Muñequito de quien presenta cada slide (abajo a la derecha), a partir de la presentación del equipo.
+{
+  const from = SLIDES.findIndex((s) => s.id === 'equipo')
+  SLIDES.forEach((s, i) => {
+    const p = TEAM.find((t) => t.short === s.who)
+    if (i <= from || !p || s.id === 'cierre') return
+    const f = document.createElement('figure')
+    f.className = 'spk'; f.dataset.id = p.id
+    f.innerHTML = `<canvas></canvas><figcaption>${p.short}</figcaption>`
+    s.el.querySelector('.inner').appendChild(f)
+    const a = new Avatar(f.querySelector('canvas'), PEOPLE[p.id]); track(a)
+  })
+}
 for (const f of document.querySelectorAll('.cl-team figure, .cv-team figure')) { const a = new Avatar(f.querySelector('canvas'), PEOPLE[f.dataset.id]); a.pose = 'wave'; track(a) }
 
 // El escenario ocupa TODA la ventana: el contenido vive en un lienzo de 1920×1080 centrado.
